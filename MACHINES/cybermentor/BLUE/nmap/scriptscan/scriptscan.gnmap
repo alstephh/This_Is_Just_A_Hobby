@@ -1,0 +1,1 @@
+# Nmap 7.91 scan initiated Thu Aug 19 19:55:34 2021 as: nmap --script=all -oA scriptscan -T4 192.168.1.108

@@ -1,0 +1,73 @@
+# Nmap 7.91 scan initiated Thu Aug 19 19:55:34 2021 as: nmap --script=all -oA scriptscan -T4 192.168.1.108
+Pre-scan script results:
+| broadcast-dhcp-discover: 
+|   Response 1 of 1: 
+|     Interface: eth0
+|     IP Offered: 192.168.1.112
+|     Subnet Mask: 255.255.255.0
+|     Router: 192.168.1.1
+|     Domain Name Server: 192.168.1.1
+|     Hostname: dhcppc12
+|     Domain Name: \x00
+|_    Server Identifier: 192.168.1.1
+| broadcast-igmp-discovery: 
+|   192.168.1.108
+|     Interface: eth0
+|     Version: 2
+|     Group: 224.0.0.252
+|     Description: Link-local Multicast Name Resolution (rfc4795)
+|_  Use the newtargets script-arg to add the results as targets
+| broadcast-listener: 
+|   ether
+|       EIGRP Update
+|         
+|       ARP Request
+|         sender ip      sender mac         target ip
+|         192.168.1.108  00:0c:29:a1:45:df  192.168.1.1
+|   udp
+|       DHCP
+|         srv ip       cli ip         mask           gw           dns          vendor
+|         192.168.1.1  192.168.1.113  255.255.255.0  192.168.1.1  192.168.1.1  -
+|       SSDP
+|         ip             uri
+|         192.168.1.108  urn:schemas-upnp-org:device:InternetGatewayDevice:1
+|       LLMNR
+|         ip                         query
+|         fe80::75d1:6ffb:1dcf:201c  WIN-845Q99OO4PP
+|_        192.168.1.108              WIN-845Q99OO4PP
+|_eap-info: please specify an interface with -e
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| ipv6-multicast-mld-list: 
+|   fe80::75d1:6ffb:1dcf:201c: 
+|     device: eth0
+|     mac: 00:0c:29:a1:45:df
+|     multicast_ips: 
+|       ff02::1:ffcf:201c         (NDP Solicited-node)
+|       ff02::1:3                 (Link-local Multicast Name Resolution)
+|       ff02::1:3                 (Link-local Multicast Name Resolution)
+|       ff02::1:3                 (Link-local Multicast Name Resolution)
+|       ff02::1:3                 (Link-local Multicast Name Resolution)
+|       ff02::c                   (SSDP)
+|       ff02::1:ff03:ac3c         (Solicited-Node Address)
+|       ff02::1:3                 (Link-local Multicast Name Resolution)
+|_      ff02::1:3                 (Link-local Multicast Name Resolution)
+| lltd-discovery: 
+|   192.168.1.102
+|     Hostname: EPSONBE8FEE
+|     Mac: 38:9d:92:be:8f:ee (Seiko Epson)
+|     IPv6: fe80::3a9d:92ff:febe:8fee
+|_  Use the newtargets script-arg to add the results as targets
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: fe80::75d1:6ffb:1dcf:201c  MAC: 00:0c:29:a1:45:df  IFACE: eth0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::75d1:6ffb:1dcf:201c  MAC: 00:0c:29:a1:45:df  IFACE: eth0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-slaac: 
+|   IP: fe80::75d1:6ffb:1dcf:201c  MAC: 00:0c:29:a1:45:df  IFACE: eth0
+|   IP: fe80::3c2d:3e1b:e203:ac3c  MAC: 00:0c:29:a1:45:df  IFACE: eth0
+|_  Use --script-args=newtargets to add the results as targets

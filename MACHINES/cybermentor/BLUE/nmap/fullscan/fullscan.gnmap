@@ -1,0 +1,4 @@
+# Nmap 7.91 scan initiated Fri Aug 20 18:33:18 2021 as: nmap -A -T4 -oA fullscan -p- 192.168.1.108
+Host: 192.168.1.108 ()	Status: Up
+Host: 192.168.1.108 ()	Ports: 135/open/tcp//msrpc//Microsoft Windows RPC/, 139/open/tcp//netbios-ssn//Microsoft Windows netbios-ssn/, 445/open/tcp//microsoft-ds//Windows 7 Ultimate 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP)/, 49152/open/tcp//msrpc//Microsoft Windows RPC/, 49153/open/tcp//msrpc//Microsoft Windows RPC/, 49154/open/tcp//msrpc//Microsoft Windows RPC/, 49155/open/tcp//msrpc//Microsoft Windows RPC/, 49156/open/tcp//msrpc//Microsoft Windows RPC/, 49157/open/tcp//msrpc//Microsoft Windows RPC/	Ignored State: closed (65526)	OS: Microsoft Windows 7 SP0 - SP1, Windows Server 2008 SP1, Windows Server 2008 R2, Windows 8, or Windows 8.1 Update 1	Seq Index: 260	IP ID Seq: Incremental
+# Nmap done at Fri Aug 20 18:35:13 2021 -- 1 IP address (1 host up) scanned in 115.54 seconds

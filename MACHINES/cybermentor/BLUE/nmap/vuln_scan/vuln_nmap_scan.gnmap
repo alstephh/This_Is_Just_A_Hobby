@@ -1,0 +1,4 @@
+# Nmap 7.91 scan initiated Fri Aug 20 18:45:53 2021 as: nmap --script=VULN -oA vuln_nmap_scan -T4 192.168.1.108
+Host: 192.168.1.108 ()	Status: Up
+Host: 192.168.1.108 ()	Ports: 135/open/tcp//msrpc///, 139/open/tcp//netbios-ssn///, 445/open/tcp//microsoft-ds///, 49152/open/tcp//unknown///, 49153/open/tcp//unknown///, 49154/open/tcp//unknown///, 49155/open/tcp//unknown///, 49156/open/tcp//unknown///, 49157/open/tcp//unknown///	Ignored State: closed (991)
+# Nmap done at Fri Aug 20 18:47:42 2021 -- 1 IP address (1 host up) scanned in 109.51 seconds

@@ -1,0 +1,9 @@
+   post_explotation
+
+1) Running linenum.sh (nothin interesting) 
+2) Running linPEAS.sh ---> /var/www/html/academy/admin/includes/config.php
+3) reading the config.php file --->  $mysql_user = "grimmie"; $mysql_password = "My_V3ryS3cur3_P4ss";
+4) log into SSH with the credential discovered ---> backup.sh in grimmie folder 
+5) running pspy64 ---> backup.sh run every minute with root acces
+6) with grimmie user ---> change the backup.sh file with a one liner reverse shell
+7) connect with root access

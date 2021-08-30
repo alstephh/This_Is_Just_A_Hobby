@@ -1,0 +1,60 @@
+# Nmap 7.91 scan initiated Thu Aug 26 16:55:42 2021 as: nmap -A -T4 -p- -oA fullscan/fscan 192.168.43.113
+Nmap scan report for 192.168.43.113
+Host is up (0.0060s latency).
+Not shown: 65526 closed ports
+PORT      STATE SERVICE  VERSION
+22/tcp    open  ssh      OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 bd:96:ec:08:2f:b1:ea:06:ca:fc:46:8a:7e:8a:e3:55 (RSA)
+|   256 56:32:3b:9f:48:2d:e0:7e:1b:df:20:f8:03:60:56:5e (ECDSA)
+|_  256 95:dd:20:ee:6f:01:b6:e1:43:2e:3c:f4:38:03:5b:36 (ED25519)
+80/tcp    open  http     Apache httpd 2.4.38 ((Debian))
+|_http-server-header: Apache/2.4.38 (Debian)
+|_http-title: Bolt - Installation error
+111/tcp   open  rpcbind  2-4 (RPC #100000)
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2,3,4        111/tcp   rpcbind
+|   100000  2,3,4        111/udp   rpcbind
+|   100000  3,4          111/tcp6  rpcbind
+|   100000  3,4          111/udp6  rpcbind
+|   100003  3           2049/udp   nfs
+|   100003  3           2049/udp6  nfs
+|   100003  3,4         2049/tcp   nfs
+|   100003  3,4         2049/tcp6  nfs
+|   100005  1,2,3      33521/udp6  mountd
+|   100005  1,2,3      39397/tcp   mountd
+|   100005  1,2,3      41857/tcp6  mountd
+|   100005  1,2,3      60082/udp   mountd
+|   100021  1,3,4      39583/tcp   nlockmgr
+|   100021  1,3,4      41234/udp   nlockmgr
+|   100021  1,3,4      44993/tcp6  nlockmgr
+|   100021  1,3,4      57683/udp6  nlockmgr
+|   100227  3           2049/tcp   nfs_acl
+|   100227  3           2049/tcp6  nfs_acl
+|   100227  3           2049/udp   nfs_acl
+|_  100227  3           2049/udp6  nfs_acl
+2049/tcp  open  nfs_acl  3 (RPC #100227)
+8080/tcp  open  http     Apache httpd 2.4.38 ((Debian))
+| http-open-proxy: Potentially OPEN proxy.
+|_Methods supported:CONNECTION
+|_http-server-header: Apache/2.4.38 (Debian)
+|_http-title: PHP 7.3.27-1~deb10u1 - phpinfo()
+39397/tcp open  mountd   1-3 (RPC #100005)
+39417/tcp open  mountd   1-3 (RPC #100005)
+39583/tcp open  nlockmgr 1-4 (RPC #100021)
+53233/tcp open  mountd   1-3 (RPC #100005)
+MAC Address: 00:0C:29:15:34:E9 (VMware)
+Device type: general purpose
+Running: Linux 4.X|5.X
+OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5
+OS details: Linux 4.15 - 5.6
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE
+HOP RTT     ADDRESS
+1   6.01 ms 192.168.43.113
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Aug 26 16:56:37 2021 -- 1 IP address (1 host up) scanned in 55.47 seconds

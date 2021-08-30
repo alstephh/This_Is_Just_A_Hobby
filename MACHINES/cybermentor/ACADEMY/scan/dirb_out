@@ -1,0 +1,6 @@
+/.hta                 (Status: 403) [Size: 279]
+/.htaccess            (Status: 403) [Size: 279]
+/.htpasswd            (Status: 403) [Size: 279]
+/index.html           (Status: 200) [Size: 10701]
+/phpmyadmin           (Status: 301) [Size: 321] [--> http://192.168.43.117/phpmyadmin/]
+/server-status        (Status: 403) [Size: 279]

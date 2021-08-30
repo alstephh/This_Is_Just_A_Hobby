@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.91 scan initiated Thu Aug 26 16:57:39 2021 as: nmap -&#45;script=all -T4 -p- -oA scriptscan 192.168.43.113 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script=all -T4 -p- -oA scriptscan 192.168.43.113" start="1629989859" startstr="Thu Aug 26 16:57:39 2021" version="7.91" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="broadcast-dhcp-discover" output="&#xa;  Response 1 of 1: &#xa;    Interface: eth0&#xa;    IP Offered: 192.168.43.241&#xa;    Server Identifier: 192.168.43.1&#xa;    Subnet Mask: 255.255.255.0&#xa;    Broadcast Address: 192.168.43.255&#xa;    Router: 192.168.43.1&#xa;    Domain Name Server: 192.168.43.1"><table key="Response 1 of 1">
+<elem key="Interface">eth0</elem>
+<elem key="IP Offered">192.168.43.241</elem>
+<elem key="Server Identifier">192.168.43.1</elem>
+<elem key="Subnet Mask">255.255.255.0</elem>
+<elem key="Broadcast Address">192.168.43.255</elem>
+<elem key="Router">192.168.43.1</elem>
+<elem key="Domain Name Server">192.168.43.1</elem>
+</table>
+</script><script id="broadcast-listener" output="&#xa;  udp&#xa;      SSDP&#xa;        ip             uri&#xa;        192.168.43.54   urn:dial-multiscreen-org:service:dial:1&#xa;"/><script id="eap-info" output="please specify an interface with -e"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::20c:29ff:fe15:34f3: &#xa;    device: eth0&#xa;    mac: 00:0c:29:15:34:f3&#xa;    multicast_ips: &#xa;      ff02::1:ff15:34f3         (NDP Solicited-node)&#xa;  fe80::20c:29ff:fe15:34e9: &#xa;    device: eth0&#xa;    mac: 00:0c:29:15:34:e9&#xa;    multicast_ips: &#xa;      ff02::1:ff15:34e9         (NDP Solicited-node)"><table key="fe80::20c:29ff:fe15:34f3">
+<elem key="device">eth0</elem>
+<elem key="mac">00:0c:29:15:34:f3</elem>
+<table key="multicast_ips">
+<table>
+<elem key="description">NDP Solicited-node</elem>
+<elem key="ip">ff02::1:ff15:34f3</elem>
+</table>
+</table>
+</table>
+<table key="fe80::20c:29ff:fe15:34e9">
+<elem key="device">eth0</elem>
+<elem key="mac">00:0c:29:15:34:e9</elem>
+<table key="multicast_ips">
+<table>
+<elem key="description">NDP Solicited-node</elem>
+<elem key="ip">ff02::1:ff15:34e9</elem>
+</table>
+</table>
+</table>
+</script><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: fe80::20c:29ff:fe15:34f3  MAC: 00:0c:29:15:34:f3  IFACE: eth0&#xa;  IP: fe80::20c:29ff:fe15:34e9  MAC: 00:0c:29:15:34:e9  IFACE: eth0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: fe80::20c:29ff:fe15:34f3  MAC: 00:0c:29:15:34:f3  IFACE: eth0&#xa;  IP: fe80::20c:29ff:fe15:34e9  MAC: 00:0c:29:15:34:e9  IFACE: eth0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::20c:29ff:fe15:34e9  MAC: 00:0c:29:15:34:e9  IFACE: eth0&#xa;  IP: fe80::20c:29ff:fe15:34f3  MAC: 00:0c:29:15:34:f3  IFACE: eth0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="iface">eth0</elem>
+<elem key="mac">00:0c:29:15:34:e9</elem>
+<elem key="address">fe80::20c:29ff:fe15:34e9</elem>
+</table>
+<table>
+<elem key="iface">eth0</elem>
+<elem key="mac">00:0c:29:15:34:f3</elem>
+<elem key="address">fe80::20c:29ff:fe15:34f3</elem>
+</table>
+</script><script id="targets-ipv6-multicast-slaac" output="&#xa;  IP: fe80::20c:29ff:fe15:34e9  MAC: 00:0c:29:15:34:e9  IFACE: eth0&#xa;  IP: fe80::20c:29ff:fe15:34f3  MAC: 00:0c:29:15:34:f3  IFACE: eth0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/></prescript><hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.43.113" addrtype="ipv4"/>
+<address addr="00:0C:29:15:34:E9" addrtype="mac" vendor="VMware"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1629989900" endtime="1629993559"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.43.113" addrtype="ipv4"/>
+<address addr="00:0C:29:15:34:E9" addrtype="mac" vendor="VMware"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65526">
+<extrareasons reason="resets" count="65526"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ssh" method="table" conf="3"/><script id="banner" output="SSH-2.0-OpenSSH_7.9p1 Debian-10+deb10u2"/><script id="ssh-auth-methods" output="&#xa;  Supported authentication methods: &#xa;    publickey&#xa;    password"><table key="Supported authentication methods">
+<elem>publickey</elem>
+<elem>password</elem>
+</table>
+</script><script id="ssh-brute" output="ERROR: Script execution failed (use -d to debug)"/><script id="ssh-hostkey" output="ERROR: Script execution failed (use -d to debug)"/><script id="ssh-publickey-acceptance" output="&#xa;  Accepted Public Keys: No public keys accepted"><elem key="Accepted Public Keys">No public keys accepted</elem>
+</script><script id="ssh-run" output="Failed to specify credentials and command to run."/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (10)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+<elem>diffie-hellman-group14-sha1</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ssh-rsa</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" method="table" conf="3"/><script id="citrix-brute-xml" output="FAILED: No domain specified (use ntdomain argument)"/><script id="http-aspnet-debug" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-brute" output="  &#xa;  Path &quot;/&quot; does not require authentication"/><script id="http-chrono" output="Request times for /; avg: 0.08ms; min: 0.06ms; max: 0.12ms"/><script id="http-comments-displayer" output="Couldn&apos;t find any comments."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-date" output="Thu, 26 Aug 2021 15:29:12 GMT; -22m00s from local time."><elem key="date">2021-08-26T15:29:12+00:00</elem>
+<elem key="delta">-1320.0</elem>
+</script><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-fetch" output="Please enter the complete path of the directory to save data in."><elem key="ERROR">Please enter the complete path of the directory to save data in.</elem>
+</script><script id="http-headers" output="&#xa;  Date: Thu, 26 Aug 2021 15:29:12 GMT&#xa;  Server: Apache/2.4.38 (Debian)&#xa;  Vary: Accept-Encoding&#xa;  Content-Length: 3833&#xa;  Connection: close&#xa;  Content-Type: text/html; charset=UTF-8&#xa;  &#xa;  (Request type: GET)&#xa;"/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-security-headers" output="&#xa;"></script><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1&#xa;  Longest directory structure:&#xa;    Depth: 0&#xa;    Dir: /&#xa;  Total files found (by extension):&#xa;    Other: 1&#xa;"/><script id="http-slowloris" output="&#xa;  Probably vulnerable:&#xa;  the DoS attack took +4m53s&#xa;  with 1001 concurrent connections&#xa;  and 20 sent queries&#xa;  Monitoring thread couldn&apos;t communicate with the server. This is probably due to max clients exhaustion or something similar but not due to slowloris attack.&#xa;"/><script id="http-slowloris-check" output="&#xa;  VULNERABLE:&#xa;  Slowloris DOS attack&#xa;    State: LIKELY VULNERABLE&#xa;    IDs:  CVE:CVE-2007-6750&#xa;      Slowloris tries to keep many connections to the target web server open and hold&#xa;      them open as long as possible.  It accomplishes this by opening connections to&#xa;      the target web server and sending a partial request. By doing so, it starves&#xa;      the http server&apos;s resources causing Denial Of Service.&#xa;      &#xa;    Disclosure date: 2009-09-17&#xa;    References:&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750&#xa;      http://ha.ckers.org/slowloris/&#xa;"><table key="CVE-2007-6750">
+<elem key="title">Slowloris DOS attack</elem>
+<elem key="state">LIKELY VULNERABLE</elem>
+<table key="ids">
+<elem>CVE:CVE-2007-6750</elem>
+</table>
+<table key="description">
+<elem>Slowloris tries to keep many connections to the target web server open and hold&#xa;them open as long as possible.  It accomplishes this by opening connections to&#xa;the target web server and sending a partial request. By doing so, it starves&#xa;the http server&apos;s resources causing Denial Of Service.&#xa;</elem>
+</table>
+<table key="dates">
+<table key="disclosure">
+<elem key="day">17</elem>
+<elem key="month">09</elem>
+<elem key="year">2009</elem>
+</table>
+</table>
+<elem key="disclosure">2009-09-17</elem>
+<table key="exploit_results">
+</table>
+<table key="refs">
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750</elem>
+<elem>http://ha.ckers.org/slowloris/</elem>
+</table>
+</table>
+</script><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-title" output="Bolt - Installation error"><elem key="title">Bolt - Installation error</elem>
+</script><script id="http-traceroute" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-useragent-tester" output="&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-vhosts" output="&#xa;127 names had status ERROR&#xa;dns2 : 200"/><script id="http-xssed" output="No previously reported XSS vuln."/></port>
+<port protocol="tcp" portid="111"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="rpcbind" version="2-4" extrainfo="RPC #100000" method="probed" conf="10"/><script id="rpcinfo" output="&#xa;  program version    port/proto  service&#xa;  100000  2,3,4        111/tcp   rpcbind&#xa;  100000  2,3,4        111/udp   rpcbind&#xa;  100000  3,4          111/tcp6  rpcbind&#xa;  100000  3,4          111/udp6  rpcbind&#xa;  100003  3           2049/udp   nfs&#xa;  100003  3           2049/udp6  nfs&#xa;  100003  3,4         2049/tcp   nfs&#xa;  100003  3,4         2049/tcp6  nfs&#xa;  100005  1,2,3      33521/udp6  mountd&#xa;  100005  1,2,3      39397/tcp   mountd&#xa;  100005  1,2,3      41857/tcp6  mountd&#xa;  100005  1,2,3      60082/udp   mountd&#xa;  100021  1,3,4      39583/tcp   nlockmgr&#xa;  100021  1,3,4      41234/udp   nlockmgr&#xa;  100021  1,3,4      44993/tcp6  nlockmgr&#xa;  100021  1,3,4      57683/udp6  nlockmgr&#xa;  100227  3           2049/tcp   nfs_acl&#xa;  100227  3           2049/tcp6  nfs_acl&#xa;  100227  3           2049/udp   nfs_acl&#xa;  100227  3           2049/udp6  nfs_acl&#xa;"><table key="100021">
+<table key="tcp6">
+<elem key="owner">superuser</elem>
+<elem key="addr">::</elem>
+<elem key="port">44993</elem>
+<table key="version">
+<elem>1</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+</table>
+<table key="udp6">
+<elem key="owner">superuser</elem>
+<elem key="addr">::</elem>
+<elem key="port">57683</elem>
+<table key="version">
+<elem>1</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+</table>
+<table key="tcp">
+<elem key="owner">superuser</elem>
+<elem key="addr">0.0.0.0</elem>
+<elem key="port">39583</elem>
+<table key="version">
+<elem>1</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+</table>
+<table key="udp">
+<elem key="owner">superuser</elem>
+<elem key="addr">0.0.0.0</elem>
+<elem key="port">41234</elem>
+<table key="version">
+<elem>1</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+</table>
+</table>
+<table key="100005">
+<table key="tcp6">
+<elem key="owner">superuser</elem>
+<elem key="addr">::</elem>
+<elem key="port">41857</elem>
+<table key="version">
+<elem>1</elem>
+<elem>2</elem>
+<elem>3</elem>
+</table>
+</table>
+<table key="udp6">
+<elem key="owner">superuser</elem>
+<elem key="addr">::</elem>
+<elem key="port">33521</elem>
+<table key="version">
+<elem>1</elem>
+<elem>2</elem>
+<elem>3</elem>
+</table>
+</table>
+<table key="tcp">
+<elem key="owner">superuser</elem>
+<elem key="addr">0.0.0.0</elem>
+<elem key="port">39397</elem>
+<table key="version">
+<elem>1</elem>
+<elem>2</elem>
+<elem>3</elem>
+</table>
+</table>
+<table key="udp">
+<elem key="owner">superuser</elem>
+<elem key="addr">0.0.0.0</elem>
+<elem key="port">60082</elem>
+<table key="version">
+<elem>1</elem>
+<elem>2</elem>
+<elem>3</elem>
+</table>
+</table>
+</table>
+<table key="100000">
+<table key="tcp6">
+<elem key="owner">superuser</elem>
+<elem key="addr">::</elem>
+<elem key="port">111</elem>
+<table key="version">
+<elem>3</elem>
+<elem>4</elem>
+</table>
+</table>
+<table key="udp6">
+<elem key="owner">superuser</elem>
+<elem key="addr">::</elem>
+<elem key="port">111</elem>
+<table key="version">
+<elem>3</elem>
+<elem>4</elem>
+</table>
+</table>
+<table key="udp">
+<elem key="owner">superuser</elem>
+<elem key="addr">0.0.0.0</elem>
+<elem key="port">111</elem>
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+</table>
+<table key="local">
+<elem key="owner">superuser</elem>
+<elem key="addr">/run/rpcbind.sock</elem>
+<table key="version">
+<elem>3</elem>
+<elem>4</elem>
+</table>
+</table>
+<table key="tcp">
+<elem key="owner">superuser</elem>
+<elem key="addr">0.0.0.0</elem>
+<elem key="port">111</elem>
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+</table>
+</table>
+<table key="100227">
+<table key="tcp6">
+<elem key="owner">superuser</elem>
+<elem key="addr">::</elem>
+<elem key="port">2049</elem>
+<table key="version">
+<elem>3</elem>
+</table>
+</table>
+<table key="udp6">
+<elem key="owner">superuser</elem>
+<elem key="addr">::</elem>
+<elem key="port">2049</elem>
+<table key="version">
+<elem>3</elem>
+</table>
+</table>
+<table key="tcp">
+<elem key="owner">superuser</elem>
+<elem key="addr">0.0.0.0</elem>
+<elem key="port">2049</elem>
+<table key="version">
+<elem>3</elem>
+</table>
+</table>
+<table key="udp">
+<elem key="owner">superuser</elem>
+<elem key="addr">0.0.0.0</elem>
+<elem key="port">2049</elem>
+<table key="version">
+<elem>3</elem>
+</table>
+</table>
+</table>
+<table key="100003">
+<table key="tcp6">
+<elem key="owner">superuser</elem>
+<elem key="addr">::</elem>
+<elem key="port">2049</elem>
+<table key="version">
+<elem>3</elem>
+<elem>4</elem>
+</table>
+</table>
+<table key="udp6">
+<elem key="owner">superuser</elem>
+<elem key="addr">::</elem>
+<elem key="port">2049</elem>
+<table key="version">
+<elem>3</elem>
+</table>
+</table>
+<table key="tcp">
+<elem key="owner">superuser</elem>
+<elem key="addr">0.0.0.0</elem>
+<elem key="port">2049</elem>
+<table key="version">
+<elem>3</elem>
+<elem>4</elem>
+</table>
+</table>
+<table key="udp">
+<elem key="owner">superuser</elem>
+<elem key="addr">0.0.0.0</elem>
+<elem key="port">2049</elem>
+<table key="version">
+<elem>3</elem>
+</table>
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="2049"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="nfs_acl" version="3" extrainfo="RPC #100227" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http-proxy" method="table" conf="3"/><script id="citrix-brute-xml" output="FAILED: No domain specified (use ntdomain argument)"/><script id="http-aspnet-debug" output="&#xa;  status: DEBUG is enabled"><elem key="status">DEBUG is enabled</elem>
+</script><script id="http-chrono" output="Request times for /; avg: 563.70ms; min: 200.65ms; max: 1172.66ms"/><script id="http-date" output="Thu, 26 Aug 2021 15:29:11 GMT; -2s from local time."><elem key="date">2021-08-26T15:29:11+00:00</elem>
+<elem key="delta">-2.0</elem>
+</script><script id="http-fetch" output="Please enter the complete path of the directory to save data in."><elem key="ERROR">Please enter the complete path of the directory to save data in.</elem>
+</script><script id="http-grep" output="&#xa;  (3) http://192.168.43.113:8080/: &#xa;    (2) ip: &#xa;      + 192.168.43.113&#xa;      + 192.168.43.232&#xa;    (1) email: &#xa;      + license@php.net"><table key="(3) http://192.168.43.113:8080/">
+<table key="(2) ip">
+<elem>+ 192.168.43.113</elem>
+<elem>+ 192.168.43.232</elem>
+</table>
+<table key="(1) email">
+<elem>+ license@php.net</elem>
+</table>
+</table>
+</script><script id="http-headers" output="&#xa;  Date: Thu, 26 Aug 2021 14:59:06 GMT&#xa;  Server: Apache/2.4.38 (Debian)&#xa;  Connection: close&#xa;  Content-Type: text/html; charset=UTF-8&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-open-proxy" output="Potentially OPEN proxy.&#xa;Methods supported:CONNECTION"/><script id="http-slowloris" output="false">false</script><script id="http-title" output="PHP 7.3.27-1~deb10u1 - phpinfo()"><elem key="title">PHP 7.3.27-1~deb10u1 - phpinfo()</elem>
+</script><script id="http-vhosts" output="&#xa;33 names had status ERROR&#xa;95 names had status 200"/><script id="http-vuln-cve2017-1001000" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="39397"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="mountd" version="1-3" extrainfo="RPC #100005" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="39417"><state state="open" reason="syn-ack" reason_ttl="64"/></port>
+<port protocol="tcp" portid="39583"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="nlockmgr" version="1-4" extrainfo="RPC #100021" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="53233"><state state="open" reason="syn-ack" reason_ttl="64"/></port>
+</ports>
+<hostscript><script id="clock-skew" output="mean: -11m01s, deviation: 15m31s, median: -22m00s"><elem key="mean">-661</elem>
+<elem key="median">-1320</elem>
+<elem key="stddev">931</elem>
+<elem key="count">2</elem>
+</script><script id="dns-blacklist" output="&#xa;  SPAM&#xa;    l2.apews.org - FAIL&#xa;  PROXY&#xa;    dnsbl.tornevall.org - FAIL&#xa;    socks.dnsbl.sorbs.net - FAIL&#xa;    http.dnsbl.sorbs.net - FAIL&#xa;    misc.dnsbl.sorbs.net - FAIL&#xa;    tor.dan.me.uk - FAIL&#xa;  ATTACK&#xa;    all.bl.blocklist.de - FAIL&#xa;"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.43.113&quot;; use dns-brute.domain script argument."/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="ipidseq" output="All zeros"/><script id="path-mtu" output="PMTU == 1500"/><script id="qscan" output="&#xa;PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;1      0       1464.40    409.71    0.0%&#xa;22     0       1588.80    617.60    0.0%&#xa;80     0       2063.90    2480.03   0.0%&#xa;111    0       1448.60    528.62    0.0%&#xa;2049   0       6443.40    14942.93  0.0%&#xa;8080   0       1669.80    757.46    0.0%&#xa;39397  0       2651.30    2723.33   0.0%&#xa;39417  0       1517.90    493.38    0.0%&#xa;39583  1       3086.60    2568.25   0.0%&#xa;"/><script id="unusual-port" output="&#xa;  WARNING: this script depends on Nmap&apos;s service/version detection (-sV)&#xa;"/></hostscript><times srtt="10128" rttvar="3036" to="100000"/>
+</host>
+<postscript><script id="reverse-index" output="&#xa;  22/tcp: 192.168.43.113&#xa;  80/tcp: 192.168.43.113&#xa;  111/tcp: 192.168.43.113&#xa;  2049/tcp: 192.168.43.113&#xa;  8080/tcp: 192.168.43.113&#xa;  39397/tcp: 192.168.43.113&#xa;  39417/tcp: 192.168.43.113&#xa;  39583/tcp: 192.168.43.113&#xa;  53233/tcp: 192.168.43.113"><table key="22/tcp">
+<elem>192.168.43.113</elem>
+</table>
+<table key="80/tcp">
+<elem>192.168.43.113</elem>
+</table>
+<table key="111/tcp">
+<elem>192.168.43.113</elem>
+</table>
+<table key="2049/tcp">
+<elem>192.168.43.113</elem>
+</table>
+<table key="8080/tcp">
+<elem>192.168.43.113</elem>
+</table>
+<table key="39397/tcp">
+<elem>192.168.43.113</elem>
+</table>
+<table key="39417/tcp">
+<elem>192.168.43.113</elem>
+</table>
+<table key="39583/tcp">
+<elem>192.168.43.113</elem>
+</table>
+<table key="53233/tcp">
+<elem>192.168.43.113</elem>
+</table>
+</script></postscript><runstats><finished time="1629993559" timestr="Thu Aug 26 17:59:19 2021" summary="Nmap done at Thu Aug 26 17:59:19 2021; 1 IP address (1 host up) scanned in 3699.98 seconds" elapsed="3699.98" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
