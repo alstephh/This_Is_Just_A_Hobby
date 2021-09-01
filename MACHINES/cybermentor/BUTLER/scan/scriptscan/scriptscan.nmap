@@ -1,0 +1,69 @@
+# Nmap 7.91 scan initiated Wed Sep  1 15:42:09 2021 as: nmap --script=all -T4 -oA scriptscan/scriptscan
+Pre-scan script results:
+| broadcast-dhcp-discover: 
+|   Response 1 of 1: 
+|     Interface: eth0
+|     IP Offered: 192.168.43.241
+|     Server Identifier: 192.168.43.1
+|     Subnet Mask: 255.255.255.0
+|     Broadcast Address: 192.168.43.255
+|     Router: 192.168.43.1
+|_    Domain Name Server: 192.168.43.1
+| broadcast-igmp-discovery: 
+|   192.168.43.168
+|     Interface: eth0
+|     Version: 2
+|     Group: 224.0.0.251
+|     Description: mDNS (rfc6762)
+|   192.168.43.168
+|     Interface: eth0
+|     Version: 2
+|     Group: 224.0.0.252
+|     Description: Link-local Multicast Name Resolution (rfc4795)
+|_  Use the newtargets script-arg to add the results as targets
+| broadcast-listener: 
+|   ether
+|       EIGRP Hello
+|        
+|   udp
+|       SSDP
+|         ip              uri
+|         192.168.43.168   urn:schemas-upnp-org:device:InternetGatewayDevice:1
+|       LLMNR
+|         ip                         query
+|         fe80::3537:19b7:5134:7f3d  Butler
+|_        192.168.43.168             Butler
+|_eap-info: please specify an interface with -e
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| ipv6-multicast-mld-list: 
+|   fe80::3537:19b7:5134:7f3d: 
+|     device: eth0
+|     mac: 00:0c:29:4f:5b:c9
+|     multicast_ips: 
+|       ff02::1:ff34:7f3d         (NDP Solicited-node)
+|       ff02::1:3                 (Link-local Multicast Name Resolution)
+|       ff02::1:3                 (Link-local Multicast Name Resolution)
+|       ff02::fb                  (mDNSv6)
+|       ff02::1:3                 (Link-local Multicast Name Resolution)
+|       ff02::fb                  (mDNSv6)
+|       ff02::c                   (SSDP)
+|       ff02::1:ff30:a5be         (Solicited-Node Address)
+|       ff02::fb                  (mDNSv6)
+|       ff02::1:3                 (Link-local Multicast Name Resolution)
+|_      ff02::fb                  (mDNSv6)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: fe80::3537:19b7:5134:7f3d  MAC: 00:0c:29:4f:5b:c9  IFACE: eth0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::3537:19b7:5134:7f3d  MAC: 00:0c:29:4f:5b:c9  IFACE: eth0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-slaac: 
+|   IP: fe80::3537:19b7:5134:7f3d  MAC: 00:0c:29:4f:5b:c9  IFACE: eth0
+|   IP: fe80::2c68:38a7:f30:a5be   MAC: 00:0c:29:4f:5b:c9  IFACE: eth0
+|_  Use --script-args=newtargets to add the results as targets
+WARNING: No targets were specified, so 0 hosts scanned.
+# Nmap done at Wed Sep  1 15:42:53 2021 -- 0 IP addresses (0 hosts up) scanned in 44.46 seconds

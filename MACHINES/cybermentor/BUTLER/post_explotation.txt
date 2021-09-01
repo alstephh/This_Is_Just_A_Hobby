@@ -1,0 +1,14 @@
+1) whoami     ---> butler/butler
+2) systeminfo ---> windows 10 enterprise / butler is the owner
+3) [upload and] run winPEAS ---> find the root name           ---> BUTLER\Administrator
+			    ---> WiseBootAssistant: AllAccess ---> YOU CAN MODIFY run as root ---> no quotes and Space detected
+
+4) create a reverse shell and named "Wise.exe" and Upload in C:\Program Files (x86)\Wise
+5) open the nc listener 
+6) using sc to stop and restart wisebootassistant
+7) enjoy the [root] shell		            
+
+
+
+			     
+
