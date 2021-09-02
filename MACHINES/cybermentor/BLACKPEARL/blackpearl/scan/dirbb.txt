@@ -1,0 +1,22 @@
+
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+OUTPUT_FILE: dirbb.txt
+START_TIME: Thu Sep  2 15:59:31 2021
+URL_BASE: http://blackpearl.tcm/
+WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
+
+-----------------
+
+GENERATED WORDS: 4612
+
+---- Scanning URL: http://blackpearl.tcm/ ----
++ http://blackpearl.tcm/crossdomain.xml (CODE:200|SIZE:361)
++ http://blackpearl.tcm/index.php (CODE:200|SIZE:86808)
+
+-----------------
+END_TIME: Thu Sep  2 15:59:34 2021
+DOWNLOADED: 4612 - FOUND: 2

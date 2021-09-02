@@ -1,0 +1,4 @@
+# Nmap 7.92 scan initiated Thu Sep  2 15:08:55 2021 as: nmap -A -T4 -oA fullscan/fullscan 192.168.43.98
+Host: 192.168.43.98 ()	Status: Up
+Host: 192.168.43.98 ()	Ports: 22/open/tcp//ssh//OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)/, 53/open/tcp//domain//ISC BIND 9.11.5-P4-5.1+deb10u5 (Debian Linux)/, 80/open/tcp//http//nginx 1.14.2/	Ignored State: closed (997)	OS: Linux 4.15 - 5.6	Seq Index: 257	IP ID Seq: All zeros
+# Nmap done at Thu Sep  2 15:09:18 2021 -- 1 IP address (1 host up) scanned in 23.18 seconds

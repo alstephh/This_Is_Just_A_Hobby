@@ -1,0 +1,27 @@
+# Nmap 7.92 scan initiated Thu Sep  2 15:10:26 2021 as: nmap --script=VULN -T4 -oA vulnscan/vulnscan 192.168.43.98
+Nmap scan report for 192.168.43.98
+Host is up (0.023s latency).
+Not shown: 997 closed tcp ports (reset)
+PORT   STATE SERVICE
+22/tcp open  ssh
+53/tcp open  domain
+80/tcp open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2011-3192  BID:49303
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://seclists.org/fulldisclosure/2011/Aug/175
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+|       https://www.tenable.com/plugins/nessus/55976
+|_      https://www.securityfocus.com/bid/49303
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+MAC Address: 00:0C:29:BE:82:ED (VMware)
+
+# Nmap done at Thu Sep  2 15:11:40 2021 -- 1 IP address (1 host up) scanned in 73.97 seconds

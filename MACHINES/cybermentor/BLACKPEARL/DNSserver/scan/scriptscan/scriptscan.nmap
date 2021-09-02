@@ -1,0 +1,35 @@
+# Nmap 7.92 scan initiated Thu Sep  2 15:14:10 2021 as: nmap --script=all -T4 -oA scriptscan 192.168.43.98
+Pre-scan script results:
+|_eap-info: please specify an interface with -e
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: fe80::20c:29ff:febe:82ed  MAC: 00:0c:29:be:82:ed  IFACE: eth0
+|_  Use --script-args=newtargets to add the results as targets
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::20c:29ff:febe:82ed  MAC: 00:0c:29:be:82:ed  IFACE: eth0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::20c:29ff:febe:82ed: 
+|     device: eth0
+|     mac: 00:0c:29:be:82:ed
+|     multicast_ips: 
+|_      ff02::1:ffbe:82ed         (NDP Solicited-node)
+| broadcast-ping: 
+|   IP: 192.168.43.193  MAC: 3c:a6:f6:29:38:88
+|_  Use --script-args=newtargets to add the results as targets
+| broadcast-dhcp-discover: 
+|   Response 1 of 1: 
+|     Interface: eth0
+|     IP Offered: 192.168.43.241
+|     Server Identifier: 192.168.43.1
+|     Subnet Mask: 255.255.255.0
+|     Broadcast Address: 192.168.43.255
+|     Router: 192.168.43.1
+|_    Domain Name Server: 192.168.43.1
+| targets-ipv6-multicast-echo: 
+|   IP: fe80::20c:29ff:febe:82ed  MAC: 00:0c:29:be:82:ed  IFACE: eth0
+|_  Use --script-args=newtargets to add the results as targets
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
