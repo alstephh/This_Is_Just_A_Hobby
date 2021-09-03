@@ -1,0 +1,7 @@
+1] upload windows_enum script 
+2] I've tried to upload winPEASx64.exe but somehow it doesnt appear in the target (maybe firewall or antivirus) even if in the serverside (attacking machine) give code 200
+3] Using this guide [https://0xdf.gitlab.io/2018/11/08/powershell-history-file.html] I gain access to the history.txt files ---> \Archetype\backups /user:administrator MEGACORP_4dm1n!! 
+4] C:\windows\system32> runas /user:Archetype\administrator explorer.exe ---> is theorically right but problem with the shell doesnt allow to insert password
+5] use psexec.py for connecting with the credentials discovered
+
+MACHINE COMPLETE!

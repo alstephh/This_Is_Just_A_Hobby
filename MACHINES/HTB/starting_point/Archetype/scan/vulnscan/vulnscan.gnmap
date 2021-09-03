@@ -1,0 +1,4 @@
+# Nmap 7.92 scan initiated Fri Sep  3 13:06:27 2021 as: nmap --script=VULN -T4 -oA vulnscan/vulnscan 10.10.10.27
+Host: 10.10.10.27 ()	Status: Up
+Host: 10.10.10.27 ()	Ports: 135/open/tcp//msrpc///, 139/open/tcp//netbios-ssn///, 445/open/tcp//microsoft-ds///, 1433/open/tcp//ms-sql-s///	Ignored State: closed (996)
+# Nmap done at Fri Sep  3 13:07:00 2021 -- 1 IP address (1 host up) scanned in 33.10 seconds

