@@ -1,0 +1,24 @@
+# Nmap 7.92 scan initiated Sat Sep  4 15:54:44 2021 as: nmap -T4 --script=VULN -oA scan/vulnscan/vulnscan 10.10.10.46
+Nmap scan report for 10.10.10.46
+Host is up (0.12s latency).
+Not shown: 997 closed tcp ports (reset)
+PORT   STATE SERVICE
+21/tcp open  ftp
+22/tcp open  ssh
+80/tcp open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.10.46
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.10.10.46:80/
+|     Form id: login__username
+|_    Form action: 
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+
+# Nmap done at Sat Sep  4 15:55:20 2021 -- 1 IP address (1 host up) scanned in 35.53 seconds

