@@ -1,0 +1,8 @@
+1] find inside home folder user robert ---> user.txt flag
+2] OS = ubuntu 18.04
+3] spawn a TTY shell with python3      ---> sudo -l cant be used cuz password is needed
+				       ---> upload and run linPEAS.sh                    
+								      ---> Ubuntu_snapd<2.37_dirty_sock_Local_Privilege_Escalation (CVE-2019-7304) ---> not vulnerable
+								      ---> sudo version 1.8.21p2 ---> vulnerable to CVE-2021-3156 [https://github.com/worawit/CVE-2021-3156]
+MACHINE COMPLETED!
+							

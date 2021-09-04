@@ -1,0 +1,15 @@
+# Nmap 7.92 scan initiated Fri Sep  3 22:25:39 2021 as: nmap -T4 --script=VULN -oA vulnscan/vulnscan 10.10.10.28
+Nmap scan report for 10.10.10.28
+Host is up (0.11s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 127.0.1.1
+
+# Nmap done at Fri Sep  3 22:26:23 2021 -- 1 IP address (1 host up) scanned in 43.51 seconds

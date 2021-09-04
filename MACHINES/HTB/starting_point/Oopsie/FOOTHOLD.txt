@@ -1,0 +1,36 @@
+After gaining the credential and the login page using account admin we notice the menu is splitted in 4 sections: 
+		1] Account  [Display current user info]
+			    ---> Access ID (34322)
+                            ---> Name      (admin)
+			    ---> Email     (admin@megacorp.com) ---> same as I first enumerated 
+                            
+
+		2] Branding ---> Model of cars with Brand ID and Price [NR]
+
+		3] Clients  ---> Client ID (1)
+			    ---> Name      (Tafcz)
+                            ---> Email     (john@tafcz.co.uk)
+
+		4] Uploads  ---> "This action require super admin rights"
+
+==========================================================================================
+
+
+Refreshing the Account section I notice (w:\ Burp Suite):
+
+1] cookie are set with ID and ROLE 
+2] on the URL http://10.10.10.28/cdn-cgi/login/admin.php?content=accounts&id=1 ---> the id=1 distinguish a user from another
+
+
+so using the BURP INTRUDER trying to bruteforce the id trying to find the right cookie for superadmin role
+analyzing the request with different lenght I discovered that the id=30 give the result I want (look at the png file)
+with acces ID=86575 (I-ve tried to intercept the request and change the id on the URL and the access ID and worked)
+
+(id=4 give info about user called "john")
+
+I used the info I gathered on the Upload section ---> form for upload images 
+						 ---> check if other format can be uploaded like PHP (able to)
+						 ---> upload a PHP reverse shell
+
+Now need to know where is saved ---> /uploads 
+				---> shell pop-up using curl						 
