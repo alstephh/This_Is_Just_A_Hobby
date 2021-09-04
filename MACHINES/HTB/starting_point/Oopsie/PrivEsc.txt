@@ -5,4 +5,8 @@
 								      ---> Ubuntu_snapd<2.37_dirty_sock_Local_Privilege_Escalation (CVE-2019-7304) ---> not vulnerable
 								      ---> sudo version 1.8.21p2 ---> vulnerable to CVE-2021-3156 [https://github.com/worawit/CVE-2021-3156]
 MACHINE COMPLETED!
-							
+			
+			
+			
+[POST EXPLOTATION]
+Found credentials (ftpuser / mc@F1l3ZilL4) inside .config folder [in the root folder]		
