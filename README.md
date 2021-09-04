@@ -1,2 +1,2 @@
 # pentest
-self learning process of penetration testing with tool,machines,script[,ecc..] I use
+self learning process of penetration testing with tools,machines walkthrough,script,shells[,ecc..] I use
