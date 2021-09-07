@@ -1,0 +1,18 @@
+# Nmap 7.92 scan initiated Sun Sep  5 11:41:15 2021 as: nmap --script=VULN -T4 -oA vulnscan/vulnscan 10.10.10.29
+Nmap scan report for 10.10.10.29
+Host is up (0.10s latency).
+Not shown: 998 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+80/tcp   open  http
+|_http-vuln-cve2014-3704: ERROR: Script execution failed (use -d to debug)
+| http-enum: 
+|   /wordpress/: Blog
+|_  /wordpress/wp-login.php: Wordpress login page.
+|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+3306/tcp open  mysql
+|_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
+
+# Nmap done at Sun Sep  5 11:46:07 2021 -- 1 IP address (1 host up) scanned in 292.04 seconds

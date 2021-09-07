@@ -1,0 +1,4 @@
+# Nmap 7.92 scan initiated Sun Sep  5 11:41:55 2021 as: nmap -A -T4 -oA fullscan/fullscan 10.10.10.29
+Host: 10.10.10.29 ()	Status: Up
+Host: 10.10.10.29 ()	Ports: 80/open/tcp//http//Microsoft IIS httpd 10.0/, 3306/open/tcp//mysql//MySQL (unauthorized)/	Ignored State: filtered (998)	Seq Index: 252	IP ID Seq: Incremental
+# Nmap done at Sun Sep  5 11:42:50 2021 -- 1 IP address (1 host up) scanned in 55.80 seconds

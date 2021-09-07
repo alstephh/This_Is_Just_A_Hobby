@@ -1,0 +1,1 @@
+# Nmap 7.92 scan initiated Sun Sep  5 11:41:35 2021 as: nmap --script=all -T4 -oA scriptscan/scriptscan 10.10.10.29

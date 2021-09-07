@@ -1,0 +1,4 @@
+# Nmap 7.92 scan initiated Sun Sep  5 11:41:15 2021 as: nmap --script=VULN -T4 -oA vulnscan/vulnscan 10.10.10.29
+Host: 10.10.10.29 ()	Status: Up
+Host: 10.10.10.29 ()	Ports: 80/open/tcp//http///, 3306/open/tcp//mysql///	Ignored State: filtered (998)
+# Nmap done at Sun Sep  5 11:46:07 2021 -- 1 IP address (1 host up) scanned in 292.04 seconds
