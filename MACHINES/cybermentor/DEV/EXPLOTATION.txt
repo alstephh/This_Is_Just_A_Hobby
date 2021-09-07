@@ -1,0 +1,4 @@
+1] use ssh and is_rsa with the passphrase with use jeanpaul
+2] sudo -l ---> zip
+3] use gtfobins.github.io for be superuser using zip
+4] spwan root shell
