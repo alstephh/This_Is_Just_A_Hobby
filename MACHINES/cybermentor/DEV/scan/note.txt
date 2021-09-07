@@ -1,0 +1,4 @@
+1] jp seems top be an user
+2] id_rsa is a valid rsa key
+3] need to discover ssh password ---> passphrase='I_love_java'
+
