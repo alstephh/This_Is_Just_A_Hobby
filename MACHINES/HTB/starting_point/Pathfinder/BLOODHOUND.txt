@@ -1,0 +1,27 @@
+FIRST CONTACT 
+
+I was stucked cuz with smbclient nothing interesting came out (but i checked that the credentials Sandra:Password1234! work on this machine and that is great) ---> looking at the walkthrough use bloodhund is the best idea
+
+[BLOODHOUND.PY] ---> use graph theory to reveal and analyze AD rights and relationship ---> query LDAP and all domain's pc for enumerate user,computers,groups and domains ---> discover attack paths for escalate 
+                ---> In this cas i will use the python version for obtain all necessary json file
+	        ---> bloodhound-python -u <UserName> -p <Password> -ns <Domain Controller's Ip> -d <Domain> -c All [USAGE] ---> bloodhound.py -u Sandra -p Password1234! -ns 10.10.10.30 -d megacorp.local -c all
+                ---> output saved on "bloodhound_out" directory
+
+[BLOODHOUND]	---> apt install neo4j && apt install bloodhound 
+                ---> 1] configure neo4j services ---> neo4j start console
+                ---> 2] open bloodhound          ---> bloodhound --no-snadbox
+                ---> 3] drag the file obtained with bloodhound.py
+
+[RESULT OF BLOODHOUND ANALYSIS]
+
+bloodhound1.png ---> "Find AS-REP Roastable Users (DontReqPreAuth)      ---> show AS-REP roasting vulnerable user that dont required Kerberos preauth ---> svc_user is VULNERABLE (can retrieve password hashes)
+bloodhound2.png ---> "Find Principles with DCSync Rights" query result  ---> machine have getchangesall privileges to domain ---> machine can get info from                 
+(DCSync allows an attacker to simulate behavior of Domain Controller)
+
+
+=====================================================================|
+NOTE								     
+BLUE TEAM can use BloodHound for eliminate or mitigate attack paths  
+=====================================================================|
+	   
+RESULT ----> bloodhound is a cool tool and I discovered that something like Graph Theory can be used in cybersecurity

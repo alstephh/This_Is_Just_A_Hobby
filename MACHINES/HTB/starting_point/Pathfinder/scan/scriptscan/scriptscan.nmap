@@ -1,0 +1,18 @@
+# Nmap 7.91 scan initiated Tue Sep  7 16:07:29 2021 as: nmap -T4 --script=all -oA scriptscan/scriptscan 10.10.10.30
+Pre-scan script results:
+| broadcast-dhcp-discover: 
+|   Response 1 of 1: 
+|     Interface: eth0
+|     IP Offered: 10.0.2.16
+|     Server Identifier: 10.0.2.2
+|     Subnet Mask: 255.255.255.0
+|     Router: 10.0.2.2
+|_    Domain Name Server: 10.0.2.3
+| broadcast-ping: 
+|   IP: 255.255.255.255  MAC: 52:55:0a:00:02:02
+|_  Use --script-args=newtargets to add the results as targets
+|_eap-info: please specify an interface with -e
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
