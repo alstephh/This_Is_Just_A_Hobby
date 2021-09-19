@@ -410,12 +410,45 @@ _____________________________________
   
 </details>
     
-  _____________________________________
   
     
-<>
-  <>  
-<>    
+<details>
+  <summary>BloodHound</summary>
+  
+  _____________________________________
+  
+  ## WHAT IS
+  (exciting) Tool for download info on AD and visualize it (graph theory for visualize uninthended relationship).
+  Run with NEO4J database.
+  
+  The objective using BloodHound is to find the shortest path to gain access to DC Admin
+
+  ## STEPS
+    1) Grab data (can be done with various tool [.ps1, .py, .c#, ecc..])
+
+<p allign="center">
+  <img src="https://user-images.githubusercontent.com/50571084/133925800-31e2f14a-8fff-4004-8537-05f18fd1dfd1.PNG">
+</p>
+  
+    2) Upload data on BloodHound
+    3) Use queries! (here's some examples, a lot more) 
+          
+    
+  ![2(find_domain_admin)](https://user-images.githubusercontent.com/50571084/133925953-ac6bf7f5-93c8-4d03-a289-3655b6a4f0da.PNG)
+  
+  (query for find the domain admins)
+  
+  ![3(shot_path_kerborastable_user)](https://user-images.githubusercontent.com/50571084/133926077-c8f876cc-f94e-4819-ac41-eef48e7575df.png)
+  
+  (shortest path to kerberastable user)
+  
+  ![4(shortest_path_to_high_value_targets)](https://user-images.githubusercontent.com/50571084/133926101-24effa34-270a-417b-a5bc-87d242d2ccd1.png)
+  
+  (shortest path to high values targets)
+  
+  _____________________________________
+  
+</details>    
     
     
 </details>
