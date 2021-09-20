@@ -417,7 +417,7 @@ _____________________________________
   
   _____________________________________
   
-  ## WHAT IS
+  ## DEFINITION
   (exciting) Tool for download info on AD and visualize it (graph theory for visualize uninthended relationship).
   Run with NEO4J database.
   
@@ -451,8 +451,255 @@ _____________________________________
 </details>    
     
     
+
+    
 </details>
   
+  
+  <details>
+  <summary>Post Compromise Attacks</summary>
+  
+  _____________________________________
+  
+<details>
+  <summary>Pass the hash / Pass the password</summary>
+
+  _____________________________________
+  
+  ## DEFINITION
+  Using same credentials (username:password) on all the machine on the network.
+  
+  Usefull for lateral movement, some admin reuse same credentials on different machines
+  
+  
+  ## STEPS
+  ```
+  1) Use crackmapexec for spraying credentials on all the domains and check if works in some machines
+  ```
+  
+  ![1](https://user-images.githubusercontent.com/50571084/134070567-78e2c34b-3a4c-43ed-9450-991732e81f84.PNG)
+
+  ```
+  2) Dump the hash of the accounts on a machine 
+  ```
+  
+  ![2(secretsdump)](https://user-images.githubusercontent.com/50571084/134070758-d3c1d8a4-0fa5-4676-a535-c448d412339a.PNG)
+
+  ```
+  3) Always using crackmapexec (different flags) spray the hash on other machines on the domain
+  ```
+  
+  ![3(passthehash)](https://user-images.githubusercontent.com/50571084/134070959-14458ce9-e810-4ef9-8abe-7e77fd5feeee.PNG)
+  
+  ## MITIGATION
+  This attack is something really difficult to fully mitigate but admins can make life difficult for attackers
+  
+  ```
+  A) Limit account reuse
+    1) Avoid resusing local admin password
+    2) Disable guest and admin accounts 
+    3) Limit who is local admin
+  
+  B) Strong password for avoid hash cracking (best idea !)
+  
+  C) Use a Privilege Access Manager (PAM)
+    1) check out-in privileges accounts when needed (rotating password automatically)
+  
+  ```
+  
+  _____________________________________
+
+</details>  
+
+<details>
+  <summary>Token Impersonation</summary>
+  
+  _____________________________________
+  
+  ## DEFINITION
+  Tokens are temporary kets allowing you acces to system/network
+  
+  whitout providing credentials (like cookies but for pc) which came in 2 types :
+  
+  1. DELEGATE    = logging to machine or Remote Desktop 
+  2. IMPERSONATE = attaching in a drive or in a domain a script (non-interractive)
+  
+  ## STEPS
+  
+  ```
+  1) Pop a shell and load incognito and look for tokens avaiable (meterpeter for ez life)
+  ```
+  
+  ![1](https://user-images.githubusercontent.com/50571084/134073380-094b863d-0ea9-487f-a59c-f719a5725ce4.PNG)
+  
+  ```
+  2) Choose a token for impersonate that user (local user or admin)
+       
+     (note that if other accounts log in other tokens remain until pc reboot) 
+  ```
+  
+  ![Screenshot 2021-09-20 at 22 52 08](https://user-images.githubusercontent.com/50571084/134074050-238a304b-fba3-4c8f-a55c-b181630bf24c.png)
+
+  ```
+  3) Gain access of the machine (dump hashes, use mimikatz, create account, ecc...) 
+  ```
+  
+  ## MITIGATION
+  A) Limit user-group token creation permissions
+  
+  B) Account tiering (best idea !)
+  
+  C) Local admin restriction
+  
+  _____________________________________
+  
+  
+</details>  
+  
+  
+<details>  
+  <summary>Kerberoasting</summary>
+  
+  _____________________________________
+  
+  ## DEFINITION
+  
+  <img width="672" alt="Screenshot 2021-09-19 at 21 23 32" src="https://user-images.githubusercontent.com/50571084/134075100-710fa269-3584-4b9b-8c35-a11f1879370f.png">
+
+  ```
+  TGT = Ticket Granting Ticket
+  TGS = Ticket Granting Service
+  ```
+  
+  ## STEPS
+  ```
+  1) Using GetUsersSPNs.py for get TGS hash
+  ```
+  
+  ![1](https://user-images.githubusercontent.com/50571084/134075944-b7ebb866-d30b-4c32-a29c-d3994c9a5a92.PNG)
+
+  ```
+  2) Crack the hash with hashcat (you obtained the account service)   
+  ```
+  
+  ## MITIGATION 
+  Actually very hard to mitigate becaus we are abusing a feature of windows
+  
+  so nothing particular to do it directly
+  
+  A) Using strong password (always a good idea lol)
+  
+  B) Give least privileges
+  
+  _____________________________________
+  
+</details> 
+  
+<details> 
+ <summary>GPP/cPassword attack</summary>
+  
+  _____________________________________
+  
+  ## DEFINITION 
+  GPP (Group Policies Preferences) allow admins to create policies
+  
+  using embedeed credentials (encrypted and placed in cPassword) and the key was released (LOL)
+  
+  (The MS14'025 don't prevents previous uses)
+  
+  ## STEPS
+  1) Get cPassword (which stored in SYSVOL folder)  
+  
+  2) Decrypt it with the gpp-decrypt tool 
+  
+  _____________________________________
+  
+</details>  
+  
+<details>
+  <summary>Golden Ticket Attack</summary>
+  
+  _____________________________________
+  
+  ## DEFINITION
+  When dump the KRBTGT user you can do a lot of fun stuff with it :
+    
+* Allow generate tickets
+* Request any resource or system
+* Complete access on all domain
+  
+  ## STEPS 
+  (All of this when pop a shell and gain access to the system using mimikatz)
+  
+  ```
+  1) privilege::debug (bypass memory security)
+  2) lsadump::lsa /inject /name:krbtgt (get SID and NTLM)
+  3) kerberos::golden /user:[name] /domain:[DOMAIN] /sid:[SID] /krbtgt:[NTLM] /ID:[ID] /ptt (create user account)
+  4) misc::cmd (spawn command prompt)
+  ```
+  
+  ## MITIGATION
+  The only thing usefull for mitigate this is least privilege access model
+    
+ _____________________________________
+  
+</details>  
+  
+
+<details>
+  <summary>ZeroLogon Attack</summary>
+
+ _____________________________________
+  
+  
+  ## DEFINITION 
+  Vulnerability in the cryptography of netlogon process that allows to attack machines
+  
+  authenticate with null password
+  
+  
+  ## STEPS
+  
+  ```
+  1) Run on atk machine zerologon_tester.py for check if victim is vuln
+  ```
+  
+  ![1(tester py)](https://user-images.githubusercontent.com/50571084/134081087-72a8c97f-375c-42eb-b1dc-98ff3550181b.PNG)
+
+  ```
+  2) (On victim) run the exploit 
+  ```
+  
+  ![Screenshot 2021-09-20 at 23 57 20](https://user-images.githubusercontent.com/50571084/134081359-5dc95914-33cf-42ac-88c3-9d526c86bc67.png)
+
+  ```
+  3) Get the hexpassword using secretsdump.py
+  ```
+  
+  ![3](https://user-images.githubusercontent.com/50571084/134081539-08beaad2-c196-4d84-a5d3-a28eeb3f9c60.PNG)
+
+  ```
+  4) After all the things you need to do, run restore script (hexpass needed!)
+  ```
+  
+  ![4](https://user-images.githubusercontent.com/50571084/134081646-38967cfb-a6ce-4281-b64e-9e6405ebf1ee.PNG)
+
+  ## MITIGATION
+  Full patch the DC and set the FullSecureChannelProtection registry key to 1
+  
+  
+ _____________________________________
+  
+
+</details>  
+  
+  
+  
+  _____________________________________
+  
+  
+  
+</details>
   
   
   _____________________________________
