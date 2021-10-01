@@ -1,0 +1,16 @@
+# Nmap 7.91 scan initiated Wed Sep 29 19:13:19 2021 as: nmap --script=VULN -T4 -oA scan/vulnscan/vulnscan 10.10.10.244
+Nmap scan report for 10.10.10.244
+Host is up (0.092s latency).
+Not shown: 997 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+53/tcp open  domain
+80/tcp open  http
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-sql-injection: 
+|   Possible sqli for queries:
+|_    http://10.10.10.244:80/assets/js/pp_images%5bset_position%5d;break;case"youtube":a=w(movie_width,movie_height);movie_id=i("v",pp_images[set_position]);if(movie_id==""){movie_id=pp_images[set_position].split("youtu.be/");movie_id=movie_id[1];if(movie_id.indexOf("?%22%29=%27%20OR%20sqlspider
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+
+# Nmap done at Wed Sep 29 19:14:21 2021 -- 1 IP address (1 host up) scanned in 62.13 seconds

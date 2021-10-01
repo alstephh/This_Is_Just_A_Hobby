@@ -1,0 +1,80 @@
+# Nmap 7.91 scan initiated Wed Sep 29 19:12:53 2021 as: nmap --script=all -T4 -oA scan/scriptscan/scriptscan 10.10.10.244
+Pre-scan script results:
+| broadcast-dhcp-discover: 
+|   Response 1 of 1: 
+|     Interface: eth0
+|     IP Offered: 192.168.41.147
+|     Server Identifier: 192.168.41.254
+|     Subnet Mask: 255.255.255.0
+|     Router: 192.168.41.2
+|     Domain Name Server: 192.168.41.2
+|     Domain Name: localdomain
+|     Broadcast Address: 192.168.41.255
+|_    NetBIOS Name Server: 192.168.41.2
+| broadcast-igmp-discovery: 
+|   192.168.41.1
+|     Interface: eth0
+|     Version: 2
+|     Group: 224.0.0.251
+|     Description: mDNS (rfc6762)
+|   192.168.41.1
+|     Interface: eth0
+|     Version: 2
+|     Group: 224.0.0.252
+|     Description: Link-local Multicast Name Resolution (rfc4795)
+|   192.168.41.1
+|     Interface: eth0
+|     Version: 2
+|     Group: 239.255.255.250
+|     Description: Organization-Local Scope (rfc2365)
+|_  Use the newtargets script-arg to add the results as targets
+| broadcast-listener: 
+|   ether
+|       ARP Request
+|         sender ip     sender mac         target ip
+|         192.168.41.2  00:50:56:ec:14:1b  192.168.41.147
+|   udp
+|       DHCP
+|         srv ip          cli ip          mask           gw            dns           vendor
+|         192.168.41.254  192.168.41.147  255.255.255.0  192.168.41.2  192.168.41.2  -
+|         192.168.41.254  192.168.41.152  255.255.255.0  192.168.41.2  192.168.41.2  -
+|       LLMNR
+|         ip                         query
+|         fe80::c5db:2f23:5629:6b84  DESKTOP-DDQ6P9D
+|_        192.168.41.1               DESKTOP-DDQ6P9D
+| broadcast-ping: 
+|   IP: 192.168.41.2  MAC: 00:50:56:ec:14:1b
+|_  Use --script-args=newtargets to add the results as targets
+| broadcast-wsdd-discover: 
+|   Devices
+|     239.255.255.250
+|         Message id: af7fa8cd-8829-421c-8105-3134aad84696
+|         Address: http://192.168.41.1:5357/f99152a9-ca1d-43cb-828e-740a10d26edc/
+|_        Type: Device pub:Computer
+|_eap-info: please specify an interface with -e
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| ipv6-multicast-mld-list: 
+|   fe80::c5db:2f23:5629:6b84: 
+|     device: eth0
+|     mac: 00:50:56:c0:00:08
+|     multicast_ips: 
+|       ff02::1:ff44:a0e6         (Solicited-Node Address)
+|       ff02::1:3                 (Link-local Multicast Name Resolution)
+|       ff02::1:3                 (Link-local Multicast Name Resolution)
+|       ff02::1:3                 (Link-local Multicast Name Resolution)
+|       ff02::1:3                 (Link-local Multicast Name Resolution)
+|       ff02::1:3                 (Link-local Multicast Name Resolution)
+|       ff02::1:ff44:a0e6         (Solicited-Node Address)
+|       ff02::1:3                 (Link-local Multicast Name Resolution)
+|_      ff02::1:3                 (Link-local Multicast Name Resolution)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::c5db:2f23:5629:6b84  MAC: 00:50:56:c0:00:08  IFACE: eth0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-slaac: 
+|   IP: fe80::c5db:2f23:5629:6b84  MAC: 00:50:56:c0:00:08  IFACE: eth0
+|   IP: fe80::dca:4261:f544:a0e6   MAC: 00:50:56:c0:00:08  IFACE: eth0
+|_  Use --script-args=newtargets to add the results as targets

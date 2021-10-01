@@ -1,0 +1,35 @@
+Gaining acces thanks to the exploit.py let-s try to find something usefull for gain some better access
+
+
+1) in the 1.png we can see the authorized_keys file 
+	|
+	|
+	V
+we can notice the `from="*.infra.dyna.htb"` ---> we can connect if we satisfy this condition with SSH
+
+so we need 2 things for gain access (to bindmgr) :
+1) Find the rsa private key ----> found on 2.png and saved on pvt_key ----> adjust removing the special char
+2) Satisfy the "from" condition
+		|
+		|
+		V
+	What is PTR Record?
+Is the opposite of the type "A" record ---> resolves an IP address to a fully qualifed domain name
+
+			   IP_ADDRESS ----> DOMAIN NAME
+		|
+		|
+		V
+Usefull for inverse DNS (which is what we need for the condition "from")
+|----> cat the infra.key file (/etc/bind/infra.key) for the infra-key
+|----> use nsupdate for load the key file
+|----> update add oops.infra.dyna.htb 86400 A <YOUR IP>
+|----> update add <YOUR IP IN REVERSE>.in-addr.arpa 86400 PTR oops.infra.dyna.htb
+|----> ssh -i [rsa pvt key] bindmgr@dyna.htb
+
+		|
+		|
+		|
+		V
+with this we gain access as user 
+(look priv_esc.txt)
