@@ -1,0 +1,26 @@
+EXPLOTATION & FOOTHOLD
+
+Gonna try with CVE-2019-6447 (1.png)
+|---> sdcard folder can store something cool ---> nothin :(
+|---> being more specific im gonna list all the Pics (2.png)
+	|---> creds.jpg is really good ---> image of potential credentials (saved as out.data)
+							|
+							|
+							V
+						try this credentials ---> it worked!
+									   |--> user.txt in sdcard folder
+										
+PRIVILEGE ESCALATION
+
+sudo -l method obv don't work but as we already know port 5555 is open ---> adb use
+but we know that adb can be used just if the devices is localhost
+	|
+	|
+	V
+with SSH we can bind our address to the victim with the -L flag [<PORT>:<ADDRESS>:<HOSTPORT>]
+and with this procedure we will be able to use ADB --------> let's try!
+|----> look at 3.png
+|----> with this we are root!
+
+FINISH!
+

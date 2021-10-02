@@ -1,0 +1,15 @@
+# Nmap 7.91 scan initiated Fri Oct  1 18:19:53 2021 as: nmap --script=VULN -T4 -oA vulnscan/vulnscan 10.10.10.247
+Pre-scan script results:
+| broadcast-avahi-dos: 
+|   Discovered hosts:
+|     224.0.0.251
+|   After NULL UDP avahi packet DoS (CVE-2011-1002).
+|_  Hosts are all up (not vulnerable).
+Nmap scan report for 10.10.10.247
+Host is up (0.095s latency).
+Not shown: 998 closed ports
+PORT     STATE    SERVICE
+2222/tcp open     EtherNetIP-1
+5555/tcp filtered freeciv
+
+# Nmap done at Fri Oct  1 18:20:32 2021 -- 1 IP address (1 host up) scanned in 39.65 seconds
