@@ -1,0 +1,28 @@
+Ok after we got the credentials on the firmware updates allow us to upload files
+
+As we can look on the description "[...] update to our file share  [...]"
+telling us that the file will be stored on the SMB file share
+
+---> after a (long) research I-ve figured out that with a scf attack (https://1337red.wordpress.com/using-a-scf-file-to-gather-hashes/)
+     we can gain NTLM hashes
+---> check 1.png for the hashes captured ----> cracked it with hashcat ----> liltony
+
+---> credentials tony:liltony worked with SMB share ---> try to use /exploit/windows/smb/psexec module on metasploit
+						    ---> didn-t work ---> share folder are not writable
+
+---> asking around (discord is my best friend on this machine) ---> evil-winrm tool let me gert a shell ---> got user flag!
+
+
+
+PRIVELEGE ESCALATION
+
+
+----> need to run winPEASX64.exe for see if we found a way to privilege escalation ---> no lsa protection ---> mimikatz can run
+																																			          |---> actually cant run (lol)
+
+----> talking with the community I focused more on the Machine Name and what I saw on the website
+	----> there is a printer ----> printnightmare is a famous vulnerability on microsoft
+						|----> found a cool powershell script that can help me (https://github.com/calebstewart/CVE-2021-1675) ----> gonna try this! 
+						|----> before run this we need to bypass the policy ---->  than using the exploit following the github usage we gain root access
+						|----> get the flag!
+
