@@ -1,0 +1,4 @@
+# Nmap 7.91 scan initiated Thu Oct  7 12:04:43 2021 as: nmap -sU -T4 -oA udpscan 10.10.11.107
+Host: 10.10.11.107 ()	Status: Up
+Host: 10.10.11.107 ()	Ports: 7/open|filtered/udp//echo///, 9/open|filtered/udp//discard///, 20/open|filtered/udp//ftp-data///, 69/open|filtered/udp//tftp///, 161/open|filtered/udp//snmp///, 814/open|filtered/udp//unknown///, 1022/open|filtered/udp//exp2///, 1214/open|filtered/udp//fasttrack///, 2160/open|filtered/udp//apc-2160///, 19632/open|filtered/udp//unknown///, 20126/open|filtered/udp//unknown///, 20389/open|filtered/udp//unknown///, 20423/open|filtered/udp//unknown///, 21674/open|filtered/udp//unknown///, 28641/open|filtered/udp//unknown///, 30656/open|filtered/udp//unknown///, 39723/open|filtered/udp//unknown///, 46093/open|filtered/udp//unknown///	Ignored State: closed (982)
+# Nmap done at Thu Oct  7 12:24:06 2021 -- 1 IP address (1 host up) scanned in 1163.70 seconds

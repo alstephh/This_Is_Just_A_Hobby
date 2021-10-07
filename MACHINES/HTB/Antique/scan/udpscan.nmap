@@ -1,0 +1,26 @@
+# Nmap 7.91 scan initiated Thu Oct  7 12:04:43 2021 as: nmap -sU -T4 -oA udpscan 10.10.11.107
+Warning: 10.10.11.107 giving up on port because retransmission cap hit (6).
+Nmap scan report for 10.10.11.107
+Host is up (0.080s latency).
+Not shown: 982 closed ports
+PORT      STATE         SERVICE
+7/udp     open|filtered echo
+9/udp     open|filtered discard
+20/udp    open|filtered ftp-data
+69/udp    open|filtered tftp
+161/udp   open|filtered snmp
+814/udp   open|filtered unknown
+1022/udp  open|filtered exp2
+1214/udp  open|filtered fasttrack
+2160/udp  open|filtered apc-2160
+19632/udp open|filtered unknown
+20126/udp open|filtered unknown
+20389/udp open|filtered unknown
+20423/udp open|filtered unknown
+21674/udp open|filtered unknown
+28641/udp open|filtered unknown
+30656/udp open|filtered unknown
+39723/udp open|filtered unknown
+46093/udp open|filtered unknown
+
+# Nmap done at Thu Oct  7 12:24:06 2021 -- 1 IP address (1 host up) scanned in 1163.70 seconds

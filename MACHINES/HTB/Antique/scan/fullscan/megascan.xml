@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.91 scan initiated Thu Oct  7 11:23:09 2021 as: nmap -A -T4 -p- -oA megascan 10.10.11.107 -->
+<nmaprun scanner="nmap" args="nmap -A -T4 -p- -oA megascan 10.10.11.107" start="1633598589" startstr="Thu Oct  7 11:23:09 2021" version="7.91" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.11.107" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<taskprogress task="SYN Stealth Scan" time="1633598593" percent="0.11"/>
+<taskprogress task="SYN Stealth Scan" time="1633598708" percent="77.73" remaining="34" etc="1633598742"/>
+<taskprogress task="Service scan" time="1633598740" percent="0.00"/>
+<taskprogress task="Service scan" time="1633598750" percent="0.00"/>
+<taskprogress task="Service scan" time="1633598793" percent="0.00"/>
+<host starttime="1633598590" endtime="1633598912"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.11.107" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65534">
+<extrareasons reason="resets" count="65534"/>
+</extraports>
+<port protocol="tcp" portid="23"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="telnet" servicefp="SF-Port23-TCP:V=7.91%I=7%D=10/7%Time=615EBD14%P=x86_64-pc-linux-gnu%r(NULL,F,&quot;\nHP\x20JetDirect\n\n&quot;)%r(GenericLines,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(tn3270,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(GetRequest,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(HTTPOptions,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(RTSPRequest,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(RPCCheck,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(DNSVersionBindReqTCP,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(DNSStatusRequestTCP,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(Help,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(SSLSessionReq,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(TerminalServerCookie,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(TLSSessionReq,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(Kerberos,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(SMBProgNeg,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(X11Probe,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(FourOhFourRequest,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(LPDString,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(LDAPSearchReq,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(LDAPBindReq,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(SIPOptions,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(LANDesk-RC,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(TerminalServer,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(NCP,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(NotesRPC,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(JavaRMI,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(WMSRequest,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(oracle-tns,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(ms-sql-s,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(afp,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;)%r(giop,19,&quot;\nHP\x20JetDirect\n\nPassword:\x20&quot;);" method="table" conf="3"/><script id="fingerprint-strings" output="&#xa;  DNSStatusRequestTCP, DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, Help, JavaRMI, Kerberos, LANDesk-RC, LDAPBindReq, LDAPSearchReq, LPDString, NCP, NotesRPC, RPCCheck, RTSPRequest, SIPOptions, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServer, TerminalServerCookie, WMSRequest, X11Probe, afp, giop, ms-sql-s, oracle-tns, tn3270: &#xa;    JetDirect&#xa;    Password:&#xa;  NULL: &#xa;    JetDirect"><elem key="DNSStatusRequestTCP, DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, Help, JavaRMI, Kerberos, LANDesk-RC, LDAPBindReq, LDAPSearchReq, LPDString, NCP, NotesRPC, RPCCheck, RTSPRequest, SIPOptions, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServer, TerminalServerCookie, WMSRequest, X11Probe, afp, giop, ms-sql-s, oracle-tns, tn3270">&#xa;    JetDirect&#xa;    Password:</elem>
+<elem key="NULL">&#xa;    JetDirect</elem>
+</script></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="23"/>
+<portused state="closed" proto="tcp" portid="1"/>
+<portused state="closed" proto="udp" portid="36402"/>
+<osmatch name="Linux 4.15 - 5.6" accuracy="95" line="67241">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="4.X" accuracy="95"><cpe>cpe:/o:linux:linux_kernel:4</cpe></osclass>
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="5.X" accuracy="95"><cpe>cpe:/o:linux:linux_kernel:5</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 5.3 - 5.4" accuracy="95" line="68143">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="5.X" accuracy="95"><cpe>cpe:/o:linux:linux_kernel:5</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.32" accuracy="95" line="55656">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="95"><cpe>cpe:/o:linux:linux_kernel:2.6.32</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 5.0 - 5.3" accuracy="95" line="68085">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="5.X" accuracy="95"><cpe>cpe:/o:linux:linux_kernel:5</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 3.1" accuracy="95" line="62920">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="95"><cpe>cpe:/o:linux:linux_kernel:3.1</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 3.2" accuracy="95" line="64667">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="95"><cpe>cpe:/o:linux:linux_kernel:3.2</cpe></osclass>
+</osmatch>
+<osmatch name="AXIS 210A or 211 Network Camera (Linux 2.6.17)" accuracy="94" line="61818">
+<osclass type="webcam" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="94"><cpe>cpe:/o:linux:linux_kernel:2.6.17</cpe></osclass>
+<osclass type="webcam" vendor="AXIS" osfamily="embedded" accuracy="94"><cpe>cpe:/h:axis:210a_network_camera</cpe><cpe>cpe:/h:axis:211_network_camera</cpe></osclass>
+</osmatch>
+<osmatch name="ASUS RT-N56U WAP (Linux 3.4)" accuracy="93" line="8401">
+<osclass type="WAP" vendor="Asus" osfamily="embedded" accuracy="93"><cpe>cpe:/h:asus:rt-n56u</cpe></osclass>
+<osclass type="WAP" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="93"><cpe>cpe:/o:linux:linux_kernel:3.4</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 3.16" accuracy="93" line="64174">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="93"><cpe>cpe:/o:linux:linux_kernel:3.16</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 5.0 - 5.4" accuracy="93" line="68106">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="5.X" accuracy="93"><cpe>cpe:/o:linux:linux_kernel:5</cpe></osclass>
+</osmatch>
+<osfingerprint fingerprint="OS:SCAN(V=7.91%E=4%D=10/7%OT=23%CT=1%CU=36402%PV=Y%DS=2%DC=T%G=Y%TM=615EBDC&#xa;OS:0%P=x86_64-pc-linux-gnu)SEQ(SP=101%GCD=1%ISR=10B%TI=Z%CI=Z%II=I%TS=A)OPS&#xa;OS:(O1=M54DST11NW7%O2=M54DST11NW7%O3=M54DNNT11NW7%O4=M54DST11NW7%O5=M54DST1&#xa;OS:1NW7%O6=M54DST11)WIN(W1=FE88%W2=FE88%W3=FE88%W4=FE88%W5=FE88%W6=FE88)ECN&#xa;OS:(R=Y%DF=Y%T=40%W=FAF0%O=M54DNNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=A&#xa;OS:S%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R&#xa;OS:=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F&#xa;OS:=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%&#xa;OS:T=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD&#xa;OS:=S)&#xa;"/>
+</os>
+<uptime seconds="3590491" lastboot="Thu Aug 26 22:07:01 2021"/>
+<distance value="2"/>
+<tcpsequence index="258" difficulty="Good luck!" values="F48A7B36,8A5D595A,B745D25A,61A1CA96,3E136FA3,3F3997F"/>
+<ipidsequence class="All zeros" values="0,0,0,0,0,0"/>
+<tcptssequence class="1000HZ" values="D60280A1,D60280E0,D6028145,D60281A2,D6028216,D602827A"/>
+<trace port="111" proto="tcp">
+<hop ttl="1" ipaddr="10.10.14.1" rtt="89.05"/>
+<hop ttl="2" ipaddr="10.10.11.107" rtt="89.37"/>
+</trace>
+<times srtt="76438" rttvar="8694" to="111214"/>
+</host>
+<runstats><finished time="1633598912" timestr="Thu Oct  7 11:28:32 2021" summary="Nmap done at Thu Oct  7 11:28:32 2021; 1 IP address (1 host up) scanned in 323.00 seconds" elapsed="323.00" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

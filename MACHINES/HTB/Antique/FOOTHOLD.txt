@@ -1,0 +1,18 @@
+Trying the password (P@ssw0rd@123!!123) on telnet ---> we are in!
+
+using exec on telnet ----> discovered python3 is installed
+		     ----> with a reverse shell in python3 we gain user shell
+
+
+
+
+PRIVELEGE ESCALATION
+
+----> using netstat -ant ----> a service on port 631 is active -----> tunneling to our machine (https://github.com/jpillora/chisel)
+
+----> look at the service running on the victim server ----> CUPS 1.6.1 
+						       ----> there is a VULN (https://www.rapid7.com/db/modules/post/multi/escalate/cups_root_file_read/)
+						       ----> changing the ErrorLog using cupsctl we can read whatever we want like root
+COMPLETED!			
+
+
