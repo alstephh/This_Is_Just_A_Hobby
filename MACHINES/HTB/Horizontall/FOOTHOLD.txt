@@ -1,0 +1,20 @@
+getting a quick look at the vulnerabilities in this Strapi version we can note that is vulnarable to CVE-2019-19609 (score:9)
+
+----> found this exploit ----> https://www.exploit-db.com/exploits/50238
+			 ----> the previous exploit gave us also a JWT that wecan use on this exploit and obtain a shell
+			 ----> This shell is unstable (and blind RCE) but uploading a php reverse shell we gain a stable shell
+
+
+
+PRIVELEGE ESCALATION
+
+----> with linpeas I notice that on victim machine port 8000 have a process running
+			|---> with curl I've found that Laravel v8 (PHP v7.4.18) is running
+			|---> do a http tunneling with chisel (I tried to do the same thing with ssh playing with rsa key but can-t figured out to make it working)
+
+
+Laravel 8 (PHP v7.4.18) is vulnerable to CVE-2021-3129 (https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-3129) and is running as root
+	|---> and using this exploit (https://github.com/nth347/CVE-2021-3129_exploit) we use PHAR file and PHP Generic Gadget Chains we will be able to run command through the webapp
+	|---> it works and use command "cat /root/root.txt" for obtain the root flag
+
+COMPLETE!
