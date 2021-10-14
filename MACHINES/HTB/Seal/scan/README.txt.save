@@ -1,0 +1,34 @@
+PORTS
+----------
+22   ---> ssh
+443  ---> http/ssl ----> nginx/1.18.0 
+                   ----> Apache Tomcat/9.0.31 (Ubuntu) (found on error page)
+		   ----> got a couple of form ----> tried XSS and SQL Injection but seems not working
+					      ----> when trued for SQL injection a Java Error pop out (1.png)
+
+8080 ---> http-proxy -----> login page (GitBucket) ----> default credentials didn't work
+				|---> Git platfrom on JVM (written in Scala) ----> this is why we get the Java Error while trying SQL injection
+				|---> try to create an account and look what we can do inside ---> we are inside the gitbucket of the site
+								
+				
+
+DIRECTORY BUSTING (PORT 443)
+----------
+----> /manager (/host-manager) ---> 403
+----> /a ----> nothing interesting
+
+COOKIE
+-----------
+JSESSIONID ----> Path = shell ----> this is where our SESSIONID is given to us
+
+
+I decide to take a look at the security certificate and I had 2 info 
+
+A possible domain name ----> seal.htb       ----> adding that to the /etc/host file 
+A email address        ----> admin@seal.htb
+
+
+
+GitBucket ----> 2.png show us the dashboard (put an eye on the ToDo list) 
+	  ----> 3.png show us the only issues open ---> Nginx mutual auth is active right now on the website
+	  ----> 4.png show us a list of user for tomcat 

@@ -1,0 +1,79 @@
+Let's find some vuln on the apache 9.0.31
+
+With this https://www.acunetix.com/vulnerabilities/web/tomcat-path-traversal-via-reverse-proxy-mapping/
+		|
+		|---> we can abuse the reverse proxy for accessing to resource that will be unaccessible to us
+				|
+				|---> in the path using /..;/ will threat like /../ and standardize the path
+
+
+---> we can access to the path that will be impossible obtain
+	|---> manager/admin/dashboard ----> just a simple static page 
+	|---> manager/manager/html    ----> THAT'S HUGE
+		|
+		|----> we got different sections ---> Applications 
+						 ---> Deploy       ----> directory
+								   ----> file 
+						 ---> Configuration
+						 ---> Diagnostic
+						 ---> server information
+
+
+
+---> the upload section can be really usefull for us 
+		|---> we can upload WAR file ----> with this guide (https://vk9-sec.com/apache-tomcat-manager-war-reverse-shell/) we can gain a shell with WAR file
+					     ----> let's try
+					     ----> 7.png show us that the shell was uploaded
+
+
+WE GET A SHELL! UwU
+
+
+GET A USER 
+-----------
+
+Run linpeas 
+	|----> we have a cronjob running /opt/backups/playbook/run.yml
+						|----> backups is something that can interess us
+						|----> let-s take a look ---> can't go on
+						|----> run every 30 sec
+						|----> copies the symlink of /var/lib/tomcat9/webapps/ROOT/admin/dashboard folder
+							|---> we can write on the upload folder! ---> we  move the .ssh to uploads we wait 30 sec and we upload the gz file
+
+---> wait for 30 seconds and we have the new archive file ----> transfer it on the atk machine
+							  ----> decompress and we have on uploads folder the ssh keys
+
+
+
+---> use the id_rsa as a key to getthe luis shell -----> worked!
+
+
+
+
+PRIVILEGE ESCALATIO
+
+
+sudo -l ----> can run with ansible-playbook everu modules (*)
+	----> following this guide (https://adamtheautomator.com/ansible-shell/)
+			|----> we can abuse the shell modules for spawn a shell as root 
+			|----> bash -p -----> shell as root 
+
+
+ROOTED!
+
+
+
+
+
+
+
+
+			
+
+
+
+--------------------------------------------------------------------
+playbook is from Ansible ---> blueprint of automation tasks
+			
+
+  
