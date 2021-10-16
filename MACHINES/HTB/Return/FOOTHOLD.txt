@@ -1,0 +1,16 @@
+Ok let's try to enum the user "svc-printer" ---> net user svc-printer
+							|----> Server/Print operators
+								|-------------------------> google on server operators we know that we have a path for PE
+							|----> Domain Users
+							|----> Service Account for Printer (Comment)
+
+
+
+Also on the documents we have nc.exe installed
+|----> we can use sc.exe to change path to the nc.exe path
+|----> setup a listener 
+|----> stop and start the process to gain a reverse shell as ROOT ----> let's try
+		|----> worked
+			|-------> ROOTED!
+
+

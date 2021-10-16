@@ -1,0 +1,1 @@
+# Nmap 7.91 scan initiated Sat Oct 16 17:11:41 2021 as: nmap --script=VULN -T4 -oA vulnscan/vulnscan 10.10.11.108
