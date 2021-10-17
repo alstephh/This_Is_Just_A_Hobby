@@ -1,0 +1,4 @@
+# Nmap 7.91 scan initiated Sat Oct 16 20:23:56 2021 as: nmap --script=VULN -T4 -oA vulnscan/vulnscan 10.10.10.248
+Host: 10.10.10.248 ()	Status: Up
+Host: 10.10.10.248 ()	Ports: 53/open/tcp//domain///, 80/open/tcp//http///, 88/open/tcp//kerberos-sec///, 135/open/tcp//msrpc///, 139/open/tcp//netbios-ssn///, 389/open/tcp//ldap///, 445/open/tcp//microsoft-ds///, 464/open/tcp//kpasswd5///, 593/open/tcp//http-rpc-epmap///, 636/open/tcp//ldapssl///, 3268/open/tcp//globalcatLDAP///, 3269/open/tcp//globalcatLDAPssl///	Ignored State: filtered (988)
+# Nmap done at Sat Oct 16 20:28:43 2021 -- 1 IP address (1 host up) scanned in 287.10 seconds
