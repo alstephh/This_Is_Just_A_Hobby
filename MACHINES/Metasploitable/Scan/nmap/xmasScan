@@ -1,0 +1,31 @@
+# Nmap 7.93 scan initiated Wed Jan 11 12:21:47 2023 as: nmap -sX -o masScan.txt 192.168.41.129
+Nmap scan report for 192.168.41.129
+Host is up (0.0042s latency).
+Not shown: 977 closed tcp ports (reset)
+PORT     STATE         SERVICE
+21/tcp   open|filtered ftp
+22/tcp   open|filtered ssh
+23/tcp   open|filtered telnet
+25/tcp   open|filtered smtp
+53/tcp   open|filtered domain
+80/tcp   open|filtered http
+111/tcp  open|filtered rpcbind
+139/tcp  open|filtered netbios-ssn
+445/tcp  open|filtered microsoft-ds
+512/tcp  open|filtered exec
+513/tcp  open|filtered login
+514/tcp  open|filtered shell
+1099/tcp open|filtered rmiregistry
+1524/tcp open|filtered ingreslock
+2049/tcp open|filtered nfs
+2121/tcp open|filtered ccproxy-ftp
+3306/tcp open|filtered mysql
+5432/tcp open|filtered postgresql
+5900/tcp open|filtered vnc
+6000/tcp open|filtered X11
+6667/tcp open|filtered irc
+8009/tcp open|filtered ajp13
+8180/tcp open|filtered unknown
+MAC Address: 00:0C:29:F9:8A:F2 (VMware)
+
+# Nmap done at Wed Jan 11 12:21:48 2023 -- 1 IP address (1 host up) scanned in 1.62 seconds

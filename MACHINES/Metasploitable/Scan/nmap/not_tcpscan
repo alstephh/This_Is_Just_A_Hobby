@@ -1,0 +1,12 @@
+# Nmap 7.93 scan initiated Wed Jan 11 12:24:39 2023 as: nmap -sU -o not_tcpscan 192.168.41.129
+Nmap scan report for 192.168.41.129
+Host is up (0.00063s latency).
+Not shown: 947 closed udp ports (port-unreach), 49 open|filtered udp ports (no-response)
+PORT     STATE SERVICE
+53/udp   open  domain
+111/udp  open  rpcbind
+137/udp  open  netbios-ns
+2049/udp open  nfs
+MAC Address: 00:0C:29:F9:8A:F2 (VMware)
+
+# Nmap done at Wed Jan 11 12:41:38 2023 -- 1 IP address (1 host up) scanned in 1019.64 seconds
