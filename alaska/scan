@@ -1,0 +1,165 @@
+PORT     STATE SERVICE  VERSION
+21/tcp   open  ftp      FileZilla ftpd
+| ftp-syst: 
+|_  SYST: UNIX emulated by FileZilla
+25/tcp   open  smtp     MailEnable smptd 10.28--10.28
+| smtp-commands: alaskaadjusters.com [151.34.19.54], this server offers 6 extensions, AUTH PLAIN LOGIN, SIZE 10484736, HELP, AUTH=LOGIN, XSAVETOSENT, X-SAVETOSENT
+|_ 211 Help:->Supported Commands: HELO,EHLO,QUIT,HELP,RCPT,MAIL,DATA,RSET,NOOP
+53/tcp   open  domain   Simple DNS Plus
+80/tcp   open  http     Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-generator: Joomla! 1.5 - Open Source Content Management
+| http-server-header: 
+|   Microsoft-HTTPAPI/2.0
+|_  Microsoft-IIS/10.0
+|_http-title: Alaska Insurance Claims Adjusters
+| http-robots.txt: 14 disallowed entries 
+| /administrator/ /cache/ /components/ /images/ 
+| /includes/ /installation/ /language/ /libraries/ /media/ 
+|_/modules/ /plugins/ /templates/ /tmp/ /xmlrpc/
+110/tcp  open  pop3     MailEnable POP3 Server
+|_pop3-capabilities: UIDL APOP USER TOP
+143/tcp  open  imap     MailEnable imapd
+|_ssl-date: 2023-01-15T22:24:31+00:00; 0s from scanner time.
+| ssl-cert: Subject: commonName=localhost
+| Subject Alternative Name: DNS:localhost
+| Not valid before: 2019-12-28T05:18:29
+|_Not valid after:  2024-12-27T00:00:00
+|_imap-capabilities: IDLE XLIST STARTTLSA0001 CHILDREN IMAP4rev1 completed AUTH=CRAM-MD5 UIDPLUS CAPABILITY OK AUTH=LOGIN SPECIAL-USE IMAP4 AUTH=PLAIN
+443/tcp  open  ssl/http Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_ssl-date: 2023-01-15T22:24:30+00:00; 0s from scanner time.
+|_http-generator: Joomla! 1.5 - Open Source Content Management
+|_http-title: Alaska Insurance Claims Adjusters
+| http-robots.txt: 14 disallowed entries 
+| /administrator/ /cache/ /components/ /images/ 
+| /includes/ /installation/ /language/ /libraries/ /media/ 
+|_/modules/ /plugins/ /templates/ /tmp/ /xmlrpc/
+| ssl-cert: Subject: commonName=alaskaadjusters.com
+| Subject Alternative Name: DNS:alaskaadjusters.com, DNS:www.alaskaadjusters.com
+| Not valid before: 2022-04-30T22:39:12
+|_Not valid after:  2023-04-05T07:00:52
+| http-server-header: 
+|   Microsoft-HTTPAPI/2.0
+|_  Microsoft-IIS/10.0
+| tls-alpn: 
+|_  http/1.1
+| http-methods: 
+|_  Potentially risky methods: TRACE
+587/tcp  open  smtp     MailEnable smptd 10.28--10.28
+| smtp-commands: alaskaadjusters.com [151.34.19.54], this server offers 6 extensions, AUTH PLAIN LOGIN, SIZE 10484736, HELP, AUTH=LOGIN, XSAVETOSENT, X-SAVETOSENT
+|_ 211 Help:->Supported Commands: HELO,EHLO,QUIT,HELP,RCPT,MAIL,DATA,RSET,NOOP
+5900/tcp open  vnc      RealVNC Enterprise (protocol 4.1)
+| vnc-info: 
+|   Protocol version: 004.001
+|   Security types: 
+|     RA2 (5)
+|_    Unknown security type (129)
+5901/tcp open  vnc      RealVNC Enterprise (protocol 4.1)
+| vnc-info: 
+|   Protocol version: 004.001
+|   Security types: 
+|     RA2 (5)
+|_    Unknown security type (129)
+5903/tcp open  vnc      RealVNC Enterprise (protocol 4.1)
+| vnc-info: 
+|   Protocol version: 004.001
+|   Security types: 
+|     RA2 (5)
+|_    Unknown security type (129)
+8081/tcp open  http     Yawcam webcam viewer httpd 0.7.0
+|_http-server-header: yawcam/0.7.0
+|_http-title: Yawcam
+8082/tcp open  http     Netwave IP camera http config
+|_http-server-header: Netwave IP Camera
+|_http-title: Site doesn't have a title (text/html).
+8100/tcp open  http     Netwave IP camera http config
+|_http-title: Site doesn't have a title (text/html).
+|_http-server-header: Netwave IP Camera
+8180/tcp open  unknown  httpd
+|_http-server-header: httpd
+| http-auth: 
+| HTTP/1.1 401 Unauthorized\x0D
+|_  Basic realm=AKADJUST
+|_http-title: 401 Unauthorized
+| fingerprint-strings: 
+|   GetRequest: 
+|     HTTP/1.1 401 Unauthorized
+|     Content-Type: text/html
+|     Server: httpd
+|     Date: Sun, 15 Jan 2023 22:21:32 GMT
+|     Connection: close
+|     Cache-Control: no-store, no-cache, must-revalidate
+|     Cache-Control: post-check=0, pre-check=0
+|     Pragma: no-cache
+|     WWW-Authenticate: Basic realm="AKADJUST"
+|     <HTML><HEAD><TITLE>401 Unauthorized</TITLE></HEAD>
+|     <BODY BGCOLOR="#cc9999"><H4>401 Unauthorized</H4>
+|     Authorization required. please note that the default username is "root" in all newer releases
+|     </BODY></HTML>
+|   HTTPOptions, RTSPRequest: 
+|     HTTP/1.1 401 Unauthorized
+|     Content-Type: text/html
+|     Server: httpd
+|     Date: Sun, 15 Jan 2023 22:21:33 GMT
+|     Connection: close
+|     Cache-Control: no-store, no-cache, must-revalidate
+|     Cache-Control: post-check=0, pre-check=0
+|     Pragma: no-cache
+|     WWW-Authenticate: Basic realm="AKADJUST"
+|     <HTML><HEAD><TITLE>401 Unauthorized</TITLE></HEAD>
+|     <BODY BGCOLOR="#cc9999"><H4>401 Unauthorized</H4>
+|     Authorization required. please note that the default username is "root" in all newer releases
+|     </BODY></HTML>
+|   Kerberos: 
+|     HTTP/1.1 408 Request Timeout
+|     Content-Type: text/html
+|     Server: httpd
+|     Date: Sun, 15 Jan 2023 22:21:52 GMT
+|     Connection: close
+|     Cache-Control: no-store, no-cache, must-revalidate
+|     Cache-Control: post-check=0, pre-check=0
+|     Pragma: no-cache
+|     <HTML><HEAD><TITLE>408 Request Timeout</TITLE></HEAD>
+|     <BODY BGCOLOR="#cc9999"><H4>408 Request Timeout</H4>
+|     request appeared within a reasonable time period.
+|_    </BODY></HTML>
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port8180-TCP:V=7.93%I=7%D=1/15%Time=63C47C6C%P=x86_64-pc-linux-gnu%r(Ge
+SF:tRequest,1E9,"HTTP/1\.1\x20401\x20Unauthorized\r\nContent-Type:\x20text
+SF:/html\r\nServer:\x20httpd\r\nDate:\x20Sun,\x2015\x20Jan\x202023\x2022:2
+SF:1:32\x20GMT\r\nConnection:\x20close\r\nCache-Control:\x20no-store,\x20n
+SF:o-cache,\x20must-revalidate\r\nCache-Control:\x20post-check=0,\x20pre-c
+SF:heck=0\r\nPragma:\x20no-cache\r\nWWW-Authenticate:\x20Basic\x20realm=\"
+SF:AKADJUST\"\r\n\r\n<HTML><HEAD><TITLE>401\x20Unauthorized</TITLE></HEAD>
+SF:\n<BODY\x20BGCOLOR=\"#cc9999\"><H4>401\x20Unauthorized</H4>\nAuthorizat
+SF:ion\x20required\.\x20please\x20note\x20that\x20the\x20default\x20userna
+SF:me\x20is\x20\"root\"\x20in\x20all\x20newer\x20releases\n</BODY></HTML>\
+SF:n")%r(HTTPOptions,1E9,"HTTP/1\.1\x20401\x20Unauthorized\r\nContent-Type
+SF::\x20text/html\r\nServer:\x20httpd\r\nDate:\x20Sun,\x2015\x20Jan\x20202
+SF:3\x2022:21:33\x20GMT\r\nConnection:\x20close\r\nCache-Control:\x20no-st
+SF:ore,\x20no-cache,\x20must-revalidate\r\nCache-Control:\x20post-check=0,
+SF:\x20pre-check=0\r\nPragma:\x20no-cache\r\nWWW-Authenticate:\x20Basic\x2
+SF:0realm=\"AKADJUST\"\r\n\r\n<HTML><HEAD><TITLE>401\x20Unauthorized</TITL
+SF:E></HEAD>\n<BODY\x20BGCOLOR=\"#cc9999\"><H4>401\x20Unauthorized</H4>\nA
+SF:uthorization\x20required\.\x20please\x20note\x20that\x20the\x20default\
+SF:x20username\x20is\x20\"root\"\x20in\x20all\x20newer\x20releases\n</BODY
+SF:></HTML>\n")%r(RTSPRequest,1E9,"HTTP/1\.1\x20401\x20Unauthorized\r\nCon
+SF:tent-Type:\x20text/html\r\nServer:\x20httpd\r\nDate:\x20Sun,\x2015\x20J
+SF:an\x202023\x2022:21:33\x20GMT\r\nConnection:\x20close\r\nCache-Control:
+SF:\x20no-store,\x20no-cache,\x20must-revalidate\r\nCache-Control:\x20post
+SF:-check=0,\x20pre-check=0\r\nPragma:\x20no-cache\r\nWWW-Authenticate:\x2
+SF:0Basic\x20realm=\"AKADJUST\"\r\n\r\n<HTML><HEAD><TITLE>401\x20Unauthori
+SF:zed</TITLE></HEAD>\n<BODY\x20BGCOLOR=\"#cc9999\"><H4>401\x20Unauthorize
+SF:d</H4>\nAuthorization\x20required\.\x20please\x20note\x20that\x20the\x2
+SF:0default\x20username\x20is\x20\"root\"\x20in\x20all\x20newer\x20release
+SF:s\n</BODY></HTML>\n")%r(Kerberos,19F,"HTTP/1\.1\x20408\x20Request\x20Ti
+SF:meout\r\nContent-Type:\x20text/html\r\nServer:\x20httpd\r\nDate:\x20Sun
+SF:,\x2015\x20Jan\x202023\x2022:21:52\x20GMT\r\nConnection:\x20close\r\nCa
+SF:che-Control:\x20no-store,\x20no-cache,\x20must-revalidate\r\nCache-Cont
+SF:rol:\x20post-check=0,\x20pre-check=0\r\nPragma:\x20no-cache\r\n\r\n<HTM
+SF:L><HEAD><TITLE>408\x20Request\x20Timeout</TITLE></HEAD>\n<BODY\x20BGCOL
+SF:OR=\"#cc9999\"><H4>408\x20Request\x20Timeout</H4>\nNo\x20request\x20app
+SF:eared\x20within\x20a\x20reasonable\x20time\x20period\.\n</BODY></HTML>\
+SF:n");
+Service Info: OS: Windows; Device: webcam; CPE: cpe:/o:microsoft:windows
