@@ -94,4 +94,5 @@ What I've learned?
    use ABSOLUTE PATH unless you want a standard user become root and take controll of the machine
 
 
-
+(also added a cool reverse shell that can be used when nc doesn't support "-e" flag, that's the only good thing I found 
+when I was stuck in the rabbit hole lol, added to the reverse shell directory)
