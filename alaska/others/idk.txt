@@ -1,1 +1,0 @@
-'http://24.155.92.234:50088/ViewerFrame?Mode=Motion&Resolution=640x480&Quality=Standard&Interval=30&Size=STD&PresetOperation=Move&Language=11'
