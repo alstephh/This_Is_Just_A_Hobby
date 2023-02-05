@@ -1,0 +1,8 @@
+# Nmap 7.93 scan initiated Fri Feb  3 17:17:50 2023 as: nmap -sU -o UDPscan 10.10.11.194
+Nmap scan report for soccer.htb (10.10.11.194)
+Host is up (0.084s latency).
+Not shown: 999 closed udp ports (port-unreach)
+PORT   STATE         SERVICE
+68/udp open|filtered dhcpc
+
+# Nmap done at Fri Feb  3 17:34:32 2023 -- 1 IP address (1 host up) scanned in 1002.04 seconds

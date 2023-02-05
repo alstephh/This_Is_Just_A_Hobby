@@ -1,0 +1,182 @@
+SOCCER HTB
+
+
+===PORT=SCANNING============================
+
+22	ssh
+80	htpp / nginx 1.18.0
+9091	xmltec-xmail
+
+
+
+===DIRECTORY=BUSTING========================
+/tiny with code 200 find a login page of Tiny File Manager where trying default credentials "user:12345" and "admin:admin@123" work
+I will stay with the admin one and see what can I accomplish.
+
+The version is 2.4.3 and I discovered that is vulnerable to remote RCE with an authorized account using a the upload feaure now I will
+try to figure how it works and how to abuse it.
+
+For some reason the upload feature was not working (actually didn't found out why cuz a lot of walkthrough solve the first part
+of the machine with the upload feature) but we can do the same thing with the creation of the php shell and than open it on the file
+manager, this will start the reverse shell
+
+
+===FIRST=FOOTHOLD==========================
+As we obtain the shell the user is www-data basic-basic user we can't even get the user flag, now let's find a way to move our privilege
+
+there are 2 user on the victim "player" and "root" as always, intuitively we need to pass first to the player user
+and than the root one
+
+
+Using linpeas.sh I found on the network information that a domain soc-player.soccer.htb is avaible so let's visit
+it (before adding it on the loca /etc/hosts), we have like the first website but with more feature other than 
+a simple homepage.
+
+The "MATCH" section is just a preview of the incoming match and the phrase "login for free ticket" suggest me the
+point now is to make or login with a account.
+
+
+Making an account quickly took me in a page whit a input field and a ID of my ticket (76470) in addition om the
+source code there is the purpose of the port 9091 is for the websockets.
+
+I think the right way is to abuse WS, I've searched for all the things you can do with misconfigured WebSocket and the one that can be usefull
+is the Hijacking where we can obtain all the history of the messages passed through the sockets (note that there are 2 version of the protocols WS which data go in clear
+and WSS same thing but encrypted, in the machine the server use WS).
+
+
+
+
+
+===WEBSOCKETS=HIJACKING===================
+Just a few line on how the connection with WebSocket works, in practice the purpose of WS is create a full-duplex channel (for instance like a live chat).
+Analyze the HTTP requests and responses when we go inside the section where we will use a WS connection before establishing the connection we have the simple request
+and than a request with the field "upgrade" with field equals to "websocket" this will switch the protocol from client-server to WebSocket, this is when the server and client sockets 
+bind to each others (plus a cookie is given to us for identify the connection, called connect-sid).
+Important to remember that WebSocket are a communication at session level not a connection level.
+
+After that when we send something in the input field the request will be something {"[field_name]":"[field_data]"} that obviously can be intercepted if is in WS, later on we will receive
+the response.
+
+With that said let's try to find something usefull with our situations, first idea is a CSRF on WebSocekt, in few words WebSocket Hijacking (actually first idea was XXS but with some quick test
+XXS is not possible maybe some sanitization of the string occurs).
+
+What we need to succed on a WebSocket Hijacking need that the ws handshake relies solely on the cookies (that's our case), o no CSFR tokens or other security solutions
+What can be usefull here is the history of the old messages maybe some credentials (or maybe nothing) pop up.
+
+I found out a way for Hijacking but I think I'm complicating my life a.k.a im in a rabbit hole but I was able to retrieve a scrpt that
+will gave us the history of messages sent by the websockets.
+Cool but I need Burp Collaborator and it's only for Pro subscription but I leave the simple script here mayb somehow can be usefull
+(need to make some research about some collaborator alternatives or try to develop one? idk actually I will find out).
+
+Ok so Hijacking go behind the scene but I've learned some small things about WebSockets and CSFR, worth!
+
+
+
+===BLIND=SQL=INJECTION====================
+I admit that, I've make a small check on some walkthroughs but only on 'what is the real exploit here'.
+The response was '...blind sql injection...' and I close the walkthrough. I swear.
+
+After broke the rule "tryhard to not use the walkthroughs online plz" (I was lost actually lol), Google something try to understand
+how SQL and WebSockets correlate.
+
+Response was easy and more intuitive that I tought (make some slow but full analysis of everything no need to be too fast, NOTED!)
+because the ID we sent is checked if is valid or no so my mind HAD TO pop up with "SQL!"
+
+With that assumption found a github page of Rayhan0x01's blog on how to automate SQL Blind injection and WS
+(in the blog page also found out a vulnerable web app for webscokets I will check that out to practice on WS explotation)
+
+
+
+- BLIND SQL INJECTION = the server don't answer with the explicit data but or with error messages onthe SQL syntax
+                        with no output we can only abus this with some True or False questions, harder but not impossible
+
+How to connect this 2 worlds?
+SQLmap tool can use the protocol ws:// (sqlmap -u "ws://[LINK]" ...)and we can use it connecting to server sockets and use the
+functionality of sqlmap (enumaration, DBMS banner grabbing and obv injection)
+
+I a few point the flow will be:
+
+1] Middleware server that receive the sqlmap data (via GET)
+2] Bind with the server WebSocket 
+3] Server will send SQL injection and display output
+
+The MiddlewareServer is MidS.py (is a copy and paste, obviously I've analyzed the code at the end of the report I will talk ab code
+development)
+
+Now we will start the MidS.py script and sql map with this syntax (8081 is the port where middleware run): 
+
+				sqlmap -u “http://localhost:8081/?id=1" -p “id”
+				
+				or if need info without having a vuln parameter
+			
+				sqlmap -u “http://localhost:8081/?id=1" --batch --dbs
+
+with -u we are telling to SQLmap where to send the malicious payloads and with -p we define the testable parameter
+and internally the middleware split the query in the part "...?id=1" (on the char '=') so all the data created from SQLmap are injected
+using 'id' parameter.
+
+I found out that server is running MySQL 5.0.12 and the current db is soccer_db so let's retrieve data (here I had to use different
+flags for discover deeper and deeper), than this db have accounts table with ID [int], email [varchar(40)], username [varchar(40)]
+and password [varchar(40)]
+Obv we need username and password and try it on ssh with that we will have a user flag if works.
+
+So we use this for obtain data inside the tables accounts
+
+		          sqlmap -u "http://localhost:8081/?id=1" -D soccer_db -T accounts --dump --no-cast 
+results was
+
+player : PlayerOftheMatch2022 
+
+Intense for just the user flag but really formative.
+
+
+
+
+===USER=FOOTHOLD=========================
+Obv we got cces to ssh with the credentials and the user flag so the first part (just the first part lol) is done!
+We can't run sudo on the victim localhost so no sudo abuse this time for PE
+
+Now I will rerun linpeas and look out at the output
+
+I've tried with kernel exploit PwnKit but wasn't woring cuz pkexec wasn't avaiable on the victim also I tried other
+kernel exploit but no results
+
+/////////////////////////////////////
+sudobaron sudedit 1/2   
+netfiller heap out-of-bounds write
+setuid screen v4.5.0 LPE
+////////////////////////////////////
+
+
+
+Sudo is not vulnerable but the DOAS command is avaiable and I can run dstat as root user. ok cool!
+
+The real difference on doas and sudo is doas is more minimalist for single user boxes that will improve securiy
+with simple configuration and setup (doas is lighter than sudo)
+
+
+
+
+===PRIVILEGE=ESCALATION====================
+dstat is a tool for generate system resources statistics and the key point here is that supports plugins in python
+so the idea is 
+
+1] find the already installed plugins on /usr/share/dstat/ and look the name template dstat_[PLUGIN_NAME].py
+2] create in /tmp a reverse shell in python and called (for instance) dstat_shell.py and cp on /usr/local/share/dstat/
+3] check with dstat --list if the new plugin appear on the avaiable plugins
+4] run the listener and "doas -u root /usr/bin/dstat --[PLUGIN_NAME]" and pop out the shell
+
+We are logged in as root and we can earn the root flag
+
+
+Really a fun machine where I as able to use for the first time SQLmap plus a middleware server.
+Just a few words on the middleware server, Obviously I've copied and pasted the code I found on the Rayhan0x0's blog and honestly talking was not that hard to
+self-develop the middleware server, I need to work more on make some code quickly and adaptive to the situations.
+
+SQLmap look like a usefull tool with a lot of features that can be discovered on the victim DB lie the schema, tables, user [ecc...]. Also with blind SQLinjection
+this tool is really effective with a sort of brute-force for discover data.
+
+
+The WebSocket connection was our way to connect to the database, mitigations are string sanitization (obv), use encrypted connection (this was not the case but
+with hijacking you can obtain chat history in clear) and over cookie string some csfr tokens is needed.
+

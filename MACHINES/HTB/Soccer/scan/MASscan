@@ -1,0 +1,11 @@
+# Nmap 7.93 scan initiated Fri Feb  3 17:34:32 2023 as: nmap -sX -o MASscan 10.10.11.194
+Nmap scan report for soccer.htb (10.10.11.194)
+Host is up (0.12s latency).
+Not shown: 996 closed tcp ports (reset)
+PORT     STATE         SERVICE
+22/tcp   open|filtered ssh
+80/tcp   open|filtered http
+5555/tcp open|filtered freeciv
+9091/tcp open|filtered xmltec-xmlmail
+
+# Nmap done at Fri Feb  3 17:34:36 2023 -- 1 IP address (1 host up) scanned in 3.89 seconds
