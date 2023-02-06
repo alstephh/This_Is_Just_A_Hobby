@@ -1,0 +1,234 @@
+STOCKER HTB 	10.10.11.196
+
+
+
+===PORTS=====================
+
+--------TCP
+22 SSH
+80 HTTP (nginx 1.18-UBUNTU)
+
+--------UDP
+68 DHCP
+
+
+[not a rich result in the scan lol]
+
+
+
+
+===WEBSITE===================
+On port 80 http website is just a single page website with no form for input or something else for data exposure.
+On the website's footer I saw a "made by TEMPLATEDECK" and on html code a comment with "https://onepagelove.com/stride" which
+is just the template of the webpage 
+
+
+
+===DIRECTORY=BUSTING=========
+
+/css /fonts /img /js 		 code 301
+/favicon.ico 			 code 200 (is just an icon lol)
+
+
+
+Need more enumaration
+
+
+- With some attention at the HTTP request when we go to the website we declare to go to root "/" but redirect on stocker.htb
+  with code 301 (moved permanently)
+
+- No cookie or somethin for session identification
+
+- Subdomains enumaration with gobuster vhost and seclists wordlists on Discovery/subdomains (all the hints on this criptic machine
+  were "VHOST") the difference on VHOST and SubDoamins is clear and simple the VHOST is used as wrapper for domain itself which can
+  host different websites on same server, subdomains can be covered in other server or websites.
+  You can use gobuster VHOST modules or ffuf with 
+
+
+
+Found the subdomains dev.stocker.htb [really important when bruteforcing in general to use different wordlist when no info at first
+try, bruteforce is really noisy obv but in situation were you can bruteforce freely take time and do differente wordlist attacks
+meanwhile you can do other things, in my case I triedto enumarate as much as I could]
+
+
+===DEV=SUBDOMAIN==============
+We are at a login page even here I will try bruteforce and maybe some injection or XSS later on.
+On the default domain on the bottom side of the sites I found a name and surname of a employee of the IT section of the fake 
+company : Angoose Garden.
+Probably can be a user 
+
+I use a guide (https://dzmitry-savitski.github.io/2020/04/generate-a-user-name-list-for-brute-force-from-first-and-last-name) for
+adding a rule on john the ripper tooland create a list of possible username from first and last name
+
+The results are in username.txt (created from name.txt) and we can use this with a first try of bruteforce with Burpsuite (intruder)
+I've tried with different wordlist but nothing usefull oocured.
+Nothing is for nothing this step have no results at all but help me with the look-at-everything mindset and use it at your advantage
+for a possible prize.
+
+Analyzing the request of the login page give us a cookie for the session and than a normal POST variables sent to the server.
+When error occurs on login this appear as first line of the HTTP response 
+			"GET /login?error=login-error HTTP/1.1"
+
+
+
+
+So no credentials brute-force, Injection can be a way but what to inject.
+
+Here I admit I take a look at some walkthrough and the results was NOsql but how discover that on serverside they are using NOsql?
+With wappalyzer the technology of the Web Framework is EXPRESS and with a quick google search found that EXPRESS us MongoDB which is
+a NOsql DBMS.
+
+/////////////////
+//What's NOsql?//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+No tabular database, so whatever method can be used unless relational tables become populare before with the agile manifesto describing
+NOsql database more flexible than the SQL ones and currently with cloud computing and livestreaming data giving scalability and 
+efficency that this application need.
+
+Some database options can be : Documents database (used by mongoDB, JSON), key-value database, wide-collumn stores and graph database
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Let's go on with NOsql injection (https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/NoSQL%20Injection#authentication-bypass)
+
+we can abuse obtaining Authentication Bypass and extraction length of data and data itself.
+In my little experience on boxes data extraction is always a goo thing to try first s I will use the script found at the upper link
+changing the host and let it run meanwhile I'm trying to figure out if authentication bypass is possible 
+
+[spoiler no credentials dumped from the script lol]
+
+nosli tool just scan a timing injection with sleep command.
+This mean....time for auth bypass!
+
+Ok here burp suite is usefull we intercept the request of login with username and password as parameter BUT as said above MongoDB use
+Json object and we are senging URL-encoded data so we change the content-type to json e instead of the password and username parameters
+I used this JSON text
+
+				{"username" : {"$ne":null}, "password" : {"$ne": null}}
+
+The "$ne" stands for "not equal" so we go through the login page if the boolean expression results TRUE ex:/ username =/= null --> TRUE
+there are other methods obv like using the character for greater or smaller
+
+
+===2ND=PHASE===================
+The webapp redirect to /stock after the login occured and is simply a look-like online shop with some product.
+The only thing we can do here is choose the product and use the button and add to the cart the item.
+Also we can view what we have inside th cart.
+
+This part of the machines remembered me a section of JuiceShop a sandbox that can be installed with docker, giving in local a vulnerable
+webapp where user can understand,check and exploit vulnerability specific of webapp (top 10 OWASP mainly).
+I made my hands dirty back in the days I used JuiceShop so maybe I can figure it out by myself this part....
+
+When we add a item on the cart a popup message appear with "added to basket" interesting maybe XXS can be done here
+Before try something is better to understand what happen behimd the curtains using burpsuite
+
+When we choose the items no request are sent to the server but when we decide to look inside the cart we can hoose to proceed with the
+payment and than a new tab will open for us with a brand new pdf that will act as paper of the shop we made also a order ID is given to us
+
+When we proceed with the payment a JSON object is sent to the server this object rappresent obv what we have inside the cart, note that
+our products have an ID too. 
+Btw order ID is always the same even if 2 order have different products
+
+I tried to mess up with the data in JSON object like price of a product at 0, quantity and avaiable quantity and everything go smooth
+with the changed parameter (like 500 axe at 0$ is possible) so no object check is done on the serverside
+
+With a second look at the request notice that the request we do is to an api "/api/order" with POST 
+I've changed one of the parameters with the following line
+
+				<iframe src=\"javscript:alert('xss')\">
+
+The response was 200 so it works and the fun thing is when we use the api for view the PDF the iframe is actually present on the pdf so
+the server actually "read" the lines when we ask for the pdf, this is actually XXS (I've checked on some walkthroughs if I was incoming
+a rabbit hole or not and surprise I was right, good)
+
+Found an article just on Live PDF (https://book.hacktricks.xyz/pentesting-web/xss-cross-site-scripting/server-side-xss-dynamic-pdf)
+cool thing is that the first tip is not use the tag <script> but instead something else like <img> and <iframe>.
+Yep Juice Shop was usefull, really really cool
+Also my intuition was right (well was easy but happy to know that I was able to understand that alone) for an exploitation you need to
+view or download the pdf in other words the PDF need to be crafted on the server
+
+I was able to scrap the location of the webapp with
+			
+			<script>document.write(document.location.href)</script>
+					    RESULT
+			file:///var/www/dev/pos/63e036c991f8a489d8fcf481.html
+
+Also with the iframe I was able to obtain the /etc/passwd and over the root and service account notice
+that angoose is a user (and is 1 of the valide username I've generated so what I did before was not useless at all)
+
+Now here I've use my own leg but I start to beat the head to the wall finding a password for the user
+here I admit broke for the second time in this machine the "no walkthrough" rule.
+
+We need to look out at index.js which is responsible for handling app at startup or other feature like, as we need, login check
+So using XXS we can obrain that 
+
+			<iframe src=file:///var/www/dev/index.js height=1000px width=1000px></iframe>
+
+and analyzing the code we have the credentials when a ssh connetion is needed for the app and the password is 
+"IHeardPassphrasesArePrettySecure"
+we log wih ssh with our brand new credentials and vouila we have (just) our user flag, intense for a easy machine I LOVE IT!
+
+
+===PRIVILEGE=ESCALATION============================
+Output with sudo -l
+
+(ALL) /usr/bin/node /usr/local/scripts/*.js
+
+so we can run with node whatever js script located on /usr/local/scripts/ I've already tried to create a reverse shell on /tmp
+and copy that on the scripts directory but obv will not be this easy
+In some of the scripts is just a database query obtaining some sorts of data I can tell it obv on the output but specially this
+				
+				Connecting to mongodb://<credentials>@localhost/prod?authSource=admin&w=1
+
+The credentials are not showed.
+
+The time i'm writing this line of code my satisfaction is higher than a skyscraper, why?
+Cuz I was able to make PE alone WITHOUT WALKTHROUGHS, this is the first time after long time of study and practice that I'm able
+to solve 1 part of a machine all alone, is just 1 part? yes. was that complicated? actually no.
+But all the elaboration and lateral thinking was finally moving all on my own just using some google page and a deep focus on all
+possible way to become root.	INTENSE, this machine was really INTENSE for me woah!
+
+BTW whitout self-compliment too much let's stay focused on the machine.
+
+Long story short what the victim machine expect to the user we are impersonating when we try to run sudo is
+
+1] you need to use node with absolute path so no PATH traversal here
+2] run whatever JS scripts in /usr/local/scripts/ like [1] no PATH traversal
+
+I worked on the [2] part, we can't write modify or add scripts inside that folder that's a pain but than I had to think simpler that's
+when I try to add "../" to the absolute path hijacking to our malicious JS script.
+
+If we try something like 
+
+/usr/../tmp/malicious.js/../usr/local/scripts/creds.js
+		or
+/usr/local/../../tmp/malicious.js/../usr/local/scripts/creds.js
+
+will results in a error because it will stop at the first JS script and will be detected as a wrong path 
+so the malicious script will stay were the machine expect to be at the end of the path before [...]/scripts.
+
+Simple to discover that something like /usr/local/scripts/../../../tmp/malicious.js work!
+So just need to create this script [runasroot.js] and I can run whatever command I need as root
+so I use it for read the flag /root/root.txt but you can do all the thing you need even reverse shell.
+
+
+and Stocker is pwned
+
+===CONCLUSION========================================
+Really intense machine with a great webapp exploit in the first part, really confusing for me cuz webapp
+pentest is my blind spot so good thing that I practice a bit with XXS and NOsql Injection.
+
+The privilege escalation part was really easy compared to the first part just know how path can be
+manipulated.
+
+I learned a lot and notice that more time pass by the less I use walkthroughs or at least try all the things I can
+before some search for some hints or explicit solutions.
+
+Is a slow but rewarding process, 
+					
+
+
+
+
+
+
+keep grinding keep dreaming. (<3)

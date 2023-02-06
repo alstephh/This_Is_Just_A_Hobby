@@ -1,0 +1,9 @@
+# Nmap 7.93 scan initiated Sun Feb  5 11:59:00 2023 as: nmap -sX -o MASscan 10.10.11.196
+Nmap scan report for stocker.htb (10.10.11.196)
+Host is up (0.090s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT   STATE         SERVICE
+22/tcp open|filtered ssh
+80/tcp open|filtered http
+
+# Nmap done at Sun Feb  5 11:59:12 2023 -- 1 IP address (1 host up) scanned in 12.48 seconds
