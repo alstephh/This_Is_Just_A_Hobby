@@ -1,0 +1,93 @@
+PICKLE RICK 	TRYHACKME
+
+=======================================================================================================================================
+OMG this type of crossover or whatever it is is cool, we need to find 3 ingredients to let rick return human, is a pickle now let's help him!
+==========================================================================================================================================
+
+
+Ok so what we have is just a webapp with a homepage and nothing to more to interract with.
+
+So I'm gonna run some scan on the IP and directory busting for start...RICK I'M COMING
+
+
+===PORTS=============================================
+22	SSH
+80	Apache 2.4.18
+
+
+
+===DIRECTORY=BUSTING==================================
+/assets 
+just a directory where content of the web page are taken (saw it on burp) inside I can see some GIF and imags that are not used in
+the homepage so as a hint I can tell that there is more other than webapge.
+
+/robots.txt
+
+/server-status
+CODE 403
+
+
+
+===ENUMERATION=========================================
+
+Is a supernormal machine so I think now I need to focus on the webapp, while the directory busting is doing is job im gonna analyze
+with burp (or how rick will say it *BBBUUUURRRRRPPPPP*, maybe is a hint?)
+Actually nothing special inside the request so nop no hint (but cool word-play!).
+
+Reviewing the code of the webpage we got a comment with a username "R1ckRul3s" so good thing we can try to ssh bruteforce with this username
+but when I try to is telling me that ssh doesn't support password auth.
+So I tried to login with the username I scraped but nothing give me "permission denied (publickey)"
+
+Btw tried to see if /robots.txt exist and we got this string "Wubbalubbadubdub"
+Idk if will be usefull or not but for be secure will note that
+
+
+Tried with subdomains and vhost but noting, also no form or login so no injection to try what a pain
+
+NIKTO output find a /login.php page, that's a good news, when we send the username and pasword we send a hrequest
+with field username and password and a PHPSESSID is given to us, interesting
+
+Using the username and the possible passwords found in /robots.txt we have access to the login page.
+
+We have access to a dashboard with 4 (wll 5 actually) sections "Commands, Potions, Creatures, Potions, Beth Clone Notes", just 
+Commands is able to be used as now cuz the others are bloccked with a message telling us only the real rick can access to it
+(we need PE for that).
+
+
+In "Commands" I'm able to run commands like ls,whoami and pwd but not cat, so let's try with a reverse shell.
+Reverse shell somehow wasn't working maybe is blocked where the only opportunity for solve this box is using the webapp.
+
+Using ls we see that a txt called Sup3rS3cretPickl3Ingred.txt so using less or http://[VICTIM_IP]/Sup3rS3cretPickl3Ingred.txt
+we obtained the first ingredient Rick need is mr. meseek hair. [1/3]
+
+
+There was another txt file called "clue.txt" telling us the hint to look around the file system for the other ingredients, let's do it.
+
+Using the repeater I looked at the response and there was a string in a comment, this string is :
+
+	Vm1wR1UxTnRWa2RUV0d4VFlrZFNjRlV3V2t0alJsWnlWbXQwVkUxV1duaFZNakExVkcxS1NHVkliRmhoTVhCb1ZsWmFWMVpWTVVWaGVqQT0==
+
+Need to figure out how is encoded and what contains, in my little experience I can tell that if a encoded string ends with "==" is possible
+that base64 is the encoder.
+
+It returned the string "VjFSSmVGSXlSbGRpU0ZKcFVrVktTMVZxU205TmJHeHlXa1phVVZWVU1Eaz0" which seems nothing special so I will go over 
+and explore filesystem and let this new string found here waiting for new hints?
+
+Well I used as first "sudo -l" and found that we can do everything with sudo with no passwd..........ok.........
+
+Inside /root found a 3rd.txt with the ingredient "fleeb juice" [2/3]
+
+Now we need the last ingredient and my sixth sense tell me I need to "PE" on the webapp maybe cookie or something else, let's explore.
+
+[long long long time after]
+
+AAAAAAAAAH.....rabbit hole, neither the PHPSESSID or the string found on the response was the way to find the 3rd ingredient...actually
+no PE was needed.
+
+IDK why but all the other sections were just aesthetic thing or just a bait (or even both) so no PE on webapp was the right path.
+
+Was really really really really more simple than that, in few words the second ingredient was in /home/rick.
+
+Yeah I've created a complex idea on how to solve the machine where was simplier than that.....not so cool this time.
+
+Btw we found all the 3 ingredient (last one was Jerry Tear) and pickle is returned back as human, we saved him!
