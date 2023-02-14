@@ -92,6 +92,11 @@ Even if I look at the walkthrough for know what was the vuln affecting Precious 
 I think after this machine I will make some deepening cuz there are different type of deserialization for different languages
 even can be a opportunity to work on my weakness : Programming and coding, I will think about that at the end of this box.  
 =======================================================================================================
+YAML = Yet Another Markup Language
+
+Is considered as a human-readeble data-stream language use tipically in activity to receive and send data
+Popoluar used with library in another languages like python and ruby
+=======================================================================================================
 
 
 
@@ -132,10 +137,7 @@ Let's resume key points in this machine:
 
 
 
-YAML = Yet Another Markup Language
 
-Is considered as a human-readeble data-stream language use tipically in activity to receive and send data
-Popoluar used with library in another languages like python and ruby
 
 
 
