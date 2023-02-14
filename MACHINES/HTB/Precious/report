@@ -50,7 +50,50 @@ and with cat I found " henry:Q3c1AqGHtoI0aXAYFH ", cool use this credentials wit
 ===PE====================================================
 Now that we got our user shell we need to move on on root, let's try the dirty pipe I found before.....and nop wasn't working somehow.
 
+Sudo -l
+-------
 
+Output : (root) NOPASSWD: /usr/bin/ruby /opt/update_dependencies.rb
+
+
+update_dependecies.rb is a script that compare the installed dependencies (local) with the ones in the file
+"dependencies.yml" 
+
+When used the update file doesn't exist and as user I can write on /opt I was honestly lost and look at the walkthrough
+and the exploit point is the YAML.load command the script use that's vulnerable to deserialization.
+
+Let's bring this opportunity to study something about deserialization before goin' to dirty hands again.
+
+
+- SERIALIZATION   : conversion of object in bytestream or flat structure
+- DESERIALIZATION : conversion of bytestream (or snall structure) in object
+
+The vulnerability arise when web server use deseriliazation without validating what it received before 
+
+
+If we serialize an object we know that what we send will not simply deserializated but also executed by a subprocess
+so when we send a command like "whoami" will work, is a good scenario for a reverse shell obv.
+
+But we need to figure out 2 things:
+[1] How to let ruby read a attacker-crafted file 
+[2] Create the reverse shell
+
+
+[1] We need that ruby read our file but we have no write permission on /opt so we need some trick like path
+    traversal or something else
+
+
+
+[2] This simple line of code will span a sh session for us
+		ruby -e 'exec "/bin/sh"'
+
+
+
+
+YAML = Yet Another Markup Language
+
+Is considered as a human-readeble data-stream language use tipically in activity to receive and send data
+Popoluar used with library in another languages like python and ruby
 
 
 
