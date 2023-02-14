@@ -1,0 +1,9 @@
+# Nmap 7.93 scan initiated Sun Feb 12 14:38:14 2023 as: nmap -sX -o MASscan 10.10.11.189
+Nmap scan report for precious.htb (10.10.11.189)
+Host is up (0.068s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT   STATE         SERVICE
+22/tcp open|filtered ssh
+80/tcp open|filtered http
+
+# Nmap done at Sun Feb 12 14:38:22 2023 -- 1 IP address (1 host up) scanned in 7.54 seconds
