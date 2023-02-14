@@ -1,0 +1,142 @@
+PRECIOUS HTB	10.10.11.189	
+
+
+===PORTS===========================
+22	SSH
+80	HTTP (nginx 1.18.0)
+===================================
+
+
+===DIRCTORY=BUSTING====================================
+Nothing, really, nothing.......................nothing
+=======================================================
+
+
+
+
+
+On the webpage we are directed on a page called "PDF to webpage converter" with a input field where we are asked to provide a URL.
+I've provided some url ike google, stackoverflow and few other but a error message pop out telling "cannot load remote URL".
+The request intercepted is nothing special just field url with the string we provide on the input field so I will focus on the functionality
+of the website itself.
+
+I use python for the http.server module and try to give the attacker URL and worked it tae the url and transform to PDF, you can navigate
+the filesystem and download the files. Interesting, there will be a trick to teh shell maybe, or well I think that's the only way.
+
+
+Well we need more info on how the PDF spawned or better who spawn it, so I download locally the pdf and using exiftool (tool for metadata
+reading) I discovered the author of the pdf, pdfkit v.0.8.6 which is vulnerable to Command Injection (https://security.snyk.io/vuln/SNYK-RUBY-PDFKIT-2869795), bingo!
+
+The exploit of the vulnerability when we render a URL with parameter with user input, you can inject shell commands using that parameter
+
+With a deeper research you can abuse the pdfkit version for gain a reverse shell with ruby language, so as you can see on screen.png,
+I've opened the netcat listener, the python server and use curl for the request to the victim in details the request abuse the parameter
+of the URL for a reverse shell in Ruby (http://[IP]/?name=%20'[ruby_reverse_shell]') this popout a shell in our nc listener.
+
+
+===INITIAL=FOOTHOLD======================================
+With the shell we got we are user "ruby" and we can't even see the user flag, this is why we need some PE to a normal user and than another PE
+for root.
+
+With some enumaration at first no info was usefull for our situation but maybe the Debian version (5.10.0) is vulnerable
+to DirtyPipe which allows unprivileged users root access, but maybe will be usefull when I get user profile and not the ruby profile
+
+Here was just a continue searching inside the home folder of the ruby profile, inside .bundle there is a config file
+and with cat I found " henry:Q3c1AqGHtoI0aXAYFH ", cool use this credentials with ssh and we got our shell and user flag!
+
+
+
+
+===PE====================================================
+Now that we got our user shell we need to move on on root, let's try the dirty pipe I found before.....and nop wasn't working somehow.
+
+Sudo -l
+-------
+
+Output : (root) NOPASSWD: /usr/bin/ruby /opt/update_dependencies.rb
+
+
+update_dependecies.rb is a script that compare the installed dependencies (local) with the ones in the file
+"dependencies.yml" 
+
+I was honestly lost and look at the walkthrough and the exploit point is the YAML.load command the script use that's vulnerable to 
+deserialization.
+
+
+
+
+===DESERIALIZATION====================================================================================
+Let's bring this opportunity to study something about deserialization before goin' to dirty hands again.
+
+
+- SERIALIZATION   : conversion of object in bytestream or flat structure
+- DESERIALIZATION : conversion of bytestream (or snall structure) in object
+
+The vulnerability arise when web server use deseriliazation without validating what it received before 
+
+
+If we serialize an object we know that what we send will not simply deserializated but also executed by a subprocess
+so when we send a command like "whoami" will work, is a good scenario for a reverse shell obv.
+
+Important is to understand what are "gadget" in ruby vocabulary, gadget are pieces of avaiable code and will be keypoint for
+deserialization.
+Gadget chains files allow to invoke a second gadget from the first one as methods and use the data in instance variable, with this link
+within the objects allow us to abuse deserialization.
+Note that for start a gadget chain you need to rely only on the standard library that differ from the version victim have installed,
+this is important for GADGET HUNTING where we need to find gadgets (or technique) that when invoked require another library, this is the
+spark that ignite the whole process.
+Also don't forget to find gadget that parse user controlled argument to the 'require' (doesn't exist or harder to make a gadget with full
+controll on argument, that's the hard part you need to abuse with just partial controll on the arguments).
+
+Even if I look at the walkthrough for know what was the vuln affecting Precious was really interesting study about deserialization,
+I think after this machine I will make some deepening cuz there are different type of deserialization for different languages
+even can be a opportunity to work on my weakness : Programming and coding, I will think about that at the end of this box.  
+=======================================================================================================
+
+
+
+
+
+But we need to figure out 2 things:
+-----------------------------------
+
+[1] How to let ruby read a attacker-crafted dependecies.yml file with the deserialization exploit 
+	|--> this is the type of question that made me think im stupid for real, we don't need to write on /opt the 
+	     yml file but where we run the script (need to think like a computer, stupid but not that stupid) 
+
+[2] How the dependecies.yml is made, what's inside?
+	|--> I found (https://gist.github.com/staaldraad/89dffe369e1454eedd3306edc8a7e565#file-ruby_yaml_load_sploit2-yaml) a gadget
+	     chain where we just need to change the "git_set" value as command to run as root.
+	     [the gadget chain is in g_chain.yml]
+
+
+Now let's try creating the yml file and run the script and see if the ID command give us some output and boom got it I will make
+a screenshoot to see the proof that's working, cool I love this type of things yeah!
+So just change the git_set to bash -i (or what need like a reverse shell or whatever) and we got PE.
+
+
+
+Let's resume key points in this machine:
+
+1] When thing are not in the surface, metadata canhelp to understand what's behind the curtains and what victim is using 
+	(there is also an interesting use of metadata reading, in social media when you post a photo also the
+	 metadata are saved, in OSINT usually when you wanna know where and when the photo or video in a social media
+         was made reading the metadata can give amazing results, thanks to David Bombal for this trick)
+
+2] Deserialization is potentially a strong and usefull thing to obtain PE or execute whatever command we want root execute,
+   can be even usefull for backdoor login as normal user and create or use gadget chain to gain root privileges in a moment.
+   Need to study more about it and look over just ruby, python is more popular on every machine and is vulnerable too, cool thing
+   is that not only PL are vulnerable but modules (like YAML we saw in this box) that exported to whatever PL make it a weakness.
+
+
+
+
+
+YAML = Yet Another Markup Language
+
+Is considered as a human-readeble data-stream language use tipically in activity to receive and send data
+Popoluar used with library in another languages like python and ruby
+
+
+
+
