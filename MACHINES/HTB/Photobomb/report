@@ -1,98 +1,71 @@
-HTB PHOTOBOMB 		10.10.11.182
+HTB PHOTOBOMB                     10.10.11.182
 
 22 ----- SSH
+
 80 ----- HTTP nginx 1.18 UBUNTU
 
 UDP
+
 68 DHCP
 
+Going to check an item on the website while executing an FFUF directory busting and wondering what? In the source code, I detected credentials in clear on a js script (nothing new with FFUF results)
+
+password is b0Mb and your username is pH0t0.
+
+It's only a gallery where you can download pictures by clicking the bottom button, and we get access to the /printer (lol funny) 
+I think I can identify a method for injecting a command or a shell or something comparable with buro and also some research. Knowing that the website submitted the request to /printer once again and that many photographs with different features will be downloaded, it's likely that a sql injection succeeded.
+
+[curious how I anticipated this study might require a lot of time, however it just took 15 minutes to collect the data; I live for all of this] 
+[just used a walkthrough, but only to see how to combine multiple the script to execute with the jpeg parameter]
+
+* file name+size is the actual file's filename. The error message is "invalid [parameter name]" when one of the parameters (picture, type, or size) is incorrect. You cannot (at least from what I've learned) inject anything into the photo or size parameter. BUT
+
++ "failed to produce a duplicate of [file name]" is returned when I add the text "|whoami" to the option "type." The correct technique was to put ";" and then the code separated by "+" after some waiting + trying the same thing but without the "|" can just return the file but on burp I can detect something else come up +
+
+Well, I tested it with a basic HTTP server using curl on the victim server and Python on the attacker machine, and IT WORKED!
 
 
+I need to discover a route to a shell or a reverse shell right away, so help me out!
 
-with some manual directory busting trying "/printer" need a password and username (same that is linked in homepage).
+[I found little but valuable things here that were frustrating but a gold mine for me]
 
+Before continuing, I broke the "no need walkthrough" rule once again, but I wasn't that far ahead or even worse, I omitted a part. 
+Evidently, running a SQL injection was a bad idea (shame on me!). I decided to use nc as a result, however after looking around, I believe nc is not installed.
 
-While doing a FFUF directory busting gonna check something on the website and wonderwhat? I found credential in clear on a js script
-on the source code (nothing new with FFUF results)
+(After doing some extra research after this "gameplay," I learned an interesting fact: obviously, most IRL servers don't have nc installed, thus it's best to practice without relying too heavily on nc.)
+Don't miss the point, though. I tried using Python's reverse shell (because we are using nginx under Linux), but it didn't work. 
+The injection failed because characters like "=" and ";" will be interpreted by the server as separators and indicators of equality for variables, according to some study I did on Google. 
+But how can "=" and ";" be replaced? I found the proper encoding to be "%3d" and "%3b" at the location where I needed the instructions.
 
-username = pH0t0
-password = b0Mb! 
+I'm glad to use the walkthrough for these simple but essential tasks that would otherwise only drag down the workflow.
 
-And we gain access on the /printer and is just a gallery where you can download photo with the bottom button (lol funny)
-With buro and some research I think I will find a way where inject command or a shell or whatever, Maybe a sql injection 
-since is going to download different photos with different features, reviewing the source code the website sent the request
-tp /printer again 
+[Re-enter the game]
 
-[interesting how I tought that will consume a lot of time this research but actually just 15 minutes for the results, I live for this]
-[only used a walkthrough but just for check a way to concatenate the jpg parameter and the code to execute]
+We are going to the user's home directory and taking the user flag since the sell is with the basic user "wizard."
 
+After looking around, I discovered a cronjob on "wizard" that runs the cleanup.sh script, which merely creates backups and logs of all the photos in the wizard's home directory, every five minutes. (There are two ways to check: sudo -l and crontab -l.)
+The exciting part is that you can use root rights to run it without a password, therefore I believe this to be the system root owner's treasure trove. 
+It will be trickier than this because we can't write inside.
 
-* The real filename of the file is file_name+size
-* When a parameter (photo,type,size) is wrong the error is "invalid [parameter_name]" 
-* You can't inject nothing on photo and size parameter (well for what I've discovered) BUT
+I attempted to echo a nc reverse shell on the script's intended folder, but it changed the ownership. If we try to download the updated image, perhaps we can acquire a reverse shell with root (nop)
 
-+ when I add to the parameter "type" the string "|whoami" it returns "failed to generate a copy of [file_name]" after some waiting
-+ doing the same thing but without the "|" cahr just return the file but on burp I can notice something else pop up
-+ The real way was to add ";" and then the code separated by "+"
+2] I can change the filetype of the infected jpeg when I use "mv," but I obviously can't run it, and neither can the root.
 
-Ok so I checked with a simple hhtp server with python on attacker machine and curl as command on the victim server and WORKED!
+Re-do step 1 but with chmod 777.
+OMG It only functioned with the wizard user, thus changing the owner while using chmod u+s is obviously worthless.
 
-Now I need to get a reverse shell or a way to a shell let's find a way!
+Even after hours, I still require the walkthrough:
 
-[this was frustrating but a gold mine for me, small but usefull things discovered]
+If I don't understand the technique here, the script doesn't utilize the absolute path when it uses CD and FIND, hence there is a flaw we can attack called PATH TRAVERSAL.
 
-Before go on I've broke the rule "no need walkthrough" again but I was not that far or better I missed a piece.
-The idea to run a SQL injection was wrong obviously (fool me!) so I decide to use nc but after some search I think that nc is not installed
+We can benefit from CD and FIND's incorrect configuration.
 
-(after a focus research after this "gameplay" I discovered a fun fact = obv nc is not installed in most of IRL server so better get practice without
-relay on nc too much)
+A] Using the commands /tmp/cd and /tmp/find to write to the /bin/bash with echo 
+B] Execute the script, but with PATH=/tmp:$PATH so that it uses the infected CD, FIND, and shell, and C] we are root (flag obtained)
+What I've realized?
 
-Btw don't lose the point, I've decide to python reverse shell obv (since we are in linux [nginx]) but after some try shell wasn't popping out
-After a couple of research in google and found that you can't pass injected command "in clear" character like "=" and ";" will be understood as
-separator and equality for variable from the server that's why the injection failed!
-But how to replace "=" and ";"? That's where I've needed the walkthrough and discovered the right encode respectively is "%3d" and "%3b".
+1] To start, stay away from the rabbit hole loop I worked quite hard to get a reverse shell utilizing cleanup's chown approach. I assume that experience would give me the ability to recognize when I'm in a good mood and when I'm not, awesome. sh script but was time wasted thus noticed no rabbit hole.
 
-Happy to use tyhe walkthrough just for this small but foundamentals things that otherwise will just slow down the workflow
+Path traversal is quite helpful even with a simple script or cronjob misconfiguration (actually can be usefull for a backdoor without attract too much attention I will try that on metasploitable2) Additionally, use ABSOLUTE PATH if you need to run a script as root for any reason unless you want an ordinary user to get root access and take over the computer. 
 
-[Return back in game]
-
-The sell is with the user "wizard" which is a basic user so we are going in the home directory of teh user and take the user flag
-
-Going around I found a cronjob on "wizard" where every 5 minutes run the cleanup.sh script that actually just
-make a backup and a log of all the images in the wizard's home directory. (You can check with 2 ways sudo -l or crontab -l)
-
-The fun thing is that you can run it without password with root privileges so I think this is the gold mine for the system
-root own.
-We can't write inside so will be more tricky than this.
-
-1] I've tried to echo a nc reverse shell on the folder designed to the script and It changed the ownership maybe now if we
-   try to download the new jpg maybe we can gain a reverse shell with root (nop)
-
-2] When I use "mv" with the malicious jpg I can change the filetype but obv I can't run it but neither the root
-
-3] Redo step 1 but chmod 777
-
-OMG it worked but with the wizard user (obv even if using chmod u+s when changing the owner will be useless)
-
-Even here after hours I need the walkthrough :(
-
-Well unless I've understood the trick here when the script use CD and FIND the script DON'T use the absolute path, so 
-there is a vuln we can exploit PATH TRAVERSAL
-
-We can take advantage of the misconfiguration of CD and FIND 
-
-A] Writing inside the /tmp/cd and /tmp/find the /bin/bash with echo
-B] Run the script but with  PATH=/tmp:$PATH so will use the malicious CD and FIND and pop out a shell
-C] and we are root (flag obtained)
-
-
-What I've learned?
-
-1] first of all avoid the rabbit hole loop I was trying hard for a reverse shell using the chown method in cleanup.sh script but was time wasted, so noted no rabbit hole, I think that experience would give me the skill to know when I'm in a good way and when not, cool
-
-2] path traversal is really usefull with just a missconfiguration on a script or a cronjob (actually can be usefull for a backdoor without attract too much attention I will try that on metasploitable2) and if you need to run a script as root for some reason
-   use ABSOLUTE PATH unless you want a standard user become root and take controll of the machine
-
-
-(also added a cool reverse shell that can be used when nc doesn't support "-e" flag, that's the only good thing I found 
-when I was stuck in the rabbit hole lol, added to the reverse shell directory)
+(I also added a cool reverse shell to the reverse shell directory that can be employed when nc doesn't support the "-e" signal; that was the only helpful thing I realized when I was lost in the rabbit hole, lol.)
