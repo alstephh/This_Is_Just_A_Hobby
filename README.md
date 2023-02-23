@@ -34,6 +34,6 @@ That's a sort of personal portfolio of my own journey learning computer security
 
 # RESOURCES
 
-https://www.hackers-arise.com/
-https://www.golinuxcloud.com/kali-linux-bootable-usb/
-https://github.com/The-Art-of-Hacking/h4cker
+* https://www.hackers-arise.com/
+* https://www.golinuxcloud.com/kali-linux-bootable-usb/
+* https://github.com/The-Art-of-Hacking/h4cker
