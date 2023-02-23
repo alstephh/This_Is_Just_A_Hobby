@@ -1,0 +1,121 @@
+METATWO	HTB	EASY	10.10.11.186
+
+
+===PORTS==================================================================================
+21	ftp
+22	ssh
+80	http (nginx 1.18.0)
+
+
+===DIRECTORY=BUSTING=======================================================================
+
+/robots.txt
+/about-us
+/events
+/wp-admin
+/wp-sitemap.xml (no default credentials worked)
+
+
+
+===TECHNOLOGY===============================================================================
+
+DATABASE   = MySQL
+JAVASCRIPT & PHP
+
+
+
+
+
+
+
+
+
+===FIRST=APPROACH==========================================================================
+
+The website act as a new and work-in-progress website so it's incomplete and with standard page, is made in wordpress 5.6.2.
+
+There are not a few things to look out so in this section I will just make a overview of all the things I found and in the next section we will 
+try to make some action on the website.
+
+
+1] when we get access tothe website we have 2 types of cookie gave to us PHPSESSID and WORDPRESS_TEST_COOKIE
+2] FTP doesn't accept anonymous login, I think bruteforce can be usefull here but we need a username first so I will put ftp on the background rightn ow
+3] /wp-sitemap.xml = sitemaps are something new to me but are not something hard to understand, essentially is a list of foundamental pages that submitted to SEO
+   helps them to find and crawl them (sometime important pages are internal and not in the surface, with sitemaps you speed up content discovery)
+	3.1] /sample-page  = that's a default wordpress page (the page said to remove this page on the dashboard and replace it with a new one)
+	3.2] /author/admin = this is interesting is telling us one of the author in this wordpress blog is called 'admin' we got a username (confirmed with curl on /wp-json/wp/v2/users)
+4] /events = here we can actually do something is a compilable form to book an appointment I will look at that later and see what can I do and if I can abuse it.
+             when the book is successfull a appointment ID is given to us
+
+
+
+===EXPLOTATION[1]===============================================================================================================================
+I found that this version of WordPress is vulnerable to SQL injection to improper sanitization....well actually the booking plugin is vulnerable.
+			(https://wpscan.com/vulnerability/388cd42d-b61a-42a4-8604-99b812db2357)
+
+But first we need to undesrtand the WORDPRESS NONCE a method to protect website from malicious or particular actions.
+If we don't specify the nonce when we are to inject the website will know that a user is doing this but if we specify the nonce the webserver think
+that this sql injection is coming from the inside, through AJAX.
+
+The nonce was easily retrieved on the source code on /events. (91f6862d1c)
+
+On msfconsole found the module gather/wp_bookingpress_category_services_sqli that easily retrieve for us the table with username, email, hash collumns.
+With a quick analysis with a online tool the type of hash is MD5 Wordpress so I can try to crack this hash
+
+	admin:    [exhausted = hard to crack]
+	manager:  partylikearockstar
+
+Before going in I look at the walkthrough just for make a manual sqlinjection with sqlmap that you can find here (https://systemweakness.com/hack-the-box-walkthrough-metatwo-19a0a199a32)
+Always good to use metasploit when we are able to but now we are learning and this trick to save the request of burpsuite on local and use that with sqlmap
+is cool! (the results are on sql_manual_injection.png)
+
+
+
+===FOOTHOLD==============================================================================================================================================
+With the credentials we had obtained we can login on wp-admin login and we are in the wordpress dashboard.
+I've done already 2/3 boxes with wordpress and as far as I know I expect to upload a reverse shell that will be stored or executed, so I will focus 
+on this method for pop out a shell but never forget of other way to get in the victim machine.
+
+As I thought wordpress is vulnerable to a XXE vulnerability (exactly CVE-2021-29447) using the media upload feature that implement XML
+for malicious code execution. The tricky part is we are talking about a BIND XXE (no data returned back to the user), I've followed this guide for a manual explotation : https://blog.wpsec.com/wordpress-xxe-in-media-library-cve-2021-29447/
+
+Using exactly what the guide tell us we are able to retrieve the /etc/passwd file with that I recognized the user in the victim machine jnelson, ok cool.
+Now my bad here [uff don't judge plz :(] but I used the walkthrough and the next thing to do is to get the wp-config.php file.
+
+The wp-config.php contain the info rqequired for connect to the database, if we find credential for jnelsn maybe the same credential work with ssh.
+The location of wp-config.php is ../wp-config.php on the remote current working directory, so just change the path of the file to obtain on the local DTD
+and we gotta it....but not what I expected ehehehe.
+I found some credentials for FTP metapress.htb:9NYS_ii@FyL_p5M2NvJ and for MySQL blog:635Aq@TdqrCwXFUZ amazing I will try first with the FTP protocol.
+
+I use GET to obtain all the file but the interesting file is in /mailer/send_email.php where I found the password for jnelson...yeah!
+						jnelson:Cb4_JmWM8zUZWMu@Ys
+
+
+
+
+===PE========================================================================================================================================
+In the home folder of jnelson I noted a particular hidden folder .passpie, passpie is a command-line password manager.
+
+Let's talk about passpie anatomy, the database is a structured directory hierachy with a .pass file after a credential group (https://passpie.readthedocs.io/en/latest/faq.html).
+Exploring the .passpie folder there is a credential group of ssh with 2 file jnelson.pass and root.pass, the root.pass contain a pgp message as password.
+Also there is .keys with the pgp private block 
+
+When try to export credentials in plaintext a passphrase is asked to us, that's obvious and I expected that, I took the .keys content
+and crack it with john the ripper (before I used gpg2john and use john on the output).
+The results is blink182, let's use it as passphrase and take the root.pass content using "passpie export [file_output_saved]".
+
+And we have the password of root on ssh (p7qfAZt4_A1xo_0x) so we log in and get the root flag.
+
+DONE.
+
+
+===CONCLUSION================================================================================================================================
+This machine was really technical the coolest part was the CVE-2021-29447, the theory behind that is awsome and using XML for a bind XXE is an amazing thing.
+The vulnerability ion the book feature of wordpress exploited using the request saved locally (inj.req) of burpsuite is something new and added with sqlmap is really powerfull and
+passpie is not that safe as you think (actually whatever password manager can be a security hole).
+The interesting part on this machine was the enumaration : on the webapp and on the FTP files you need to split the noise from the juicy information.
+Lastly wordpress is a playground in security way of talking, I've later discovered that exist a tool called WPscan and a lot of metasploit modules in addition to default file (like the wp-config.php)
+let the attacker know what to search and this a huge knowledge.
+
+
+

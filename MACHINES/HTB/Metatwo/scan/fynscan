@@ -1,0 +1,10 @@
+# Nmap 7.93 scan initiated Wed Feb 22 11:07:20 2023 as: nmap -sF -o fynscan 10.10.11.186
+Nmap scan report for metapress.htb (10.10.11.186)
+Host is up (0.44s latency).
+Not shown: 997 closed tcp ports (reset)
+PORT   STATE         SERVICE
+21/tcp open|filtered ftp
+22/tcp open|filtered ssh
+80/tcp open|filtered http
+
+# Nmap done at Wed Feb 22 11:07:40 2023 -- 1 IP address (1 host up) scanned in 20.40 seconds

@@ -1,0 +1,25 @@
+# Nmap 7.93 scan initiated Wed Feb 22 11:04:27 2023 as: nmap -sC -sV -o CVscan 10.10.11.186
+Nmap scan report for metapress.htb (10.10.11.186)
+Host is up (0.18s latency).
+Not shown: 996 closed tcp ports (reset)
+PORT     STATE    SERVICE     VERSION
+21/tcp   open     tcpwrapped
+22/tcp   open     tcpwrapped
+| ssh-hostkey: 
+|   3072 c4b44617d2102d8fec1dc927fecd79ee (RSA)
+|_  256 fd78c0b0e22016fa050debd83f12a4ab (ED25519)
+80/tcp   open     tcpwrapped
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+|_http-title: MetaPress &#8211; Official company site
+|_http-generator: WordPress 5.6.2
+|_http-trane-info: Problem with XML parsing of /evox/about
+| http-robots.txt: 1 disallowed entry 
+|_/wp-admin/
+|_http-server-header: nginx/1.18.0
+1067/tcp filtered instl_boots
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Feb 22 11:07:20 2023 -- 1 IP address (1 host up) scanned in 172.60 seconds
