@@ -28,7 +28,7 @@ self learning process of penetration testing with tools,machines walkthrough,scr
     .:. \:..|    :     ; '.--|     ;
 
                    
-That's a sort of personal portfolio of my own journey learning computer security with a special look on pentest methodologies and practical laboratory on different platform (mainly HackTheBox).
+That's a sort of personal portfolio of my own journey learning computer security with a special look on pentest methodologies and practical laboratories on different platform (mainly HackTheBox).
 
 
 
