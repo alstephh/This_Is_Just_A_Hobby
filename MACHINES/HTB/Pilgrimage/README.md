@@ -52,7 +52,7 @@ Cool stuff! with this output we can recover the low-priv user called "**emily**"
 From the previous GIT folder enumaration we discovered that the server is using **sqlite**
 
 
-![8.png](imgresources/8.png) 
+![8.png](img/8.png) 
 
 ![9.png](img/9.png)
 
