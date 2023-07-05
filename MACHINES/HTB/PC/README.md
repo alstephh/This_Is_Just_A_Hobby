@@ -1,12 +1,3 @@
----
-title: PC
-updated: 2023-07-05 21:02:51Z
-created: 2023-07-05 16:12:51Z
-latitude: 45.53264760
-longitude: 9.03961220
-altitude: 0.0000
----
-
 ## PORTS
 * **22** [SSH]
 * **50051** [UNKNOWN]
