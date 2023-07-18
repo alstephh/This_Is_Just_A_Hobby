@@ -1,12 +1,3 @@
----
-title: AUTHORITY
-updated: 2023-07-18 22:55:36Z
-created: 2023-07-17 13:50:48Z
-latitude: 45.40643490
-longitude: 11.87676110
-altitude: 0.0000
----
-
 First time after a while in a Windows machine let's se what we can do here
 
 
