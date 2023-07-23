@@ -1,12 +1,3 @@
----
-title: SOCKET
-updated: 2023-07-23 03:42:26Z
-created: 2023-07-22 15:42:56Z
-latitude: 45.46542190
-longitude: 9.18592430
-altitude: 0.0000
----
-
 # PORT SCAN
 
 <u>TCP</u>
