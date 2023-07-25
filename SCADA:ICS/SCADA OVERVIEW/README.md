@@ -82,8 +82,10 @@ Is simple, lightweight (max PDU size is 255 bytes) and modular because nodes can
 2 version of modbus :
 * **Serial** (ASCII or RTU)
 * **Ethernet** (TCP) &#8594; <u>mbap</u> protocol (port 502)
+  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&#8594; `TransID + ProtocolID + Length` (7 bytes)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&#8594; <u>Gateway</u> are used to intercept TCP/IP request and passes to the &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; serial channel
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&#8594; <u>Gateway</u> are used to intercept TCP/IP request and passes to the serial channel
 
 ![master-slave-modbus.png](img/63fe2ed301454d68a00016d88c89c824.png)
 
@@ -202,13 +204,19 @@ And this is the **DB9** connector (male and female)
 PROFIBUS have <u>different **sub-types**</u> to get in touch easly with different application/context 
 
 1) <u>PROFIBUS **DP</u>** &#8594; **D**ecentralized **P**eriphery (most common)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&#8594; Simpler and Faster
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&#8594; Simpler and Faster <br>
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&#8594;  <u>DP-V0</u> = Cyclic data exchange (small, single-master app)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>DP-V1</u> = Acyclic Data Exchange (large, multi-master app)
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>DP-V1</u> = Isochronus slave-to-slave mode (real-time app)
 
-2) <u>PROFIBUS **PA**</u> &#8594; **P**rocess **A**utomation
+3) <u>PROFIBUS **PA**</u> &#8594; **P**rocess **A**utomation
+   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&#8594;  Standard process of data trasmission
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&#8594; Designed for <u>HAZARDOUS enviroment</u> with **M**ulti **B**us **S**ystem  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(less power = less spark or explosion chances)
 
@@ -222,10 +230,13 @@ Is designed to receive data under **time constraint** and use **TCP/IP** and **X
 
 **<u>FUNCTION CLASSES</u>**
  * **I/O** &nbsp;&#8594; <u>RealTime Channel</u> (cycle times 10ms)
+   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&#8594; <u>Non RealTime Channel</u> (cycle times ~100ms)
 * **IRT** &#8594; Cycle 1ms
+  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&#8594; Non routable (works only on Layer 1-2)
 * **CBA** &#8594; Distributed Industrial Automation Application
+  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&#8594; **DCOM** and **RPC**
 
 
