@@ -42,6 +42,9 @@ Is not an exahustive list of all the resources I used but for sure the most inte
 * https://book.hacktricks.xyz/welcome/readme
 * https://academy.tcm-sec.com/p/practical-ethical-hacking-the-complete-course
 * https://nootropico.li/notes.html
+* https://github.com/hackerschoice/thc-tips-tricks-hacks-cheat-sheet
+* https://gist.github.com/jaredsburrows/9e121d2e5f1147ab12a696cf548b90b0
+* https://www.ired.team/offensive-security/red-team-infrastructure
 
 # BOOKS
 I have read every book listed here and I highly suggest you to do the same
