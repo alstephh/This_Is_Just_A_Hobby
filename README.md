@@ -33,10 +33,15 @@ That's a sort of personal portfolio of my own journey learning computer security
 
 
 # RESOURCES
+Is not an exahustive list of all the resources I used but for sure the most interesting/handly to use
 
 * https://www.hackers-arise.com/
 * https://www.golinuxcloud.com/kali-linux-bootable-usb/
 * https://github.com/The-Art-of-Hacking/h4cker
+* https://gtfobins.github.io/#
+* https://book.hacktricks.xyz/welcome/readme
+* https://academy.tcm-sec.com/p/practical-ethical-hacking-the-complete-course
+* https://nootropico.li/notes.html
 
 # BOOKS
 I have read every book listed here and I highly suggest you to do the same
