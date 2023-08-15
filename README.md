@@ -54,4 +54,4 @@ I have read every book listed here and I highly suggest you to do the same
 * <u>**The basic of hacking and penetration testing (2nd Edition)**</u> by Patrick Engebretson
 * <u>**Pratical IoT Hacking - The definitive guide to Attacking the Internet of Things**</u> by Fotios Chantzis & Ioannis Stais
 * <u>**Metasploit - The Penetration Tester's Guide**</u> by David Kennedy, Jim O'Gorman, Devon Kearns and Mati Aharoni
-* <u>**The art of deception**</u> by Kevin Mitnick and William L. Simon
+* <u>**The Art of Deception**</u> by Kevin Mitnick and William L. Simon
