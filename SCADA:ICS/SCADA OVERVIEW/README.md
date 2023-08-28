@@ -2,8 +2,8 @@ SCADA/ICS INTRODUCTION
 
 ![scadaa.png](img/500d27824adb4827be8046370dd07705.png)
 **Supervisory Control and Data Acquisistion** (SCADA) is a **ICS** (Industrial Control System) that allows, in the context of an industrial organization to :
-- <u>Control industrial process</u> (locally or remotely)
-- <u>Retrieve, monitor and rappresent data in real-time</u>
+- <u>Control industrial process</u> (locally or remotely) in a centralized manner even with long territories geographically separated
+- <u>Retrieve, historization, monitor and rappresent data in real-time</u>
 - <u>Interract with hardware</u> (like sensors, valves, pumps and motors)
 - <u>Records events</u> in log files
 
@@ -57,6 +57,24 @@ Modern implementations of SCADA can allow user and operator to interface with th
 </div>
 </center>
 
+<br><br>
+
+**<u>ICS and SCADA are different</u>**, SCADA is a subset (the most used) of ICS. Here the slighty differences 
+
+**SCADA vs ICS** :
+* <u>**LOCATION**</u> = Geographically Dispersed vs Factory Centered
+* <u>**COMMUNICATIONS**</u> = Long Distance-Slow Speed vs LAN-High Speed
+* <u>**CONTROL**</u> = Supervisory Level vs Closed Feedback Loops
+
+<br><br>
+
+<u>**Why is SCADA/ICS Security important?**</u>
+1) 80/90% of critical facilities are <u>private owned</u> giving a <u>public service</u> (national security factor)
+2) Complex systems, things like patching, rebooted and authentication are tedious and hard
+3) Strong use of **legacy hardware**
+4) Multiple accesspoints primer like radio, wireless, phone lines, ecc...
+5) In a way or another are **connected to the business network**
+
 <br><br><br>
 
 # PROTOCOLS
@@ -69,19 +87,21 @@ Here is a brief description of the widely used protocols in industrial systems, 
 #
 
 ## <u>MODBUS</u>
-Is the **de-facto standard** of the field. Is easy to implement and simple to understand making it widely used on different context
+Is the **de-facto standard** of the field. Is **easy to implement, simple to understand and manufacturers independent** making it widely used on different context
 
 The wire used is **RJ-485 family** connector (common one is RJ45, image below) with <u>shielded twisted-pair cable</u>
 
 ![rj45.jpeg](img/759b7030823741f3a2aac021c713ceae.jpeg)
 
-The protocol include nodes (<u>master</u> or <u>slave</u>) connected on the network using a **request/reply** model (operating on layer 7 of OSI stack). Every node have a unique address.
+The protocol include nodes (<u>master</u> or <u>slave</u>) connected on the network using a **request/reply** model (operating on layer 7 of OSI stack) with a PLC master and multiple slaves. Every node have a unique address (**Unit ID**, 1 byte).
 
 Is simple, lightweight (max PDU size is 255 bytes) and modular because nodes can communicate with **different baud rates and data formats**
 
 2 version of modbus :
-* **Serial** (ASCII or RTU)
+* **Serial** (human readable ASCII or RTU-compact binary format)
 * **Ethernet** (TCP) &#8594; <u>mbap</u> protocol (port 502)
+
+Both version of modbus can only used to **read/write contiguos memory block addresses** and by default there is no **Report by Exception** (RBE)  
   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&#8594; `TransID + ProtocolID + Length` (7 bytes)
 
@@ -136,12 +156,12 @@ Even if seems obvious <u>COILS are used for ON/OFF states</u> on devices and <u>
 
 #
 ## <u>Distributed Network Protocol 3.0</u> (DNP3)
-DNP3 is a set of communication protocol used mainly in **electric** utilities but also oil, gas, water and waterwaste and use <u>TCP/IP port 2000</u>.
+DNP3 is a set of communication protocol used mainly in **electric** utilities but also oil, gas, water and waterwaste. Use <u>TCP/IP port 2000</u> using client-server where server is a fieldbus device.
 
 Like MODBUS, DNP3 use RJ-485 connectors but implements also **<u>Fiber Optic</u>**
 
 <u>**PROs**</u>
-* **Resistance to EMI interference** (frequency hopping, retransmission and error detection)
+* **Resistance to EMI interference** (frequency hopping, retransmission and error detection) and poor transmission media
 * Works good on low nad heterogeneous mediums and data types
 * 65k nodes on same link
 * Suitable and designed for <u>Telemetry, Alarming and Remote Control</u> 
@@ -154,6 +174,13 @@ Like MODBUS, DNP3 use RJ-485 connectors but implements also **<u>Fiber Optic</u>
 The main difference from <u>MODBUS</u> are 
 1) Client (slaves) can send **unsolicited response** (for different reasons)
 2) **Report By Exception**, to improve efficency the slaves communicate only when there is a change on data which the slave is responsible for (is one important point in malware)
+3) Use of **Internal Indication** (IIN) Flags set by the slave to indicate internal states and diagnostic results (16 bit divided by 2 octets)
+
+<details><summary><u>Function Codes</u></summary>
+
+  ![dnp3FC.png](img/dnp3FC.png)
+
+</details>
 
 <br>
 
