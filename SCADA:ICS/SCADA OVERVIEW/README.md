@@ -176,9 +176,9 @@ The main difference from <u>MODBUS</u> are
 2) **Report By Exception**, to improve efficency the slaves communicate only when there is a change on data which the slave is responsible for (is one important point in malware)
 3) Use of **Internal Indication** (IIN) Flags set by the slave to indicate internal states and diagnostic results (16 bit divided by 2 octets)
 
-<details><summary><u>Function Codes</u></summary>
+<details><summary><u>IIN</u></summary>
 
-
+  ![dnp31.png](img/dnp31.png)
 
 </details>
 
@@ -193,6 +193,8 @@ The **PDU** is designed as the following image (look at the start bytes) and use
   ![dnp3FC.png](img/dnp3FC.png)
 
 </details>
+
+About <u>Security</u> DNP3 provide the possibility to use a **Shared Secret Key** but is not widely used and have some issue (like the absence of key management standard) plus **DNPSec v5** can be implemented but is very ineffective and easy to circumnavigate
 
 <br><br>
 
@@ -273,3 +275,10 @@ Both Profinet and Profibus are integrated togheter with PROXY
 
 ![proxyPBPN.jpeg](img/b954391f86f34bf99ba14a971f291532.jpeg)
 
+<br><br>
+
+## <u>OPC/OLE</u>
+<u>Open Platform Communication</u> is a series of standard communication model for industial systems based on Microsoft to get Data Access. 
+<u>Object Linking and Embedding</u> is a Microsoft proprietary technology that in SCADA is used to translate the PLC communications in a "universal language" that can be understanded by different other projects (like tool or database)
+
+Many exploit which use OPC can also be reused on SCADA system which implements this protocol to gain persistence or run malicious code
