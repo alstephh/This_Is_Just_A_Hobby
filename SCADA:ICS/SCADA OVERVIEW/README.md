@@ -178,7 +178,7 @@ The main difference from <u>MODBUS</u> are
 
 <details><summary><u>Function Codes</u></summary>
 
-  ![dnp3FC.png](img/dnp3FC.png)
+
 
 </details>
 
@@ -189,8 +189,8 @@ The **PDU** is designed as the following image (look at the start bytes) and use
 ![dnp3-PDU.png](img/1521e8b734a740a587f0a55315e0a3da.png)
 
 <details><summary><u>Function Codes</u></summary>
-
-![funcodeDNP3.png](img/a2216f576c0a4b1a866fa0875798b0fe.png)
+  
+  ![dnp3FC.png](img/dnp3FC.png)
 
 </details>
 
