@@ -47,7 +47,7 @@ Is not an exahustive list of all the resources I used but for sure the most inte
 * https://exploit-notes.hdks.org/exploit/web/framework/python/flask-jinja2-pentesting/
 
 # BOOKS
-I have read every book listed here and I highly suggest you to do the same
+I have read every book listed here and I highly suggest others to do the same 
 
 * <u>**Linux Basic for Hackers**</u> by OccupyTheWeb
 * <u>**Getting started becoming a Master Hacker**</u> by OccupyTheWeb
@@ -56,3 +56,4 @@ I have read every book listed here and I highly suggest you to do the same
 * <u>**Metasploit - The Penetration Tester's Guide**</u> by David Kennedy, Jim O'Gorman, Devon Kearns and Mati Aharoni
 * <u>**The Art of Deception**</u> by Kevin Mitnick and William L. Simon
 * <u>**The Art of Intrusion**</u> by Kevin Mitnick and William L. Simon
+* <u>**The Car Hacker's Handbook - A guide for the Penetration Tester**</u> by Craig Smith
