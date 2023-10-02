@@ -45,6 +45,7 @@ Is not an exahustive list of all the resources I used but for sure the most inte
 * https://gist.github.com/jaredsburrows/9e121d2e5f1147ab12a696cf548b90b0
 * https://www.ired.team/offensive-security/red-team-infrastructure
 * https://exploit-notes.hdks.org/exploit/web/framework/python/flask-jinja2-pentesting/
+* https://www.ired.team/
 
 # BOOKS
 I have read every book listed here and I highly suggest others to do the same 
@@ -57,3 +58,4 @@ I have read every book listed here and I highly suggest others to do the same
 * <u>**The Art of Deception**</u> by Kevin Mitnick and William L. Simon
 * <u>**The Art of Intrusion**</u> by Kevin Mitnick and William L. Simon
 * <u>**The Car Hacker's Handbook - A guide for the Penetration Tester**</u> by Craig Smith
+* <u>**Hack Like a Pornstar**</u> by Sparc Flow
