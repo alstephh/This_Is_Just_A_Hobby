@@ -121,5 +121,3 @@ Redo the authentication and we should grab the Administrator hash
 Cool, just pass the hash with evilwinrm and we got ROOOOT!
 
 ![edff679f3e45dfaef958cb337fcefdda.png](img/edff679f3e45dfaef958cb337fcefdda.png)
-
-EXPLAIN ESC7 AT LEAST UNDERSTOOD IT 
