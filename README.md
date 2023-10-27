@@ -48,6 +48,7 @@ Is not an exahustive list of all the resources I used but for sure the most inte
 * https://www.ired.team/
 * https://research.checkpoint.com/
 * https://secybr.com/
+* https://blog.xpnsec.com/
 
 # BOOKS
 I have read every book listed here and I highly suggest others to do the same 
