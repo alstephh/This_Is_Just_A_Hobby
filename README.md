@@ -46,6 +46,7 @@ Is not an exahustive list of all the resources I used but for sure the most inte
 * https://www.ired.team/offensive-security/red-team-infrastructure
 * https://exploit-notes.hdks.org/exploit/web/framework/python/flask-jinja2-pentesting/
 * https://www.ired.team/
+* https://research.checkpoint.com/
 
 # BOOKS
 I have read every book listed here and I highly suggest others to do the same 
