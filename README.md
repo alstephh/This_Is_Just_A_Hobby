@@ -1,31 +1,6 @@
 # PORTFOLIO & TRAVELOGUE
 
-
-     ,
-       \`-._           __
-        \\  `-..____,.'  `.
-         :`.         /    \`.
-         :  )       :      : \
-          ;'        '   ;  |  :
-          )..      .. .:.`.;  :
-         /::...  .:::...   ` ;
-         ; _ '    __        /:\
-         `:o>   /\o_>      ;:. `.
-        `-`.__ ;   __..--- /:.   \
-        === \_/   ;=====_.':.     ;
-         ,/'`--'...`--....        ;
-              ;                    ;
-            .'                      ;
-          .'                        ;
-        .'     ..     ,      .       ;
-       :       ::..  /      ;::.     |
-      /      `.;::.  |       ;:..    ;
-     :         |:.   :       ;:.    ;
-     :         ::     ;:..   |.    ;
-      :       :;      :::....|     |
-      /\     ,/ \      ;:::::;     ;
-    .:. \:..|    :     ; '.--|     ;
-
+![cat](https://github.com/alstephh/This_Is_Just_A_Hobby/assets/50571084/d4a4356a-8a39-4d04-bb02-84e14cac7152)
                    
 That's a sort of personal portfolio of my own journey learning computer security with a special look on pentest methodologies and practical laboratories on different platform (mainly HackTheBox).
 Note this is not "professional" material but personal notes with all my toughts and methodologies. Error, mistakes and failures are voluntarily present (especially in the machines walkthrough) because they are my biggest teachers in this funny, interesting and motivating journey. 
