@@ -9,7 +9,7 @@ Note this is not "professional" material but personal notes with all my toughts 
 
 
 # RESOURCES
-Is not an exahustive list of all the resources I used but for sure the most interesting/handly to use
+Is not an exahustive list of all the resources I use but for sure the most interesting/handly to read and cool for learn new things
 
 * https://www.hackers-arise.com/
 * https://www.golinuxcloud.com/kali-linux-bootable-usb/
@@ -26,6 +26,7 @@ Is not an exahustive list of all the resources I used but for sure the most inte
 * https://research.checkpoint.com/
 * https://secybr.com/
 * https://blog.xpnsec.com/
+* https://ap3x.github.io/posts/infection-monkey-securing-my-network/
 
 # BOOKS
 I have read every book listed here and I highly suggest others to do the same 
