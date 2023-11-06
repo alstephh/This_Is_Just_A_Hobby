@@ -26,7 +26,7 @@ Is not an exahustive list of all the resources I use but for sure the most inter
 * https://research.checkpoint.com/
 * https://secybr.com/
 * https://blog.xpnsec.com/
-* https://ap3x.github.io/posts/infection-monkey-securing-my-network/
+* https://ap3x.github.io/
 
 # BOOKS
 I have read every book listed here and I highly suggest others to do the same 
