@@ -75,4 +75,4 @@ Having the `SeImpersonate` token privileges we can impersonate the `client named
 >
 >This feature can be exploited by creating a pipe server with limited or low privileges and then attempting to connect a much more privileged client to that pipe server. When that happens, the pipe server can abuse the client’s elevated privileges to perform activities based on those access rights. ([resource](https://securityintelligence.com/identifying-named-pipe-impersonation-and-other-malicious-privilege-escalation-techniques/))
 
-In short, we create a (server) pipe with our limited privileges and we convince the system level user to connecta nd execute a shell for us thanks to win32 API (really simplificate and short)
+In short, we create a (server) pipe with our limited privileges and we convince the system level user to connect and execute a shell for us thanks to win32 API (really simplificate and short)
