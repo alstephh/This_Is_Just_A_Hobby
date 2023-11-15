@@ -140,8 +140,4 @@ Beautiful now let's see if we can get a shell somehow! Just upload netcat on the
 
 Cool thing now let's enumerate back and simply we are in the Administrator groups! Cool!
 
-![00257b4355ea13e63f174a75fd8c9e8f.png](img/00257b4355ea13e63f174a75fd8c9e8f.png)
-
-<br><br><br><br><br>
-user
-DumpPassword$Here
+![00257b4355ea13e63f174a75fd8c9e8f.png](img/00257b4355ea13e63f74a75fd8c9e8f.png)
