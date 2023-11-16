@@ -28,6 +28,7 @@ Is not an exahustive list of all the resources I use but for sure the most inter
 * https://blog.xpnsec.com/
 * https://ap3x.github.io/
 * https://sparcflow.substack.com/
+* https://www.matteomalvica.com/blog/
 
 # BOOKS
 I have read every book listed here and I highly suggest others to do the same 
