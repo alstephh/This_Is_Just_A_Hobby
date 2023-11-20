@@ -14,9 +14,7 @@ Is not an exahustive list of all the resources I use but for sure the most inter
 * https://www.hackers-arise.com/
 * https://www.golinuxcloud.com/kali-linux-bootable-usb/
 * https://github.com/The-Art-of-Hacking/h4cker
-* https://gtfobins.github.io/#
 * https://book.hacktricks.xyz/welcome/readme
-* https://academy.tcm-sec.com/p/practical-ethical-hacking-the-complete-course
 * https://nootropico.li/notes.html
 * https://github.com/hackerschoice/thc-tips-tricks-hacks-cheat-sheet
 * https://gist.github.com/jaredsburrows/9e121d2e5f1147ab12a696cf548b90b0
@@ -29,6 +27,7 @@ Is not an exahustive list of all the resources I use but for sure the most inter
 * https://ap3x.github.io/
 * https://sparcflow.substack.com/
 * https://www.matteomalvica.com/blog/
+* https://juggernaut-sec.com/
 
 # BOOKS
 I have read every book listed here and I highly suggest others to do the same 
