@@ -9,7 +9,7 @@ Note this is not "professional" material but personal notes with all my toughts 
 
 
 # RESOURCES
-Is not an exahustive list of all the resources I use but for sure the most interesting/handly to read and cool for learn new things
+Is not an exahustive list of all the resources I use but for sure the most interesting/handly to read and cool for learn new things from different perspective. 
 
 * https://www.hackers-arise.com/
 * https://www.golinuxcloud.com/kali-linux-bootable-usb/
@@ -28,6 +28,7 @@ Is not an exahustive list of all the resources I use but for sure the most inter
 * https://sparcflow.substack.com/
 * https://www.matteomalvica.com/blog/
 * https://juggernaut-sec.com/
+* https://github.com/Christbowel/Red-Teamer
 
 # BOOKS
 I have read every book listed here and I highly suggest others to do the same 
