@@ -68,7 +68,7 @@ Cool, this seems a standard SMB
 
 ![43b383653103bdb58cd5127f2053d26c.png](img/43b383653103bdb58cd5127f2053d26c.png)
 
-Actually after login I decide to move on `C` directory sharin and going inside the Administrator directory. Why on SMB, because I know a way to read alternative data stream with `allinfo`
+Actually after login I decide to move on `C` directory sharin and going inside the Administrator directory. Why on SMB? because I know a way to read alternative data stream with `allinfo`
 
 ![85559c6082e105adf7d6b04eed5921b4.png](img/85559c6082e105adf7d6b04eed5921b4.png)
 
