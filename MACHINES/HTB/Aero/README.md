@@ -27,27 +27,27 @@ Cool we know what to do first, I get the compiled exe tool described from the re
 
 1) In Visual Studio create a new DLL project
 2) Create a header file importing the `VerifyThemeVersion`, is a good rule to use the `__declspec(dllexport)` directive so the export data will add the directive into the DLL without the support of a `.def` files
-<br>
+
 ![1dee9c9f76c12d444ffc8f0d11cd8756.png](img/1dee9c9f76c12d444ffc8f0d11cd8756.png)
-<br>
+
 3) Grab a template of your choice for a reverseshell in C++ (I used [this](https://github.com/tudorthe1ntruder/reverse-shell-poc/blob/master/rs.c) because I used for the Napper machine), here you need to make some changes, add the right header and transform the main in a functions and inject it on the `VerifyThemeVersion`
-<br>
+
 ![9b6f94a2b793a8f2ed13a87450c988a2.png](img/9b6f94a2b793a8f2ed13a87450c988a2.png)
-<br>
+
 4) Add the rev.h on the `pch.h` file
-<br>
+
 ![9ecf74b8eda0bc7a60f065be36e35ed4.png](img/9ecf74b8eda0bc7a60f065be36e35ed4.png)
-<br>
+
 5) Than create the DLL and use the PoC to build the `.theme` file (the DLL should be renamed stage_3 and placed on the **data** directory)
-<br>
+
 ![5299319581930df09d1f4eb5b9077b3f.png](img/5299319581930df09d1f4eb5b9077b3f.png)
-<br>
+
 6) Use the PoC and start a server, than use `socat` to redirect all the request on port 445 directed to the kali machine on the windows machine and upload the malicious theme, enjoy the view!
-<br>
+
 ![9c5c09e839e413d6dbc018713e9aca6c.png](img/9c5c09e839e413d6dbc018713e9aca6c.png)
-<br>
+
 ![ec2a0d87405954d743141251179c0754.png](img/ec2a0d87405954d743141251179c0754.png)
-<br><br><br>
+
 
 Now we are free to go, take me a long to understand and implement the PoC but was cool to get in touch with some windows and DLL creation, coding is not my hing actually ouch!
 
