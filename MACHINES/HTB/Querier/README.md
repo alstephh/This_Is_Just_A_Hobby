@@ -42,7 +42,7 @@ Everything cool but we have a problem here, we can't call a (simple) reverse she
 
 ![a9c62e8f7d060a160f57929650242ea2.png](img/a9c62e8f7d060a160f57929650242ea2.png)
 
-But using directly [nishang](https://github.com/samratashok/nishang) ill trigger the reverse shell, now we are inside time to grab the flag!
+But using directly [nishang](https://github.com/samratashok/nishang) will trigger the reverse shell, now we are inside time to grab the flag!
 
 ![3cea1627b529fa5bc3aa87dfc9737a60.png](img/3cea1627b529fa5bc3aa87dfc9737a60.png)
 
