@@ -61,3 +61,5 @@ Here was easy than expected, just run a WinPeas instance and will retrieve for u
 ![6699904ec6c263bcad47daded33b7372.png](img/6699904ec6c263bcad47daded33b7372.png)
 
 Yes just like that! We can finally use evil-WinRM and get access as administrator (pretty easy for a medium)
+
+> The basic user have the SeImpersonatePrivilege enabled but I have decided to avoid to exploit that because is something that I have used too many times and if possible I would like to change attack paths in order to achieve a better understanding of Windows Internal 
