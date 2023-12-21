@@ -68,14 +68,20 @@ Obviously with the lack of GUI we can't check 100% that the registry has been lo
 <br>
 5) Now we need the last piece of the puzzle, the way we trigger the malicious driver! shoutout too `tandasat` which made [ExploitCapcom](https://github.com/tandasat/ExploitCapcom/tree/master/ExploitCapcom), I have downloaded and open the project. After checking that it compiles without error we need to make a small change because the naive version oepn a new CMD with high privilege but we have no GUI so we need to make it execute the reverse shell we have uploaded at (1)
 <br>
+
 ![5bdf4e6edb7b272dc640f58c5f2a09b1.png](img/5bdf4e6edb7b272dc640f58c5f2a09b1.png)
+
 <br>
 
 6) Last step, we need to rebuild the solution, move it on the target and just trigger it. The results is what we wanted a `NT Authority\System` shell!
 <br>
+
 ![b578045c37a3c2f6e038f1fba3aa99d2.png](img/b578045c37a3c2f6e038f1fba3aa99d2.png)
+
 <br>
+
 ![22aff4fbcebca158411690dbc4c0c276.png](img/22aff4fbcebca158411690dbc4c0c276.png)
+
 <br><br>
 
 Interesting machine, there was also possible to do the same thing with metasploit but I prefered the manual way to get more keen with Visual Studio and also a good opportunity to take a look at some C++ code!
