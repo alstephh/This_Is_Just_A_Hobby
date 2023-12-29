@@ -47,7 +47,6 @@ Exactly 2 results like querying the simple `300` string, now that we have the nu
 Now we can use the few information retrieved from SQLMap and with some manuality, it founds the `dbo.users` table which I assume will contain the collumns `username` and `password` so I made some try and guess what? It worked
 
 ![6cef0f241471f40f3e7b7b74d783c087.png](img/6cef0f241471f40f3e7b7b74d783c087.png)
-<br>
 ![909e2cd86cec0993ec0cef1a85890c95.png](img/909e2cd86cec0993ec0cef1a85890c95.png)
 
 Gotch'a we can easily put togheter this 2 results with `concat`
