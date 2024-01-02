@@ -34,7 +34,7 @@ This is enough effort forthe user flag!
 
 `sudo -l` is always a good place if you search something juicy! This time we have access as root at `/usr/bin/knife`.
 [Knife](https://docs.chef.io/workstation/knife/) is a CLI which act as interface between chef-repo and [Chef Infra Server](https://docs.chef.io/server/) a HUB for configuration files (cookbooks) that can be applied to the nodes.
-By the way we can execute commands with Knife through the `-E` flag in combination with `exec` subcommand, I found this at [GTFO](https://gtfobins.github.io/gtfobins/knife/)
+By the way we can execute commands with Knife through the `-E` flag in combination with `exec` subcommand, I found this on [GTFO](https://gtfobins.github.io/gtfobins/knife/)
 
 ![e336f5f5b93fe40092188f2e6a0bcfc4.png](img/e336f5f5b93fe40092188f2e6a0bcfc4.png)
 
