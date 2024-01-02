@@ -1,60 +1,53 @@
 # PORT SCAN
-* **22** &#8594; SSH
-* **53** &#8594; DNS
-* **80** &#8594; HTTP (LIGHTTPD 1.4.35)
-* **1624 / 32469** &#8594; UPnP (Platinum 1.0.5.13)
-* **32400** &#8594; PLEX MEDIA SERVER (HTTPD)
 
+* **22** &#8594; SSH
+* **80** &#8594; HTTP (APACHE 2.4.18)
 
 <br><br><br>
 
 # ENUMERATION & USER FLAG
-The name of the machine is reference of the Mirai botnet which abused missconfiguration and vulnerabilities in IoT device (is a well known fact that this type of device are highly insecure especially if interfaced with the public net). The port 80 is not interesting for now
 
-![24e23683ce395e10a2a67756e6ac65d4.png](img/24e23683ce395e10a2a67756e6ac65d4.png)
+We have a grateful message in the homepage of port 80!
 
-Well the port 32400 is more more interesting, a login form is blocking us!
+![bf8953664d73dbac823a8ddc9bedd4e7.png](img/bf8953664d73dbac823a8ddc9bedd4e7.png)
 
-![169616a820bfb2f6bed71ac2a5a30d61.png](img/169616a820bfb2f6bed71ac2a5a30d61.png)
+The source code have a commenttelling us to visit `/nibblenlog` because there is nothing in the homepage, LOL
 
-I tried some default credendtials I found [online](https://forums.plex.tv/t/what-is-the-default-ssh-user-password/30613/19) but now ay to get in (same thing to signup is disabled). I tired to play a little with UPnP but I wasn't able to retrieve something usefull.
-Returning back to the port 80 we can see is using [Pi-Hole](https://github.com/pi-hole/pi-hole) an AD blocking that is widely used in raspberry device. Looking at the GitHub repository I have found the `/admin/api.php` path
+![3846d91ca6b6f8fb0841da272f4d6f12.png](img/3846d91ca6b6f8fb0841da272f4d6f12.png)
 
-![ec6f78de4eab1e87d50c7027ce094544.png](img/ec6f78de4eab1e87d50c7027ce094544.png)
+The blog is made with [nibbleblog](https://github.com/dignajar/nibbleblog), if we enumerate this part we have better results than the homepage
 
-If we go directly to `/admin` we are inside the dashboard
+![6e39f8856ecbfb7e36a1daf0309ea544.png](img/6e39f8856ecbfb7e36a1daf0309ea544.png)
 
-![8e6782771659e02fc8df23fc8a5705a6.png](img/8e6782771659e02fc8df23fc8a5705a6.png)
+at `/admin.php` we have the login form while at `/content/private/users.xml` exfiltrate the **admin** user
 
-I have previously used **searchsploit** to find some well known CVE and all of them are authenticated, we have a form where we have to insert a password and after trying some weak ones I decide to give up. The solution here was not that tricky, we know the device is a raspberry and the machine is based on the fact of IoT device are not that secure so was worth trying the default credentials on SSH `pi:raspberry` and was worth it becuase we have access!
+![b7b25d7444fa1079447316da8c739518.png](img/b7b25d7444fa1079447316da8c739518.png)
 
-![5ef0336b20ff159bd985a7b29761f5f7.png](img/5ef0336b20ff159bd985a7b29761f5f7.png)
+So I tried some weak credentials and `admin:nibbles` work smoothly, now we are inside the dashboard of nibbleblog
+
+![518cd70304e726bae8d0e840ce045bc9.png](img/518cd70304e726bae8d0e840ce045bc9.png)
+
+I need to find the version of nibbleblog and in the settings section can be found at the bottom, the `4.0.3` which is vulnerable to [CVE-2015-6967](https://github.com/FredBrave/CVE-2015-6967) a file upload vulnerability which can be used for a php reverse shell!	
+
+I used the PoC but can easily performed manually uploading whatever extension you want (in this case php) through the **<u>MyImage</u>** plugin which existence can be checked with a little enumeration on the XML files
+
+![bec545bff045778e1e630eaa141831a6.png](img/bec545bff045778e1e630eaa141831a6.png)
+
+This is enough to exfiltrate the first flag of the day!
 
 <br><br><br>
 
 # PRIVILEGE ESCALATION
-Now we are in the sudoers group so I used to spawn a root shell and read the last flag but something different popup
 
-![7c520452092e51c9a3f9e16ebab7fcf3.png](img/7c520452092e51c9a3f9e16ebab7fcf3.png)
+Inside the `nibbler` directory we have a zip file which contains a `monitor.sh` script moreover this script can be run as **root**
 
-Interesting stuff! We actually don't know where this USB stick can be accessed but `mount -l` can help us understand it
+![acd273ded71cbe93f9464bc31e539a03.png](img/acd273ded71cbe93f9464bc31e539a03.png)
 
-![5f07484d5e1fb3728d51804a5619650f.png](img/5f07484d5e1fb3728d51804a5619650f.png)
+Well pretty easy, I just add at the end of the script the command bash to spawn a shell as root!
 
-![21bd71e3b9427dd86a84f65145e3ff9d.png](img/21bd71e3b9427dd86a84f65145e3ff9d.png)
 
-Lucky lucky me finally some of the course I did can return usefull somehow, someone deleted the file accidentaly but doesn't mean is lost forever. When you delete a file you are not actually "free the space" (**unlink**) occupied by that file but you are <u>removing the siymbolic link to that space</u> that will be overidden if needed! That's a small detail but really important especcialy for forensics activity. `dd` is a command utility in linux is as simple as foundamnetals and was used since earliest version of Linux. Essentially copies byte-per-byte and clone it on an utput file, this type of cloning doesn't care about symbolic link and will retrieve everything so even if we "delete" a file will be cloned too. In our case I can use it on the raw mount point and save it locally 
+![8c2750e666f72749d858f67ddcb2effa.png](img/8c2750e666f72749d858f67ddcb2effa.png)
 
-![16a7df773925cceeb9a14291b99cd560.png](img/16a7df773925cceeb9a14291b99cd560.png)
+Now after the execution we have our high privilege shell!
 
-The recovery of the usb stick will be saved in `rec.dd` and moved in the local machine which will be used with `testdisk` where we can retrieve the deleted file
-
-![9dc09b04bae9fb03dfe0a124651c73a1.png](img/9dc09b04bae9fb03dfe0a124651c73a1.png)
-
-As you can see the file is still present in the DD file so we can use `strings` on this file to retrieve the flag
-
-![c117ee799bbcce0b519ab5b8a4574bcc.png](img/c117ee799bbcce0b519ab5b8a4574bcc.png)
-
-Same thing can be done directly on the raw mount point 
-
-![602facddf4177192dc6723c73880849e.png](img/602facddf4177192dc6723c73880849e.png)
+![994020c9210ba11ff7cf383fc070c176.png](img/994020c9210ba11ff7cf383fc070c176.png)
