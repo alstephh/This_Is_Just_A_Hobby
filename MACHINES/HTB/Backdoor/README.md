@@ -62,6 +62,6 @@ Interesting stuff, we need to do a sort of hijacking (similar to TMUX) but I don
 
 ![6c65592a1543010a2a17b5b5ded5fe07.png](img/6c65592a1543010a2a17b5b5ded5fe07.png)
 
-I don't know how the file is configuredinside root but we know that run in deteached mode (`-dmS`) and we can use the `-x root/root` flag to attach on that session and luckly it worked. We are impersonating admn right now! (yeah the admin hash was a hole in the water ehehe)
+I don't know how the file is configured inside root but we know that run in deteached mode (`-dmS`) and we can use the `-x root/root` flag to attach on that session and luckly it worked. We are impersonating root right now! (yeah the admin hash was a hole in the water ehehe)
 
 ![e5e9139fba13e59704d24ee422f6d267.png](img/e5e9139fba13e59704d24ee422f6d267.png)
