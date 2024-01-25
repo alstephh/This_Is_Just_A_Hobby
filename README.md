@@ -1,4 +1,4 @@
-# PORTFOLIO & TRAVELOGUE
+# PORTFOLIO
 
 <p align="center">
 <img src="https://github.com/alstephh/This_Is_Just_A_Hobby/assets/50571084/d4a4356a-8a39-4d04-bb02-84e14cac7152" width="800" />
@@ -31,7 +31,7 @@ Is not an exahustive list of all the resources I use but for sure the most inter
 * https://github.com/Christbowel/Red-Teamer
 
 # BOOKS
-I have read every book listed here and I highly suggest others to do the same 
+I have read every book listed here which helped me to gain knowledge and skills!
 
 * <u>**Linux Basic for Hackers**</u> by OccupyTheWeb
 * <u>**Getting started becoming a Master Hacker**</u> by OccupyTheWeb
