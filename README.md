@@ -43,3 +43,4 @@ I have read every book listed here and I highly suggest others to do the same
 * <u>**The Car Hacker's Handbook - A guide for the Penetration Tester**</u> by Craig Smith
 * <u>**Hack Like a Pornstar**</u> by Sparc Flow
 * <u>**Hack Like a Legend**</u> by Sparc Flow
+* <u>**The Hacker Playbook 3 - Red Team Edition**</u> by Peter Kim
