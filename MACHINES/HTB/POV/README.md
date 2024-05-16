@@ -1,5 +1,5 @@
 # PORT SCAN
-* **80** #&38594; HTTP (IIS 10.0)
+* **80** &#38594; HTTP (IIS 10.0)
 
 <br><br><br>
 
