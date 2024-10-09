@@ -8,6 +8,9 @@ That's a sort of personal portfolio of my own journey learning computer security
 Note this is not "professional" material but personal notes with all my toughts and methodologies. Error, mistakes and failures are voluntarily present (especially in the machines walkthrough) because they are my biggest teachers in this funny, interesting and motivating journey. 
 
 
+![d1s](https://count.getloli.com/get/@d1s?theme=rule34)
+
+
 # RESOURCES
 Is not an exahustive list of all the resources I use but for sure the most interesting/handly to read and cool for learn new things from different perspective. 
 
