@@ -7,6 +7,7 @@
 That's a sort of personal portfolio of my own journey learning computer security with a special look on pentest methodologies and practical laboratories on different platform (mainly HackTheBox).
 Note this is not "professional" material but personal notes with all my toughts and methodologies. Error, mistakes and failures are voluntarily present (especially in the machines walkthrough) because they are my biggest teachers in this funny, interesting and motivating journey. 
 
+# VISITS
 
 ![d1s](https://count.getloli.com/get/@d1s?theme=rule34)
 
